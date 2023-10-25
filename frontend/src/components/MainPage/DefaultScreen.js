@@ -1,11 +1,11 @@
-import Roof from "/app/src/components/Roof";
+import Roof from "components/MainPage/Roof";
 
 const DefaultScreen = () => {
-    return (
-        <>
-            <Roof />
-        </>
-    )
-}
+  return (
+    <>
+      <Roof />
+    </>
+  );
+};
 
 export default DefaultScreen;
