@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         "base-color": "#192655",
         "title-color": "#FCF6EB",
+        "bottom-color": "#59433E",
       },
       fontFamily: {
         cookierun: ["CookieRun Black"],
