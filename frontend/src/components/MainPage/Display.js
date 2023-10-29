@@ -2,8 +2,8 @@ import board from "images/bg_board.png";
 
 const Display = () => {
   return (
-    <div>
-      <img className="w-[413px] h-[261px]" src={board} alt="display" />
+    <div className="-mt-1">
+      <img border-t-4 border-black src={board} alt="display" />
     </div>
   );
 };

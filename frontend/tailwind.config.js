@@ -2,6 +2,9 @@
 module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
+    borderWidth: {
+      15: "15px",
+    },
     extend: {
       colors: {
         "base-color": "#192655",

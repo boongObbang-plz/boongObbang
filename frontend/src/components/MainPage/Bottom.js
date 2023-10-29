@@ -2,7 +2,7 @@ import DDay from "components/MainPage/DDay";
 
 const Bottom = () => {
   return (
-    <div className="h-screen bg-bottom-color">
+    <div className="h-screen w-screen border-t-4 border-black bg-bottom-color">
       <DDay />
     </div>
   );

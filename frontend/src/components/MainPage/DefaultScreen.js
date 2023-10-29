@@ -1,18 +1,14 @@
-import Roof from "components/MainPage/Roof";
-import Title from "components/MainPage/Title";
-import Grill from "components/MainPage/Grill";
+import Top from "components/MainPage/Top";
 import Display from "components/MainPage/Display";
 import Bottom from "components/MainPage/Bottom";
 
 const DefaultScreen = () => {
   return (
-    <>
-      <Roof />
-      <Title />
-      <Grill />
+    <div className="flex flex-col justify-center items-center">
+      <Top />
       <Display />
       <Bottom />
-    </>
+    </div>
   );
 };
 
