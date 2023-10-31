@@ -24,15 +24,6 @@ const LightBulbs = ({ selectedIdx, secondLine }) => {
     ["top-[18px]", "left-[395px]"],
   ];
 
-  // const smudges = [
-  //   {color : "bg-red-smudge", smudge : "red-smudge"},
-  //   {color : "bg-yellow-smudge", smudge : "yellow-smudge"},
-  //   {color : "bg-green-smudge", smudge : "green-smudge"},
-  //   {color : "bg-blue-smudge", smudge : "blue-smudge"},
-  //   {color : "bg-pink-smudge", smudge : "pink-smudge"},
-  //   {color : "bg-purple-smudge", smudge : "purple-smudge"},
-  // ]
-
   const smudges = {
     "bg-red-bulb-color": ["shadow-red-smudge", "animate-red-blink"],
     "bg-yellow-bulb-color": ["shadow-yellow-smudge", "animate-yellow-blink"],
