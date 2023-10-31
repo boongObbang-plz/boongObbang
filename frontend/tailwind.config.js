@@ -23,7 +23,7 @@ module.exports = {
         "cookierun-regular": ["CookieRun Regular"],
       },
       boxShadow: {
-        light: "0 3px 0 -1px rgba(0, 0, 0, 1)",
+        light: "0 4px 0 -1px rgba(0, 0, 0, 1)",
       },
     },
   },
