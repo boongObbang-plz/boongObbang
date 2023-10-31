@@ -10,48 +10,52 @@ const LightBulbs = ({ selectedIdx, secondLine }) => {
 
   const location = [
     ["top-[16px]", "left-[10px]"],
-    ["top-[19px]", "left-[60px]"],
-    ["top-[20px]", "left-[110px]"],
-    ["top-[21px]", "left-[160px]"],
-    ["top-[22px]", "left-[210px]"],
-    ["top-[22px]", "left-[260px]"],
-    ["top-[22px]", "left-[310px]"],
-    ["top-[22px]", "left-[360px]"],
-    ["top-[21px]", "left-[410px]"],
-    ["top-[21px]", "left-[460px]"],
-    ["top-[20px]", "left-[510px]"],
-    ["top-[18px]", "left-[560px]"],
+    ["top-[19px]", "left-[45px]"],
+    ["top-[20px]", "left-[80px]"],
+    ["top-[21px]", "left-[115px]"],
+    ["top-[22px]", "left-[150px]"],
+    ["top-[22px]", "left-[185px]"],
+    ["top-[22px]", "left-[220px]"],
+    ["top-[22px]", "left-[255px]"],
+    ["top-[21px]", "left-[290px]"],
+    ["top-[21px]", "left-[325px]"],
+    ["top-[20px]", "left-[360px]"],
+    ["top-[18px]", "left-[395px]"],
   ];
 
   const result = [];
 
   const rendering = () => {
+    console.log("hi");
     var i = 0;
     while (i < 12) {
       if (secondLine === false) {
         for (let j = 0; j < 3; j++) {
+          // console.log("here");
           result.push(
             <LightBulb
               key={i}
-              color={lights[Number(selectedIdx)][j]}
+              color={lights[selectedIdx][j]}
               top={location[i][0]}
               left={location[i][1]}
             />
           );
+          i++;
         }
       } else {
         for (let j = 2; j >= 0; j--) {
+          // console.log("hi");
           result.push(
             <LightBulb
-              key={i}
-              color={lights[Number(selectedIdx)][j]}
+              key={i + 10}
+              color={lights[selectedIdx][j]}
               top={location[i][0]}
               left={location[i][1]}
             />
           );
+          i++;
         }
       }
-      i++;
     }
 
     return <>{result}</>;
