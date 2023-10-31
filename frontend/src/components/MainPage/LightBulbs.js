@@ -50,8 +50,8 @@ const LightBulbs = ({ selectedIdx, secondLine }) => {
             />
           );
         }
-        i++;
       }
+      i++;
     }
 
     return <>{result}</>;

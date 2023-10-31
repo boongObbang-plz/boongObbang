@@ -1,8 +1,10 @@
 services:
   node:
-    build: .
+    build: ./frontend
     environment:
       # - NODE_ENV=production
       - NODE_ENV=development
+    volumes:
+      - ./frontend:/app
     ports:
       - "3000:3000"
