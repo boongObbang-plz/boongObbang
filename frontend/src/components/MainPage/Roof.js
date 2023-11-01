@@ -5,7 +5,7 @@ const Roof = () => {
   return (
     <div>
       <img src={redRoof} alt="roof" />
-      <Light selectedIdx={1} />
+      <Light selectedIdx={2} />
     </div>
   );
 };
