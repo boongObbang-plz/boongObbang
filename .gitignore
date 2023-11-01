@@ -1,3 +1,7 @@
 .env
 .DS_Store
 .idea/**
+
+# Docker files (하현 - 클러스터 아이맥 사용을 위해 임시로 추가)
+compose.yml
+Dockerfile
