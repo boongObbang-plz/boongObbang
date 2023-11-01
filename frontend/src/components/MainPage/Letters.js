@@ -12,10 +12,9 @@ const Letters = ({ messages }) => {
         ["top-[-25px]", "left-[145px]"],
         ["top-[-25px]", "left-[250px]"],
     ];
-
     const rendering = [...messages].reverse().map((message) => {
         if (message) {
-            var locationIdx = message.idx >= 9 ? message.idx : message.idx % 9;
+           var locationIdx = message.idx >= 9 ? message.idx % 9 : message.idx;
             return (
                     <Letter 
                     key={message.idx}
