@@ -15,7 +15,7 @@ const Display = ({ messages }) => {
     setStart((currentPage - 1) * 9);
     setEnd(currentPage * 9);
   }, [currentPage]);
-
+// TODO:scroll 부드럽게 넘기기 적용
   return (
     <>
     <div className="relative -mt-1">
