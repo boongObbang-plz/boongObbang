@@ -5,11 +5,15 @@ import pizza from 'images/letter_pizza.png';
 import redbean from 'images/letter_redbean.png';
 import sweetpotato from 'images/letter_sweetpotato.png';
 
-const Letter = ({ top, left, message }) => {
+const Letter = ({ letterLoc, tagLoc, message }) => {
     const colors = [redbean, cream, sweetpotato, pizza, choco, mint];
     return (
         <div>
-            <img className={`absolute ${top} ${left} w-[120px]`} src={colors[message.color]} alt='letter'/>
+            <img className={`absolute ${letterLoc[0]} ${letterLoc[1]} w-[120px]`} src={colors[message.color]} alt='letter'/>
+            <div className={`absolute ${tagLoc[0]} ${tagLoc[1]}`}>
+                <h1>{message.to}</h1>
+                <h1>{message.madeby}</h1>
+            </div>
         </div>
     );
 }

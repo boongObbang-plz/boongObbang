@@ -1,8 +1,20 @@
 import Letter from 'components/MainPage/Letter';
 
 const Letters = ({ messages }) => {
-    const location = [
+    const letterLocation = [
         ["top-[140px]", "left-[40px]"],
+        ["top-[140px]", "left-[145px]"],
+        ["top-[140px]", "left-[250px]"],
+        ["top-[60px]", "left-[40px]"],
+        ["top-[60px]", "left-[145px]"],
+        ["top-[60px]", "left-[250px]"],
+        ["top-[-25px]", "left-[40px]"],
+        ["top-[-25px]", "left-[145px]"],
+        ["top-[-25px]", "left-[250px]"],
+    ];
+
+    const tagLocation = [
+        ["top-[10px]", "left-[40px]"],
         ["top-[140px]", "left-[145px]"],
         ["top-[140px]", "left-[250px]"],
         ["top-[60px]", "left-[40px]"],
@@ -18,8 +30,8 @@ const Letters = ({ messages }) => {
             return (
                     <Letter 
                     key={message.idx}
-                    top={location[locationIdx][0]}
-                    left={location[locationIdx][1]}
+                    letterLoc={letterLocation[locationIdx]}
+                    tagLoc={tagLocation[locationIdx]}
                     message={message} />
             ); 
         }         
