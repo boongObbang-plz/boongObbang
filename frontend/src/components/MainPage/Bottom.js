@@ -1,9 +1,9 @@
 import DDay from "components/MainPage/DDay";
 
-const Bottom = () => {
+const Bottom = ({ dday }) => {
   return (
     <div className="h-screen w-screen border-t-4 border-black bg-bottom-color">
-      <DDay />
+      <DDay dday={dday}/>
     </div>
   );
 };
