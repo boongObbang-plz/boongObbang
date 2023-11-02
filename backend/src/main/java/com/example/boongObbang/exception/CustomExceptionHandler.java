@@ -4,6 +4,7 @@ import com.example.boongObbang.exception.exceptions.DeletedMessageException;
 import com.example.boongObbang.exception.exceptions.ExpireAccessTokenException;
 import com.example.boongObbang.exception.exceptions.InvalidAccessTokenException;
 import com.example.boongObbang.exception.exceptions.NoExistMessageException;
+import com.example.boongObbang.exception.exceptions.NoExistValueException;
 import com.example.boongObbang.response.CustomResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +37,13 @@ public class CustomExceptionHandler {
 
 	@ExceptionHandler
 	public ResponseEntity NoExistMessageExceptionHandler(NoExistMessageException e) {
+		return new ResponseEntity(
+			CustomResponse.response(HttpStatus.BAD_REQUEST.value(), e.getMessage()),
+			HttpStatus.BAD_REQUEST);
+	}
+
+	@ExceptionHandler
+	public ResponseEntity NoExistValueExceptionHandler(NoExistValueException e) {
 		return new ResponseEntity(
 			CustomResponse.response(HttpStatus.BAD_REQUEST.value(), e.getMessage()),
 			HttpStatus.BAD_REQUEST);

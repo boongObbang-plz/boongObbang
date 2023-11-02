@@ -3,6 +3,8 @@ package com.example.boongObbang.response;
 public class ResponseMessage {
 	public static final String SUCCESS = "성공";
 
+	public static final String NO_EXIST_VALUE = "값이 비어있습니다";
+
 	//토큰
 	public static final String EXPIRE_ACCESS_TOKEN = "access token이 만료되었습니다";
 	public static final String INVALID_ACCESS_TOKEN = "올바르지 않은 access token입니다";
