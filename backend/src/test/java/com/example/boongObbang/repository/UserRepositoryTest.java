@@ -71,4 +71,28 @@ public class UserRepositoryTest {
 		User result = userRepository.findByEmail(email).get();
 		assertThat(user).isEqualTo(result);
 	}
+	@Test
+	@DisplayName("이메일과 social로 찾기 성공 테스트")
+	public void findByEmailAndSocial() {
+		//given
+		String email = "email@test.com";
+
+		User user = User.builder()
+			.email(email)
+			.uuid(UUID.randomUUID().toString())
+			.social(Social.GOOGLE).build();
+
+		User user2 = User.builder()
+			.email(email)
+			.uuid(UUID.randomUUID().toString())
+			.social(Social.KAKAO).build();
+
+		//when
+		userRepository.save(user);
+		userRepository.save(user2);
+
+		//then
+		User result = userRepository.findByEmailAndSocial(email, Social.GOOGLE).get();
+		assertThat(user).isEqualTo(result);
+	}
 }
