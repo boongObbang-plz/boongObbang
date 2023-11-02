@@ -1,6 +1,6 @@
 package com.example.boongObbang.oauth2;
 
-import com.example.boongObbang.TokenDto;
+import com.example.boongObbang.dto.TokenDto;
 import com.example.boongObbang.jwt.JwtProvider;
 import com.example.boongObbang.response.CustomResponse;
 import com.example.boongObbang.response.ResponseMessage;
