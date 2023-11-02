@@ -1,6 +1,5 @@
 package com.example.boongObbang.entity;
 
-import com.example.boongObbang.enums.Social;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -29,6 +28,5 @@ public class User {
 	@Column(length = 255)
 	private String uuid;
 
-	@Enumerated(EnumType.STRING)
-	private Social social;
+	private String provider;
 }

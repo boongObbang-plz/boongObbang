@@ -1,7 +1,6 @@
 package com.example.boongObbang.repository;
 
 import com.example.boongObbang.entity.User;
-import com.example.boongObbang.enums.Social;
 import java.util.UUID;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,7 +23,7 @@ public class UserRepositoryTest {
 		User user = User.builder()
 			.email("test@test.com")
 			.uuid(UUID.randomUUID().toString())
-			.social(Social.GOOGLE).build();
+			.provider("google").build();
 
 		//when
 		userRepository.save(user);
@@ -43,7 +42,7 @@ public class UserRepositoryTest {
 		User user = User.builder()
 			.email("uuid@test.com")
 			.uuid(uuid)
-			.social(Social.GOOGLE).build();
+			.provider("google").build();
 
 		//when
 		userRepository.save(user);
@@ -62,7 +61,7 @@ public class UserRepositoryTest {
 		User user = User.builder()
 			.email(email)
 			.uuid(UUID.randomUUID().toString())
-			.social(Social.GOOGLE).build();
+			.provider("google").build();
 
 		//when
 		userRepository.save(user);
@@ -80,19 +79,19 @@ public class UserRepositoryTest {
 		User user = User.builder()
 			.email(email)
 			.uuid(UUID.randomUUID().toString())
-			.social(Social.GOOGLE).build();
+			.provider("google").build();
 
 		User user2 = User.builder()
 			.email(email)
 			.uuid(UUID.randomUUID().toString())
-			.social(Social.KAKAO).build();
+			.provider("kakao").build();
 
 		//when
 		userRepository.save(user);
 		userRepository.save(user2);
 
 		//then
-		User result = userRepository.findByEmailAndSocial(email, Social.GOOGLE).get();
+		User result = userRepository.findByEmailAndProvider(email, "google").get();
 		assertThat(user).isEqualTo(result);
 	}
 }
