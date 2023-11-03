@@ -28,6 +28,7 @@ public class JwtProvider {
 
 		Claims claims = Jwts.claims().setSubject(email);
 		claims.put("role", "user");
+		claims.put("provider", provider);
 
 		Date now = new Date();
 
@@ -70,5 +71,13 @@ public class JwtProvider {
 			.parseClaimsJws(token)
 			.getBody()
 			.getSubject();
+	}
+
+	public String getProvider(String token) {
+		return Jwts.parser()
+			.setSigningKey(secretKey)
+			.parseClaimsJws(token)
+			.getBody()
+			.get("provider", String.class);
 	}
 }

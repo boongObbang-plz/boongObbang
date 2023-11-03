@@ -2,14 +2,17 @@ package com.example.boongObbang.oauth2;
 
 import com.example.boongObbang.dto.TokenDto;
 import com.example.boongObbang.entity.Token;
+import com.example.boongObbang.entity.User;
 import com.example.boongObbang.jwt.JwtProvider;
 import com.example.boongObbang.repository.TokenRedisRepository;
+import com.example.boongObbang.repository.UserRepository;
 import com.example.boongObbang.response.CustomResponse;
 import com.example.boongObbang.response.ResponseMessage;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
@@ -23,6 +26,7 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
 
 	private final JwtProvider jwtProvider;
 	private final TokenRedisRepository redisRepository;
+	private final UserRepository userRepository;
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
@@ -42,6 +46,13 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
 			.jwt(accessToken).build();
 
 		redisRepository.save(token);
+
+		User user = User.builder()
+			.email(email)
+			.provider(provider)
+			.uuid(UUID.randomUUID().toString()).build();
+
+		userRepository.save(user);
 
 		ObjectMapper mapper = new ObjectMapper();
 
