@@ -9,10 +9,10 @@ const Letter = ({ letterLoc, tagLoc, message }) => {
     const colors = [redbean, cream, sweetpotato, pizza, choco, mint];
     return (
         <div>
-            <img className={`absolute ${letterLoc[0]} ${letterLoc[1]} w-[120px]`} src={colors[message.color]} alt='letter'/>
-            <div className={`absolute ${tagLoc[0]} ${tagLoc[1]}`}>
-                <h1>{message.to}</h1>
-                <h1>{message.madeby}</h1>
+            <img className={`absolute ${letterLoc[0]} ${letterLoc[1]} w-[30%]`} src={colors[message.color]} alt='letter'/>
+            <div className={`absolute ${tagLoc[0]} ${tagLoc[1]} flex justify-center items-center w-[26%] h-[5%] text-[2.5vw]`}>
+                {/* <h1 className='text-center'>{message.made_by}</h1> */}
+                <div>{message.made_by}</div>
             </div>
         </div>
     );
