@@ -61,7 +61,8 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
 
 		//처음 회원 가입을 한 경우
 		try {
-			response.setCharacterEncoding("utf-8");
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("application/json");
 			mapper.writeValue(response.getWriter(), CustomResponse.response(HttpStatus.CREATED.value(), ResponseMessage.SUCCESS, tokenDto));
 			response.setStatus(HttpServletResponse.SC_CREATED);
 		} catch (IOException e) {
