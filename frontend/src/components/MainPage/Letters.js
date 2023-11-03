@@ -14,15 +14,15 @@ const Letters = ({ messages }) => {
     ];
 
     const tagLocation = [
-        ["top-[58.5%]", "left-[7%]"],
-        ["top-[58.5%]", "left-[37%]"],
-        ["top-[58.5%]", "right-[7%]"],
-        ["top-[25.5%]", "left-[7%]"],
-        ["top-[25.5%]", "left-[37%]"],
-        ["top-[25.5%]", "right-[7%]"],
-        ["top-[-7%]", "left-[7%]"],
-        ["top-[-7%]", "left-[37%]"],
-        ["top-[-7%]", "right-[7%]"],
+        ["top-[57.5%]", "left-[7%]"],
+        ["top-[57.5%]", "left-[37%]"],
+        ["top-[57.5%]", "right-[7%]"],
+        ["top-[24.5%]", "left-[7%]"],
+        ["top-[24.5%]", "left-[37%]"],
+        ["top-[24.5%]", "right-[7%]"],
+        ["top-[-8%]", "left-[7%]"],
+        ["top-[-8%]", "left-[37%]"],
+        ["top-[-8%]", "right-[7%]"],
     ];
     const rendering = [...messages].reverse().map((message) => {
         if (message) {
