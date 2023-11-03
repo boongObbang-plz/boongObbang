@@ -1,13 +1,16 @@
 package com.example.boongObbang.oauth2;
 
 import com.example.boongObbang.dto.TokenDto;
+import com.example.boongObbang.entity.Token;
 import com.example.boongObbang.jwt.JwtProvider;
+import com.example.boongObbang.repository.TokenRedisRepository;
 import com.example.boongObbang.response.CustomResponse;
 import com.example.boongObbang.response.ResponseMessage;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
@@ -20,6 +23,7 @@ import org.springframework.stereotype.Component;
 public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
 
 	private final JwtProvider jwtProvider;
+	private final TokenRedisRepository redisRepository;
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
@@ -34,7 +38,11 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
 		TokenDto tokenDto = new TokenDto();
 		tokenDto.setToken(accessToken);
 
-		//TODO: redis에 토큰 저장
+		Token token = Token.builder()
+			.email(provider + "-" + email)
+			.jwt(accessToken).build();
+
+		redisRepository.save(token);
 
 		ObjectMapper mapper = new ObjectMapper();
 
