@@ -39,19 +39,30 @@ public class JwtProvider {
 
 	}
 
-	public boolean verifyToken(String token) {
+	public boolean isTokenValid(String token) {
 		try {
 			Jws<Claims> claims = Jwts.parser()
 				.setSigningKey(secretKey)
 				.parseClaimsJws(token);
-
-			return claims.getBody()
-				.getExpiration()
-				.after(new Date());
+			return true;
 		} catch (Exception e) {
 			return false;
 		}
 	}
+
+	public boolean isTokenExpired(String token) {
+		try {
+			Claims claims = Jwts.parser()
+				.setSigningKey(secretKey)
+				.parseClaimsJws(token)
+				.getBody();
+			Date expirationDate = claims.getExpiration();
+			return expirationDate.before(new Date());
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
 
 	public String getEmail(String token) {
 		return Jwts.parser()
