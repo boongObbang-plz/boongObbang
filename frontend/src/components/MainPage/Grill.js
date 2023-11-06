@@ -2,8 +2,8 @@ import frame from "images/bg_frame.png";
 
 const Grill = () => {
   return (
-    <div>
-      <img className="h-[70px]" src={frame} alt="grill" />
+    <div className="w-[75%]">
+      <img src={frame} alt="grill" />
     </div>
   );
 };

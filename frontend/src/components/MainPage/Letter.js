@@ -10,7 +10,7 @@ const Letter = ({ letterLoc, tagLoc, message }) => {
     return (
         <div>
             <img className={`absolute ${letterLoc[0]} ${letterLoc[1]} w-[30%]`} src={colors[message.color]} alt='letter'/>
-            <div className={`absolute ${tagLoc[0]} ${tagLoc[1]} flex justify-center items-center w-[26%] h-[7%] text-[2.5vw]`}>
+            <div className={`absolute ${tagLoc[0]} ${tagLoc[1]} flex justify-center items-center w-[26%] h-[7%] text-[1.1vh]`}>
                 {/* <h1 className='text-center'>{message.made_by}</h1> */}
                 <div>{message.made_by}</div>
             </div>

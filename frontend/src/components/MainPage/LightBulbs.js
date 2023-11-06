@@ -10,18 +10,18 @@ const LightBulbs = ({ selectedIdx, secondLine }) => {
   ];
 
   const location = [
-    ["top-[16px]", "left-[10px]"],
-    ["top-[19px]", "left-[45px]"],
-    ["top-[20px]", "left-[80px]"],
-    ["top-[21px]", "left-[115px]"],
-    ["top-[22px]", "left-[150px]"],
-    ["top-[22px]", "left-[185px]"],
-    ["top-[22px]", "left-[220px]"],
-    ["top-[22px]", "left-[255px]"],
-    ["top-[21px]", "left-[290px]"],
-    ["top-[21px]", "left-[325px]"],
-    ["top-[20px]", "left-[360px]"],
-    ["top-[18px]", "left-[395px]"],
+    ["top-[85%]", "left-[2%]"],
+    ["top-[97%]", "left-[10%]"],
+    ["top-[105%]", "left-[19%]"],
+    ["top-[110%]", "left-[27%]"],
+    ["top-[115%]", "left-[36%]"],
+    ["top-[115%]", "left-[45%]"],
+    ["top-[115%]", "left-[53%]"],
+    ["top-[115%]", "left-[62%]"],
+    ["top-[110%]", "left-[71%]"],
+    ["top-[110%]", "left-[79%]"],
+    ["top-[100%]", "left-[88%]"],
+    ["top-[85%]", "left-[97%]"],
   ];
 
   const smudges = {
