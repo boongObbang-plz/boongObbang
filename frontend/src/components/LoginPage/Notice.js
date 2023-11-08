@@ -2,11 +2,11 @@ import MessageTitle from "./MessageTitle"
 import Message from "./Message"
 import CloseButton from "./CloseButton"
 
-const Notice = () => {
+const Notice = ({setModalIsOpen}) => {
 
     return (
-        <div className="w-[80%] h-[980px] bg-[#FFFFFF] text-[#000000] flex flex-col items-end justify-start px-[7%] pt-[5%] pb-[10%] rounded-[10px]">
-            <CloseButton/>
+        <div className="w-[100%] h-[980px] bg-[#FFFFFF] text-[#000000] flex flex-col items-end justify-start px-[7%] pt-[5%] pb-[10%] rounded-[10px]">
+            <CloseButton setModalIsOpen={setModalIsOpen} />
             <div className="h-[100%] flex flex-col items-start justify-between text-left">
             <h3 className="text-[20px] font-bold">🎄환영합니다!🎄</h3>
             <div>
