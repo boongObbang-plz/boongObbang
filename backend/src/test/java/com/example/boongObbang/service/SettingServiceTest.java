@@ -34,10 +34,12 @@ public class SettingServiceTest {
 	public void save() {
 		//given
 		String email = "settingservice@test.com";
+		String provider = "google";
+
 		User user = User.builder()
 			.email(email)
 			.uuid(UUID.randomUUID().toString())
-			.provider("google").build();
+			.provider(provider).build();
 
 		userRepository.save(user);
 
@@ -50,7 +52,7 @@ public class SettingServiceTest {
 
 		//then
 		assertDoesNotThrow(() -> {
-			settingService.createSetting(createSettingRequestDto, email);
+			settingService.createSetting(createSettingRequestDto, email, provider);
 		});
 	}
 
@@ -59,6 +61,7 @@ public class SettingServiceTest {
 	public void fail_email() {
 		//given
 		String email = "settingserviceNouser@test.com";
+		String provider = "google";
 
 		//when
 		CreateSettingRequestDto createSettingRequestDto = new CreateSettingRequestDto();
@@ -68,7 +71,7 @@ public class SettingServiceTest {
 		createSettingRequestDto.setLight(1);
 
 		Throwable throwable = assertThrows(RuntimeException.class, () -> {
-			settingService.createSetting(createSettingRequestDto, email);
+			settingService.createSetting(createSettingRequestDto, email, provider);
 		});
 		//then
 		assertEquals(throwable.getMessage(), ResponseMessage.NO_EXIST_EMAIL);

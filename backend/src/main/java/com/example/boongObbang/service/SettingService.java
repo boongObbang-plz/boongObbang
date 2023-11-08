@@ -20,8 +20,8 @@ public class SettingService {
 	@Autowired
 	UserRepository userRepository;
 
-	public void createSetting(CreateSettingRequestDto createSettingRequestDto, String email) {
-		Optional<User> user = userRepository.findByEmail(email);
+	public void createSetting(CreateSettingRequestDto createSettingRequestDto, String email, String provider) {
+		Optional<User> user = userRepository.findByEmailAndProvider(email, provider);
 
 		if (user.isEmpty()) {
 			throw new NoExistEmailException(ResponseMessage.NO_EXIST_EMAIL);
