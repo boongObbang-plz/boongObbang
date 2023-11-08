@@ -12,5 +12,6 @@ public class ResponseMessage {
 	//편지
 	public static final String NO_EXIST_MESSAGE = "존재하지 않는 편지입니다";
 	public static final String DELETED_MESSAGE = "삭제된 편지입니다";
+	public static final String NO_EXIST_EMAIL = "존재하지 않는 이메일입니다";
 
 }
