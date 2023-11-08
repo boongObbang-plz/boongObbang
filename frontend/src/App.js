@@ -1,10 +1,13 @@
-import DefaultScreen from "components/MainPage/DefaultScreen";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import MainPage from "pages/MainPage";
 
 function App() {
   return (
-    <div className="flex justify-center">
-      <DefaultScreen />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/mainpage" element={<MainPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
