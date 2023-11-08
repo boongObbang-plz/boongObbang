@@ -2,6 +2,7 @@ package com.example.boongObbang.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.example.boongObbang.entity.Setting;
 import com.example.boongObbang.entity.User;
 import java.util.UUID;
 import org.junit.jupiter.api.DisplayName;
@@ -47,7 +48,7 @@ public class SettingRepositoryTest {
 
 	@Test
 	@DisplayName("유저 id로 값 찾기 테스트")
-	public void save() {
+	public void findByuserId() {
 		//given
 		User user = User.builder()
 			.email("setting2@test.com")
