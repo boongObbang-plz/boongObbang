@@ -3,6 +3,7 @@ package com.example.boongObbang.exception;
 import com.example.boongObbang.exception.exceptions.DeletedMessageException;
 import com.example.boongObbang.exception.exceptions.ExpireAccessTokenException;
 import com.example.boongObbang.exception.exceptions.InvalidAccessTokenException;
+import com.example.boongObbang.exception.exceptions.NoExistEmailException;
 import com.example.boongObbang.exception.exceptions.NoExistMessageException;
 import com.example.boongObbang.exception.exceptions.NoExistValueException;
 import com.example.boongObbang.response.CustomResponse;
@@ -44,6 +45,13 @@ public class CustomExceptionHandler {
 
 	@ExceptionHandler
 	public ResponseEntity NoExistValueExceptionHandler(NoExistValueException e) {
+		return new ResponseEntity(
+			CustomResponse.response(HttpStatus.BAD_REQUEST.value(), e.getMessage()),
+			HttpStatus.BAD_REQUEST);
+	}
+
+	@ExceptionHandler
+	public ResponseEntity NoExistEmailExceptionHandler(NoExistEmailException e) {
 		return new ResponseEntity(
 			CustomResponse.response(HttpStatus.BAD_REQUEST.value(), e.getMessage()),
 			HttpStatus.BAD_REQUEST);
