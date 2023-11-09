@@ -1,5 +1,7 @@
 package com.example.boongObbang.jwt;
 
+import com.example.boongObbang.entity.Token;
+import com.example.boongObbang.repository.TokenRedisRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
@@ -8,6 +10,7 @@ import jakarta.annotation.PostConstruct;
 import java.util.Base64;
 import java.util.Date;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +21,9 @@ public class JwtProvider {
 	@Value("$jwt.secret")
 	private String secretEnv;
 	private String secretKey;
+
+	@Autowired
+	private TokenRedisRepository redisRepository;
 
 	@PostConstruct
 	protected void init() {
@@ -32,12 +38,19 @@ public class JwtProvider {
 
 		Date now = new Date();
 
-		return Jwts.builder()
+		String jwtToken = Jwts.builder()
 			.setClaims(claims)
 			.setIssuedAt(now)
 			.setExpiration(new Date(now.getTime() + tokenPeriod))
 			.signWith(SignatureAlgorithm.HS256, secretKey).compact();
 
+		Token token = Token.builder()
+			.email(provider + "-" + "email")
+			.jwt(jwtToken).build();
+
+		redisRepository.save(token);
+
+		return jwtToken;
 	}
 
 	public boolean isTokenValid(String token) {
