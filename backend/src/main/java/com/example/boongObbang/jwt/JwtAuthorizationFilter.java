@@ -37,7 +37,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 			"/",
 			"/main/**",
 			"/login/**",
-			"/login"
+			"/login/oauth2/code/kakao"
 		);
 
 		//인증, 인가가 필요없는 uri
@@ -82,20 +82,20 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 		} catch (InvalidAccessTokenException e) {
 			try {
 				ObjectMapper mapper = new ObjectMapper();
+				response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 				response.setCharacterEncoding("UTF-8");
 				response.setContentType("application/json");
 				mapper.writeValue(response.getWriter(), CustomResponse.response(HttpStatus.UNAUTHORIZED.value(), ResponseMessage.INVALID_ACCESS_TOKEN));
-				response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 			} catch (IOException ee) {
 				throw new RuntimeException(ee);
 			}
 		} catch (ExpireAccessTokenException e) {
 			try {
 				ObjectMapper mapper = new ObjectMapper();
+				response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 				response.setCharacterEncoding("UTF-8");
 				response.setContentType("application/json");
 				mapper.writeValue(response.getWriter(), CustomResponse.response(HttpStatus.UNAUTHORIZED.value(), ResponseMessage.EXPIRE_ACCESS_TOKEN));
-				response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 			} catch (IOException ee) {
 				throw new RuntimeException(ee);
 			}
