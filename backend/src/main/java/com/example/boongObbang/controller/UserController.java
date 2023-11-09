@@ -46,4 +46,28 @@ public class UserController {
 		return new ResponseEntity(CustomResponse.response(HttpStatus.OK.value(), ResponseMessage.SUCCESS, loginResponseDto),
 			HttpStatus.OK);
 	}
+
+	@PostMapping("/google")
+	public ResponseEntity loginGoogle(@RequestBody LoginRequestDto loginRequestDto, BindingResult bindingResult) {
+		//valid check
+		if (bindingResult.hasErrors()) {
+			return new ResponseEntity(CustomResponse.response(HttpStatus.BAD_REQUEST.value(),
+				Objects.requireNonNull(bindingResult.getFieldError()).getDefaultMessage()),
+				HttpStatus.BAD_REQUEST);
+		}
+
+		LoginServiceDto loginServiceDto = userService.loginGoogle(loginRequestDto);
+
+		LoginResponseDto loginResponseDto = new LoginResponseDto();
+		loginResponseDto.setToken(loginServiceDto.getToken());
+
+		//최초 로그인일 걍우
+		if (loginServiceDto.isNew())
+			return new ResponseEntity(CustomResponse.response(HttpStatus.CREATED.value(), ResponseMessage.SUCCESS,loginResponseDto),
+				HttpStatus.CREATED);
+
+		//기존 회원의 로그인일 경우
+		return new ResponseEntity(CustomResponse.response(HttpStatus.OK.value(), ResponseMessage.SUCCESS, loginResponseDto),
+			HttpStatus.OK);
+	}
 }
