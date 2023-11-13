@@ -1,9 +1,9 @@
-import board from "../../images/bg_board.png"
+import board from "images/bg_board.png"
 
 const Board = () => {
     return (
         <div>
-            <img src={board} />
+            <img src={board} alt="board"/>
         </div>
     )
 }

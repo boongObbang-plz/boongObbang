@@ -1,4 +1,4 @@
-import KakaoLogin from "../../images/kakao_login.png"
+import KakaoLogin from "images/kakao_login.png"
 
 const SocialKakao = ()=>
 {
@@ -11,7 +11,7 @@ const SocialKakao = ()=>
     }
     return(
     <div className="w-[90%]">
-        <button onClick={handleLogin}><img src={KakaoLogin} /></button>
+        <button onClick={handleLogin}><img src={KakaoLogin} alt="kakako login button"/></button>
     </div>
     )
 }

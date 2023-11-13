@@ -6,7 +6,7 @@ const Notice = ({setModalIsOpen}) => {
 
     return (
         <div className="w-[100%] h-[980px] bg-[#FFFFFF] text-[#000000] flex flex-col items-center justify-start px-[7%] pt-[5%] pb-[10%]">
-            <CloseButton setModalIsOpen={setModalIsOpen} />
+            <div className="w-[100%]"><CloseButton setModalIsOpen={setModalIsOpen} /></div>
             <div className="h-[100%] flex flex-col items-start justify-between text-left">
             <h3 className="text-[20px] font-bold">🎄환영합니다!🎄</h3>
             <div>

@@ -1,12 +1,12 @@
 import { useState } from "react";
-import roofR    from "../../images/preview_roof_red.png"
-import roofO    from "../../images/preview_roof_orange.png"
-import roofG    from "../../images/preview_roof_green.png"
-import roofB    from "../../images/preview_roof_blue.png"
-import light0   from "../../images/light0_ryg.png"
-import light1   from "../../images/light1_ryb.png"
-import light2   from "../../images/light2_ppb.png"
-import light3   from "../../images/light3_yyy.png"
+import roofR    from "images/preview_roof_red.png"
+import roofO    from "images/preview_roof_orange.png"
+import roofG    from "images/preview_roof_green.png"
+import roofB    from "images/preview_roof_blue.png"
+import light0   from "images/light0_ryg.png"
+import light1   from "images/light1_ryb.png"
+import light2   from "images/light2_ppb.png"
+import light3   from "images/light3_yyy.png"
 
 const PreView = () => {
 	const ColorOptions = [
@@ -17,7 +17,7 @@ const PreView = () => {
 	]
 	const [previewImage, setPreviewImage] = useState(roofR)
 
-	function onClickRadioButton(e) {
+	onClickRadioButton = (e) => {
 		setPreviewImage(ColorOptions[e.target.value].value)
 	}
 
@@ -72,22 +72,22 @@ const PreView = () => {
             <RadioGroup>
 				<Radio name="light" value="0">
 					<div className="w-[55px] h-[55px] bg-[#FCF6EB] rounded-[20px] border-4 border-[#FCF6EB]">
-                        <img src={light0}/>
+                        <img src={light0} alt="light0 ryg"/>
                     </div>
 				</Radio>
 				<Radio name="light" value="1">
                     <div className="w-[55px] h-[55px] bg-[#FCF6EB] rounded-[20px] border-4 border-[#FCF6EB]">
-                        <img src={light1}/>
+                        <img src={light1} alt="light1 ryb"/>
                     </div>
 				</Radio>
 				<Radio name="light" value="2">
                     <div className="w-[55px] h-[55px] bg-[#FCF6EB] rounded-[20px] border-4 border-[#FCF6EB]">
-                        <img src={light2}/>
+                        <img src={light2} alt="light2 ppb"/>
                     </div>
 				</Radio>
 				<Radio name="light" value="3">
                     <div className="w-[55px] h-[55px] bg-[#FCF6EB] rounded-[20px] border-4 border-[#FCF6EB]">
-                        <img src={light3}/>
+                        <img src={light3} alt="light3 yyy"/>
                     </div>
 				</Radio>
 			</RadioGroup>

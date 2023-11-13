@@ -1,4 +1,3 @@
-import Button   from './StartButton'
 import Header   from './Header'
 import Name     from './Name'
 import PreView  from './PreView'
