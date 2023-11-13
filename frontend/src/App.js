@@ -1,15 +1,23 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
+import LoginPage from "components/LoginPage/LoginPage";
 import MainPage from "pages/MainPage";
 import NotMyMainPage from "pages/NotMyMainPage";
+import Layout from "components/layout";
+import { RecoilRoot } from "recoil";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/mainpage" element={<MainPage />} />
-        <Route path="/main" element={<NotMyMainPage />} />
-      </Routes>
-    </BrowserRouter>
+    <RecoilRoot>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<LoginPage />} index />
+            <Route path="/mainpage" element={<MainPage />} />
+            <Route path="/main" element={<NotMyMainPage />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </RecoilRoot>
   );
 }
 
