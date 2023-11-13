@@ -5,8 +5,8 @@ const CloseButton = (props) => {
         props.setModalIsOpen(false)
     }
     return (
-        <div className="w-[30px]">
-        <button onClick={onClickCloseButton}><img src={closeImage}/></button>
+        <div className="w-[100%] flex justify-end">
+        <button className="w-[30px]" onClick={onClickCloseButton}><img src={closeImage}/></button>
         </div>
     )
 }
