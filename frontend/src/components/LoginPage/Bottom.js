@@ -1,10 +1,11 @@
 import GoogleLoginButton from "./GoogleLoginButton"
-import KakaoLoginButton from "./KakaoLoginButton"
+import SocialKakao from "./SocialKakao"
 const Bottom = () => {
+    
     return (
-        <div className="h-screen w-[100%] border-t-4 border-black bg-bottom-color pt-[50px]">
+        <div className="h-screen w-[100%] border-t-4 border-black bg-bottom-color pt-[10%] flex flex-col items-center">
             <GoogleLoginButton />
-            <KakaoLoginButton />
+            <SocialKakao />
         </div>
     )
 }
