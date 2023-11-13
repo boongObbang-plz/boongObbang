@@ -20,7 +20,7 @@ const Display = ({ messages }) => {
     <>
     <div className="relative -mt-1">
       <Letters messages={messages.slice(start, end)}/>
-      {(totalPages > 1 && currentPage !== 1) ? <img onClick={() => setCurrentPage(currentPage - 1)} className="absolute top-[100px] w-[20%]" src={left} alt="left arrow"/> : null }
+      {(totalPages > 1 && currentPage !== 1) ? <img onClick={() => setCurrentPage(currentPage - 1)} className="absolute top-[100px] w-[39px]" src={left} alt="left arrow"/> : null }
       {(totalPages > 1 && currentPage !== totalPages) ? <img onClick={() => setCurrentPage(currentPage + 1)} className="absolute top-[100px] right-[0px] w-[39px]" src={right} alt="right arrow"/> : null }
       <img className="border-t-4 border-black" src={board} alt="display" />
     </div>
