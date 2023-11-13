@@ -12,7 +12,20 @@ const Layout = () => {
     <>
       <Outlet />
       {/* 편지쓰기 */}
-      <Modal isOpen={letterOpen} onRequestClose={() => setLetterOpen(false)}>
+      <Modal
+        style={{
+          content: {
+            width: "351px",
+            height: "570px",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            borderRadius: "10px",
+          },
+        }}
+        isOpen={letterOpen}
+        onRequestClose={() => setLetterOpen(false)}
+      >
         <MakeLetter />
       </Modal>
       {/* 도움말 */}
