@@ -7,7 +7,7 @@ import { modalHelperState, modalLetterState } from "state/ModalState";
 
 const Layout = () => {
   const [letterOpen, setLetterOpen] = useRecoilState(modalLetterState);
-  const [helperModal, setHelperOpen] = useRecoilState(modalHelperState);
+  const [helperOpen, setHelperOpen] = useRecoilState(modalHelperState);
   return (
     <>
       <Outlet />
@@ -16,7 +16,7 @@ const Layout = () => {
         <MakeLetter />
       </Modal>
       {/* 도움말 */}
-      <Modal isOpen={helperModal} onRequestClose={() => setHelperOpen(false)}>
+      <Modal isOpen={helperOpen} onRequestClose={() => setHelperOpen(false)}>
         <Notice setModalIsOpen={setHelperOpen} />
       </Modal>
     </>
