@@ -46,12 +46,6 @@
 
 # CMD ["sh", ./start.sh]
 
-
-
-
-
-
-
 FROM node:lts-alpine3.18
 
 ARG NODE_ENV=development

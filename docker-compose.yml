@@ -73,6 +73,6 @@ services:
       # - NODE_ENV=production
       - NODE_ENV=development
     volumes:
-      - ./frontend:/app
+      - ./frontend/src:/app/src
     ports:
       - "5173:5173"
