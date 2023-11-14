@@ -10,4 +10,14 @@ const modalLetterState = atom({
   default: false, // default value (aka initial value)
 });
 
-export { modalHelperState, modalLetterState };
+const writeLetterState = atom({
+  key: "writeLetterState", // unique ID (with respect to other atoms/selectors)
+  default: {
+    color: null,
+    to: "",
+    content: "",
+    from: "",
+  }, // default value (aka initial value)
+});
+
+export { modalHelperState, modalLetterState, writeLetterState };

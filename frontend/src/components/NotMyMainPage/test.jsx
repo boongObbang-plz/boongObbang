@@ -20,7 +20,7 @@ const ChooseBOB = () => {
   return (
     <>
       <NextCloseBTN />
-      <div className="border-8 h-[100%] flex flex-col items-start justify-between text-left">
+      <div className="border-8 border-red-500 h-[100%] flex flex-col items-start justify-between text-left">
         <div className="grid grid-cols-2">
           {colors.map((color, index) => (
             <BOB key={index} index={index} color={color} />
