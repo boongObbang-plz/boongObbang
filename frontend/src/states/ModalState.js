@@ -7,15 +7,18 @@ const modalHelperState = atom({
 
 const modalLetterState = atom({
   key: "modalLetterState", // unique ID (with respect to other atoms/selectors)
-  default: false, // default value (aka initial value)
+  default: {
+    isOpen: false,
+    page: 1,
+  }, // default value (aka initial value)
 });
 
 const writeLetterState = atom({
   key: "writeLetterState", // unique ID (with respect to other atoms/selectors)
   default: {
-    color: null,
+    color: 0,
     to: "",
-    content: "",
+    message: "",
     from: "",
   }, // default value (aka initial value)
 });

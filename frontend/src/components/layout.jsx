@@ -1,13 +1,20 @@
 import { useRecoilState } from "recoil";
 import Modal from "react-modal";
 import { Outlet } from "react-router-dom";
-import { modalHelperState, modalLetterState } from "@states//ModalState";
-import MakeLetter from "@components/NotMyMainPage/MakeLetter";
+import { modalHelperState, modalLetterState, writeLetterState } from "@states//ModalState";
+import MakeLetter from "@components/NotMyMainPage/MakeLetter/MakeLetter";
 import Notice from "@components/NotMyMainPage/Notice";
 
 const Layout = () => {
   const [letterOpen, setLetterOpen] = useRecoilState(modalLetterState);
+  const [writeLetter, setWriteLetter] = useRecoilState(writeLetterState);
   const [helperOpen, setHelperOpen] = useRecoilState(modalHelperState);
+
+  const closeMakeLetter = () => {
+    setLetterOpen({ isOpen: false, page: 1 });
+    setWriteLetter({ color: 0, to: "", message: "", from: "" });
+  }
+
   return (
     <>
       <Outlet />
@@ -23,8 +30,8 @@ const Layout = () => {
             borderRadius: "10px",
           },
         }}
-        isOpen={letterOpen}
-        onRequestClose={() => setLetterOpen(false)}>
+        isOpen={letterOpen.isOpen}
+        onRequestClose={() => closeMakeLetter()}>
         <MakeLetter />
       </Modal>
       {/* 도움말 */}
