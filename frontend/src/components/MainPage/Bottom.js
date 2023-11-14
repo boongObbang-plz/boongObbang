@@ -1,6 +1,6 @@
 import DDay from "components/MainPage/DDay";
-import SettingButton from "./SettingButton";
-import ShareButton from "./ShareButton";
+import SettingButton from "components/MainPage/SettingButton";
+import ShareButton from "components/MainPage/ShareButton";
 
 const Bottom = ({ dday }) => {
   return (
