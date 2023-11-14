@@ -15,7 +15,7 @@ const Letter = ({ letterLoc, tagLoc, message }) => {
         alt="letter"
       />
       <div
-        className={`absolute ${tagLoc[0]} ${tagLoc[1]} flex justify-center items-center w-[26%] h-[7%] text-[1.1vh]`}
+        className={`absolute ${tagLoc[0]} ${tagLoc[1]} flex justify-center items-center w-[26%] h-[7%] text-[8px]`}
       >
         {/* <h1 className='text-center'>{message.made_by}</h1> */}
         <div>{message.made_by}</div>
