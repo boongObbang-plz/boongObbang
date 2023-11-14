@@ -1,14 +1,14 @@
-FROM node:18
+# FROM node:18
 
-COPY . /app
+# COPY . /app
 
-WORKDIR /app
+# WORKDIR /app
 
-RUN npm install
+# RUN npm install
 
-EXPOSE 3000
+# EXPOSE 3000
 
-ENTRYPOINT [ "npm", "start" ]
+# ENTRYPOINT [ "npm", "start" ]
 
 
 # 클러스터에서 실행할 때 사용
@@ -31,7 +31,7 @@ ENTRYPOINT [ "npm", "start" ]
 
 # COPY --chown=node:node package.json package-lock.json* ./
 
-# # RUN npm install
+# RUN npm install
 # # RUN npm install react-router-dom
 
 # RUN npm ci --include=dev && npm cache clean --force
@@ -45,3 +45,35 @@ ENTRYPOINT [ "npm", "start" ]
 # COPY ./start.sh ./
 
 # CMD ["sh", ./start.sh]
+
+
+
+
+
+
+
+FROM node:lts-alpine3.18
+
+ARG NODE_ENV=development
+ENV NODE_ENV $NODE_ENV
+
+ARG PORT=5173
+ENV PORT $PORT
+
+RUN npm i npm@latest -g
+
+RUN npm i -g vite
+
+USER node
+
+WORKDIR /app
+
+COPY --chown=node:node package.json package-lock.json* ./
+
+RUN npm ci --include=dev && npm cache clean --force
+
+COPY --chown=node:node . .
+
+EXPOSE $PORT
+
+CMD [ "npm", "run", "dev"]
