@@ -1,18 +1,28 @@
 import icon_submit from "/images/icon_submit.png";
 import icon_close from "/images/icon_close.png";
+import { useEffect } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { modalLetterState, writeLetterState, modalSubmitState } from "@states//ModalState";
+import { modalLetterState, writeLetterState, modalSubmitState, modalAlertState } from "@states//ModalState";
 
 const FinalCheckSubmit = () => {
     const setLetterOpen = useSetRecoilState(modalLetterState);
     const [writeLetter, setWriteLetter] = useRecoilState(writeLetterState);
     const setSubmitOpen = useSetRecoilState(modalSubmitState);
+    const [ alertOpen, setAlertOpen ] = useRecoilState(modalAlertState);
+
+    useEffect(() => {
+        if (alertOpen.isOpen) {
+            setTimeout(() => {
+                setAlertOpen({isOpen: false, message: ""});
+            }, 2000);
+        }
+    }, [alertOpen]);
 
     const clickSubmit = () => {
         setSubmitOpen(false);
         setLetterOpen({ isOpen: false, page: 1 });
+        setAlertOpen({ isOpen: true, message: "편지가 등록되었어요😉" });
 
-        alert("편지가 등록되었어요😉");
         //todo: api 호출
         setWriteLetter({ color: 0, to: "", message: "", from: "" });
     }

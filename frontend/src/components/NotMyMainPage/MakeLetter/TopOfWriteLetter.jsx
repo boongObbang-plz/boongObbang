@@ -1,13 +1,23 @@
 import beforeButton from "/images/icon_before.png";
 import submitButton from "/images/icon_submit.png";
 import closeImage from "/images/icon_close.png";
+import { useEffect } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { modalLetterState, writeLetterState, modalSubmitState } from "@states/ModalState";
+import { modalLetterState, writeLetterState, modalSubmitState, modalAlertState } from "@states/ModalState";
 
 const Top = () => {
   const setLetterOpen = useSetRecoilState(modalLetterState);
   const [ writeLetter, setWriteLetter ] = useRecoilState(writeLetterState);
   const setSubmitOpen = useSetRecoilState(modalSubmitState);
+  const [ alertOpen, setAlertOpen ] = useRecoilState(modalAlertState);
+
+  useEffect(() => {
+    if (alertOpen.isOpen) {
+        setTimeout(() => {
+            setAlertOpen({isOpen: false, message: ""});
+        }, 2000);
+    }
+}, [alertOpen]);
 
   const closeMakeLetter = () => {
     setLetterOpen({ isOpen: false, page: 1 });
@@ -16,15 +26,15 @@ const Top = () => {
 
   const clickSubmit = () => {
     if (writeLetter.to === "") {
-      alert("To를 입력해주세요😉");
+      setAlertOpen({isOpen: true, message: "To를 입력해주세요😉"});
       return;
     }
     if (writeLetter.message === "") {
-      alert("편지의 내용을 입력해주세요😉");
+      setAlertOpen({isOpen: true, message: "편지의 내용을 입력해주세요😉"});
       return;
     }
     if (writeLetter.from === "") {
-      alert("From을 입력해주세요😉");
+      setAlertOpen({isOpen: true, message: "Made by를 입력해주세요😉"});
       return;
     }
     setSubmitOpen(true);

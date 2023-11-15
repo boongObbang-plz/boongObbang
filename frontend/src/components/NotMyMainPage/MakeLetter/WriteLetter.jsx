@@ -1,13 +1,23 @@
 import Top from "@components/NotMyMainPage/MakeLetter/TopOfWriteLetter";
+import { useEffect } from "react";
 import { useRecoilState } from "recoil";
-import { writeLetterState } from "@states/ModalState";
+import { writeLetterState, modalAlertState } from "@states/ModalState";
 
 const WriteLetter = () => {
     const [ writeLetter, setWriteLetter ] = useRecoilState(writeLetterState);
+    const [ alertOpen, setAlertOpen ] = useRecoilState(modalAlertState);
+
+    useEffect(() => {
+        if (alertOpen.isOpen) {
+            setTimeout(() => {
+                setAlertOpen({isOpen: false, message: ""});
+            }, 2000);
+        }
+    }, [alertOpen]);
 
     const onChangeTo = (e) => {
         if (e.target.value.length > 10) {
-            alert("10자 까지 작성할 수 있어요😢");
+            setAlertOpen({isOpen: true, message: "10자 까지 작성할 수 있어요😢"});
             return;
         }
         setWriteLetter({...writeLetter, to: e.target.value});
@@ -16,7 +26,7 @@ const WriteLetter = () => {
 
     const onChangeMessage = (e) => {
         if (e.target.value.length > 500) {
-            alert("500자 까지 작성할 수 있어요😢");
+            setAlertOpen({isOpen: true, message: "500자 까지 작성할 수 있어요😢"});
             return;
         }
         setWriteLetter({...writeLetter, message: e.target.value});
@@ -25,7 +35,7 @@ const WriteLetter = () => {
 
     const onChangeFrom = (e) => {
         if (e.target.value.length > 10) {
-            alert("10자 까지 작성할 수 있어요😢");
+            setAlertOpen({isOpen: true, message: "10자 까지 작성할 수 있어요😢"});
             return;
         }
         setWriteLetter({...writeLetter, from: e.target.value});

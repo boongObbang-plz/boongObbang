@@ -28,4 +28,12 @@ const modalSubmitState = atom({
   default: false, // default value (aka initial value)
 });
 
-export { modalHelperState, modalLetterState, writeLetterState, modalSubmitState };
+const modalAlertState = atom({
+  key: "modalAlertState",
+  default: {
+    isOpen: false,
+    message: "",
+  },
+});
+
+export { modalHelperState, modalLetterState, writeLetterState, modalSubmitState, modalAlertState };
