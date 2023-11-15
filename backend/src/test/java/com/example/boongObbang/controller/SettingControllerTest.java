@@ -187,4 +187,43 @@ public class SettingControllerTest {
 		//then
 		assertEquals(HttpStatus.OK.value(), result.andReturn().getResponse().getStatus());
 	}
+
+	@Test
+	@DisplayName("마차 삭제하기 성공 테스트")
+	public void successDelete() throws Exception {
+		//given
+		String email = "settingcontroller@test.com";
+		User user = User.builder()
+			.email(email)
+			.uuid(UUID.randomUUID().toString())
+			.provider("google").build();
+
+		userRepository.save(user);
+
+		String token = jwtProvider.createToken(email, "google");
+
+		CreateSettingRequestDto createSettingRequestDto = new CreateSettingRequestDto();
+
+		createSettingRequestDto.setName("주은이네 붕어빵");
+		createSettingRequestDto.setColor(0);
+		createSettingRequestDto.setLight(1);
+
+		String data = objectMapper.writeValueAsString(createSettingRequestDto);
+
+		mockMvc.perform(MockMvcRequestBuilders.post("/settings")
+			.with(csrf())
+			.contentType(MediaType.APPLICATION_JSON)
+			.accept(MediaType.APPLICATION_JSON)
+			.content(data)
+			.header(HttpHeaders.AUTHORIZATION, token));
+
+		//when
+		ResultActions result = mockMvc.perform(MockMvcRequestBuilders.delete("/settings")
+			.contentType(MediaType.APPLICATION_JSON)
+			.accept(MediaType.APPLICATION_JSON)
+			.header(HttpHeaders.AUTHORIZATION, token));
+
+		//then
+		assertEquals(HttpStatus.OK.value(), result.andReturn().getResponse().getStatus());
+	}
 }
