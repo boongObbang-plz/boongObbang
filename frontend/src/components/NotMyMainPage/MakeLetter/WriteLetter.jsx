@@ -7,7 +7,7 @@ const WriteLetter = () => {
 
     const onChangeTo = (e) => {
         if (e.target.value.length > 10) {
-            alert("10글자 이내로 입력해주세요.");
+            alert("10자 까지 작성할 수 있어요😢");
             return;
         }
         setWriteLetter({...writeLetter, to: e.target.value});
@@ -16,7 +16,7 @@ const WriteLetter = () => {
 
     const onChangeMessage = (e) => {
         if (e.target.value.length > 500) {
-            alert("100글자 이내로 입력해주세요.");
+            alert("500자 까지 작성할 수 있어요😢");
             return;
         }
         setWriteLetter({...writeLetter, message: e.target.value});
@@ -25,7 +25,7 @@ const WriteLetter = () => {
 
     const onChangeFrom = (e) => {
         if (e.target.value.length > 10) {
-            alert("10글자 이내로 입력해주세요.");
+            alert("10자 까지 작성할 수 있어요😢");
             return;
         }
         setWriteLetter({...writeLetter, from: e.target.value});
