@@ -23,4 +23,9 @@ const writeLetterState = atom({
   }, // default value (aka initial value)
 });
 
-export { modalHelperState, modalLetterState, writeLetterState };
+const modalSubmitState = atom({
+  key: "modalSubmitState", // unique ID (with respect to other atoms/selectors)
+  default: false, // default value (aka initial value)
+});
+
+export { modalHelperState, modalLetterState, writeLetterState, modalSubmitState };

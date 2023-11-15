@@ -32,8 +32,6 @@ const WriteLetter = () => {
         console.log(writeLetter.from);
     }
 
-    // todo: submit button 클릭 시 글자수 0인지 체크 후 api 호출
-
     return (
     <>
         <Top />
