@@ -25,11 +25,13 @@ const Layout = () => {
         style={{
           content: {
             width: "351px",
-            height: "610px",
+            height: "560px",
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
             borderRadius: "10px",
+            paddingTop: "10px",
+            paddingBottom: "10px",
           },
         }}
         isOpen={letterOpen.isOpen}

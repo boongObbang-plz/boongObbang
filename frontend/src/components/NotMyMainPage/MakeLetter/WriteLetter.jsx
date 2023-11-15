@@ -47,7 +47,7 @@ const WriteLetter = () => {
             </div>
             <textarea 
                 type="text"
-                className="w-72 h-96 border-[25px] border-[#DDDCDC] bg-[#DDDCDC] rounded-lg  mt-4 focus:outline-0"
+                className="w-72 h-[23rem] border-[25px] border-[#DDDCDC] bg-[#DDDCDC] rounded-lg  mt-4 focus:outline-0"
                 onChange={onChangeMessage}
                 value={writeLetter.message}
             />
