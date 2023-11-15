@@ -17,12 +17,12 @@ const Display = ({ messages }) => {
   // TODO:scroll 부드럽게 넘기기 적용
   return (
     <>
-      <div className="relative -mt-1">
+      <div className="relative -mt-1 w-full">
         <Letters messages={messages.slice(start, end)} />
         {totalPages > 1 && currentPage !== 1 ? (
           <img
             onClick={() => setCurrentPage(currentPage - 1)}
-            className="absolute top-[100px] w-[20%] w-8"
+            className="absolute top-[100px] w-[20%]"
             src={left}
             alt="left arrow"
           />
@@ -35,7 +35,7 @@ const Display = ({ messages }) => {
             alt="right arrow"
           />
         ) : null}
-        <img className="border-t-4 border-black" src={board} alt="display" />
+        <img className="border-t-4 border-black w-full" src={board} alt="display" />
       </div>
     </>
   );
