@@ -3,6 +3,7 @@ package com.example.boongObbang.service;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.example.boongObbang.dto.CreateSettingRequestDto;
 import com.example.boongObbang.dto.PatchSettingRequestDto;
@@ -200,6 +201,37 @@ public class SettingServiceTest {
 		});
 
 		assertEquals(throwable.getMessage(), ResponseMessage.NO_EXIST_SETTING);
+	}
+
+	@Test
+	@DisplayName("마차 삭제하기 성공 테스트")
+	public void deleteFailSetting() {
+		//given
+		String email = "delete@test.com";
+		String provider = "google";
+
+		User user = User.builder()
+			.email(email)
+			.uuid(UUID.randomUUID().toString())
+			.provider(provider).build();
+
+		userRepository.save(user);
+
+		CreateSettingRequestDto createSettingRequestDto = new CreateSettingRequestDto();
+
+		createSettingRequestDto.setName("주은이네 붕어빵");
+		createSettingRequestDto.setColor(1);
+		createSettingRequestDto.setLight(1);
+
+		settingService.createSetting(createSettingRequestDto, email, provider);
+
+		//when
+		assertDoesNotThrow(() -> {
+				settingService.deleteSetting(email, provider);
+			});
+
+		//then
+		assertTrue(userRepository.findByEmailAndProvider(email, provider).isEmpty());
 	}
 
 }
