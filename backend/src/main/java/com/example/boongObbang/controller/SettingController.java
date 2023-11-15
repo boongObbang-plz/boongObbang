@@ -1,6 +1,7 @@
 package com.example.boongObbang.controller;
 
 import com.example.boongObbang.dto.CreateSettingRequestDto;
+import com.example.boongObbang.dto.PatchSettingRequestDto;
 import com.example.boongObbang.jwt.JwtProvider;
 import com.example.boongObbang.response.CustomResponse;
 import com.example.boongObbang.response.ResponseMessage;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -47,4 +49,15 @@ public class SettingController {
 			HttpStatus.CREATED);
 	}
 
+	@PatchMapping("")
+	public ResponseEntity patch(@RequestBody PatchSettingRequestDto patchSettingRequestDto, @RequestHeader("Authorization") String token) {
+
+		String email = jwtProvider.getEmail(token);
+		String provider = jwtProvider.getProvider(token);
+
+		settingService.patchSetting(patchSettingRequestDto, email, provider);
+
+		return new ResponseEntity(CustomResponse.response(HttpStatus.OK.value(), ResponseMessage.SUCCESS),
+			HttpStatus.OK);
+	}
 }

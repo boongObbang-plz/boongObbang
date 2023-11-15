@@ -5,6 +5,7 @@ import com.example.boongObbang.exception.exceptions.ExpireAccessTokenException;
 import com.example.boongObbang.exception.exceptions.InvalidAccessTokenException;
 import com.example.boongObbang.exception.exceptions.NoExistEmailException;
 import com.example.boongObbang.exception.exceptions.NoExistMessageException;
+import com.example.boongObbang.exception.exceptions.NoExistSettingException;
 import com.example.boongObbang.exception.exceptions.NoExistValueException;
 import com.example.boongObbang.response.CustomResponse;
 import org.springframework.http.HttpStatus;
@@ -52,6 +53,13 @@ public class CustomExceptionHandler {
 
 	@ExceptionHandler
 	public ResponseEntity NoExistEmailExceptionHandler(NoExistEmailException e) {
+		return new ResponseEntity(
+			CustomResponse.response(HttpStatus.BAD_REQUEST.value(), e.getMessage()),
+			HttpStatus.BAD_REQUEST);
+	}
+
+	@ExceptionHandler
+	public ResponseEntity NoExistSettingExceptionHandler(NoExistSettingException e) {
 		return new ResponseEntity(
 			CustomResponse.response(HttpStatus.BAD_REQUEST.value(), e.getMessage()),
 			HttpStatus.BAD_REQUEST);
