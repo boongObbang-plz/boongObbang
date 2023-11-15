@@ -22,7 +22,7 @@ const Display = ({ messages }) => {
         {totalPages > 1 && currentPage !== 1 ? (
           <img
             onClick={() => setCurrentPage(currentPage - 1)}
-            className="absolute top-[100px] w-[20%]"
+            className="absolute top-[35%] w-[10%]"
             src={left}
             alt="left arrow"
           />
@@ -30,7 +30,7 @@ const Display = ({ messages }) => {
         {totalPages > 1 && currentPage !== totalPages ? (
           <img
             onClick={() => setCurrentPage(currentPage + 1)}
-            className="absolute top-[100px] right-[0px] w-[39px]"
+            className="absolute top-[35%] right-[0px] w-[10%]"
             src={right}
             alt="right arrow"
           />
