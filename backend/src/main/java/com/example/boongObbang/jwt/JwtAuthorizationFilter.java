@@ -38,7 +38,8 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 			"/main/**",
 			"/login/**",
 			"/login/oauth2/code/kakao",
-			"/login/oauth2/code/google"
+			"/login/oauth2/code/google",
+			"/login/oauth2/code/test"
 		);
 
 		//인증, 인가가 필요없는 uri

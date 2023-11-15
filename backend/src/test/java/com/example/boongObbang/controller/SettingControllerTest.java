@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.transaction.annotation.Transactional;
@@ -60,6 +61,7 @@ public class SettingControllerTest {
 
 		//when
 		ResultActions result = mockMvc.perform(MockMvcRequestBuilders.post("/settings")
+				.with(csrf())
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON)
 				.content(data)
@@ -92,6 +94,7 @@ public class SettingControllerTest {
 
 		//when
 		ResultActions result = mockMvc.perform(MockMvcRequestBuilders.post("/settings")
+			.with(csrf())
 			.contentType(MediaType.APPLICATION_JSON)
 			.accept(MediaType.APPLICATION_JSON)
 			.content(data)
@@ -125,6 +128,7 @@ public class SettingControllerTest {
 
 		//when
 		ResultActions result = mockMvc.perform(MockMvcRequestBuilders.post("/settings")
+			.with(csrf())
 			.contentType(MediaType.APPLICATION_JSON)
 			.accept(MediaType.APPLICATION_JSON)
 			.content(data)
