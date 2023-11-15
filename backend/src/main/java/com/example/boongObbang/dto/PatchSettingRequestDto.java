@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 public class PatchSettingRequestDto {
 	private String name;
-	private int color;
-	private int light;
+	private Integer color;
+	private Integer light;
+
 }
