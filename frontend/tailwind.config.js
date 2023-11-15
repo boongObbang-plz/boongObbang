@@ -64,6 +64,10 @@ module.exports = {
           "100%": { opacity: 0 },
         },
       },
+      screens: {
+        "mobile": "376px",
+        "desktop": "733px",
+      }
     },
   },
   plugins: [],
