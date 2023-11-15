@@ -130,12 +130,76 @@ public class SettingServiceTest {
 			settingService.patchSetting(patchSettingRequestDto3, email, provider);
 		});
 
-		Optional<User> user1 = userRepository.findByEmailAndProvider(email, provider);
-
-		Optional<Setting> result = settingRepository.findByUserId(user1.get().getId());
+		Optional<Setting> result = settingRepository.findByUserId(user.getId());
 
 		assertEquals(result.get().getName(), name);
 		assertEquals(result.get().getColor(), color);
 		assertEquals(result.get().getLight(), light);
 	}
+
+	@Test
+	@DisplayName("마차 수정하기 실패 테스트(존재하지 않는 유저)")
+	public void patchFailUser() {
+		//given
+		String email = "settingservicefail@test.com";
+		String provider = "google";
+
+		User user = User.builder()
+			.email(email)
+			.uuid(UUID.randomUUID().toString())
+			.provider(provider).build();
+
+		userRepository.save(user);
+
+		//when
+		CreateSettingRequestDto createSettingRequestDto = new CreateSettingRequestDto();
+
+		createSettingRequestDto.setName("주은이네 붕어빵");
+		createSettingRequestDto.setColor(1);
+		createSettingRequestDto.setLight(1);
+
+		settingService.createSetting(createSettingRequestDto, email, provider);
+
+		int light = 2;
+
+		PatchSettingRequestDto patchSettingRequestDto = new PatchSettingRequestDto();
+		patchSettingRequestDto.setLight(light);
+
+		//then
+		Throwable throwable = assertThrows(RuntimeException.class, () -> {
+			settingService.patchSetting(patchSettingRequestDto, email, "kakao");
+		});
+
+		assertEquals(throwable.getMessage(), ResponseMessage.NO_EXIST_EMAIL);
+	}
+
+
+	@Test
+	@DisplayName("마차 수정하기 실패 테스트(존재하지 않는 마차)")
+	public void patchFailSetting() {
+		//given
+		String email = "settingservicefail2@test.com";
+		String provider = "google";
+
+		User user = User.builder()
+			.email(email)
+			.uuid(UUID.randomUUID().toString())
+			.provider(provider).build();
+
+		userRepository.save(user);
+
+		//when
+		int light = 2;
+
+		PatchSettingRequestDto patchSettingRequestDto = new PatchSettingRequestDto();
+		patchSettingRequestDto.setLight(light);
+
+		//then
+		Throwable throwable = assertThrows(RuntimeException.class, () -> {
+			settingService.patchSetting(patchSettingRequestDto, email, provider);
+		});
+
+		assertEquals(throwable.getMessage(), ResponseMessage.NO_EXIST_SETTING);
+	}
+
 }
