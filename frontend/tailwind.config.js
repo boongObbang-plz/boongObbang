@@ -65,8 +65,7 @@ module.exports = {
         },
       },
       screens: {
-        "mobile": "376px",
-        "desktop": "733px",
+        "letter": "135px",
       }
     },
   },
