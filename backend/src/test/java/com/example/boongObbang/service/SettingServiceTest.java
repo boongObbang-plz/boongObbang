@@ -228,10 +228,41 @@ public class SettingServiceTest {
 		//when
 		assertDoesNotThrow(() -> {
 				settingService.deleteSetting(email, provider);
-			});
+		});
 
 		//then
 		assertTrue(userRepository.findByEmailAndProvider(email, provider).isEmpty());
+	}
+
+	@Test
+	@DisplayName("마차 삭제하기 실패 테스트(존재하지 않는 유저)")
+	public void deleteFailUserSetting() {
+		//given
+		String email = "deletefailuser@test.com";
+		String provider = "google";
+
+		User user = User.builder()
+			.email(email)
+			.uuid(UUID.randomUUID().toString())
+			.provider(provider).build();
+
+		userRepository.save(user);
+
+		CreateSettingRequestDto createSettingRequestDto = new CreateSettingRequestDto();
+
+		createSettingRequestDto.setName("주은이네 붕어빵");
+		createSettingRequestDto.setColor(1);
+		createSettingRequestDto.setLight(1);
+
+		settingService.createSetting(createSettingRequestDto, email, provider);
+
+		//when
+		Throwable throwable = assertThrows(RuntimeException.class, () -> {
+			settingService.deleteSetting(email, "kakao");
+		});
+
+		//then
+		assertEquals(throwable.getMessage(), ResponseMessage.NO_EXIST_EMAIL);
 	}
 
 }
