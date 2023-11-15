@@ -1,6 +1,7 @@
 package com.example.boongObbang.service;
 
 import com.example.boongObbang.dto.CreateSettingRequestDto;
+import com.example.boongObbang.dto.PatchSettingRequestDto;
 import com.example.boongObbang.entity.Setting;
 import com.example.boongObbang.entity.User;
 import com.example.boongObbang.exception.exceptions.NoExistEmailException;
@@ -34,5 +35,9 @@ public class SettingService {
 			.light(createSettingRequestDto.getLight()).build();
 
 		settingRepository.save(setting);
+	}
+
+	public void patchSetting(PatchSettingRequestDto patchSettingRequestDto, String email, String provider) {
+
 	}
 }
