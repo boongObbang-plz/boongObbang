@@ -6,21 +6,33 @@ const WriteLetter = () => {
     const [ writeLetter, setWriteLetter ] = useRecoilState(writeLetterState);
 
     const onChangeTo = (e) => {
+        if (e.target.value.length > 10) {
+            alert("10글자 이내로 입력해주세요.");
+            return;
+        }
         setWriteLetter({...writeLetter, to: e.target.value});
         console.log(writeLetter.to);
     }
 
     const onChangeMessage = (e) => {
+        if (e.target.value.length > 500) {
+            alert("100글자 이내로 입력해주세요.");
+            return;
+        }
         setWriteLetter({...writeLetter, message: e.target.value});
         console.log(writeLetter.message);
     }
 
     const onChangeFrom = (e) => {
+        if (e.target.value.length > 10) {
+            alert("10글자 이내로 입력해주세요.");
+            return;
+        }
         setWriteLetter({...writeLetter, from: e.target.value});
         console.log(writeLetter.from);
     }
 
-    // todo: submit button, 글자수 체크
+    // todo: submit button 클릭 시 글자수 0인지 체크 후 api 호출
 
     return (
     <>
