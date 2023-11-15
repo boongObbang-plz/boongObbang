@@ -21,7 +21,6 @@ const WriteLetter = () => {
             return;
         }
         setWriteLetter({...writeLetter, to: e.target.value});
-        console.log(writeLetter.to);
     }
 
     const onChangeMessage = (e) => {
@@ -30,7 +29,6 @@ const WriteLetter = () => {
             return;
         }
         setWriteLetter({...writeLetter, message: e.target.value});
-        console.log(writeLetter.message);
     }
 
     const onChangeFrom = (e) => {
@@ -39,7 +37,6 @@ const WriteLetter = () => {
             return;
         }
         setWriteLetter({...writeLetter, from: e.target.value});
-        console.log(writeLetter.from);
     }
 
     return (

@@ -6,8 +6,6 @@ const BOB = ({ index, color }) => {
 
   const clickBOB = (index) => {
     setWriteLetter({ ...writeLetter, color: index });
-    console.log(writeLetter);
-    console.log(index);
   };
 
   return (
