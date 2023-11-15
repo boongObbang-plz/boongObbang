@@ -5,7 +5,7 @@ import MyPageBTN from "@components/NotMyMainPage/MyPageBTN";
 
 const Bottom = ({ dday }) => {
   return (
-    <div className="w-[100%] border-t-4 border-black bg-bottom-color">
+    <div className="w-full border-t-4 border-black bg-bottom-color">
       <NoticeButton />
       <DDay dday={dday} />
       <div className="mt-3 mb-3 flex justify-between">
