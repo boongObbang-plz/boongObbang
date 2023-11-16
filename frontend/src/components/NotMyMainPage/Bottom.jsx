@@ -10,7 +10,7 @@ const Bottom = ({ dday }) => {
         <DDay dday={dday} />
       <div className="absolute bottom-1 mt-3 mb-3 flex justify-between ">
         <MyPageBTN />
-        <MakeLetterBTN />
+        <MakeLetterBTN dday={dday} />
       </div>
     </div>
   );
