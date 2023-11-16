@@ -71,4 +71,12 @@ public class SettingController {
 		return new ResponseEntity(CustomResponse.response(HttpStatus.OK.value(), ResponseMessage.SUCCESS),
 			HttpStatus.OK);
 	}
+
+	@PostMapping("/logout")
+	public ResponseEntity logout(@RequestHeader("Authorization") String token) {
+		settingService.logout(token);
+
+		return new ResponseEntity(CustomResponse.response(HttpStatus.OK.value(), ResponseMessage.SUCCESS),
+			HttpStatus.OK);
+	}
 }
