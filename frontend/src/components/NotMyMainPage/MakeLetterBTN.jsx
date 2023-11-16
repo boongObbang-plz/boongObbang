@@ -8,7 +8,7 @@ const MakeLetterBTN = () => {
     <div className="w-[20%] mr-3">
       <img
         src={makeLetter}
-        onClick={() => setModalOpen(true)}
+        onClick={() => setModalOpen({ isOpen: true, page: 1 })}
         alt="make letter button"
       />
     </div>

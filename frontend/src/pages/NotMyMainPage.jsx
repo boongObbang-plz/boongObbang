@@ -8,8 +8,8 @@ const NotMyMainPage = () => {
   else console.log("api 연동 실패");
 
   return (
-    <div className="flex justify-center">
-      <div className="flex flex-col justify-center items-center h-full w-full max-w-[709px] max-h-[1366px]">
+    <div className="flex h-full">
+      <div className="flex flex-col justify-center items-center">
         <Top
           title={fakeData.data.name}
           roof={fakeData.data.roof}

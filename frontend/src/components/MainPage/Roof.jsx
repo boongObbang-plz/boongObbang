@@ -8,8 +8,8 @@ const Roof = ({ roof, light }) => {
   const roofs = [redRoof, orangeRoof, greenRoof, blueRoof];
 
   return (
-    <div>
-      <img src={roofs[roof]} alt="roof" />
+    <div className="min-h-[169px]">
+      <img src={roofs[roof]} className="w-full" alt="roof" />
       <Light selectedIdx={light} />
     </div>
   );

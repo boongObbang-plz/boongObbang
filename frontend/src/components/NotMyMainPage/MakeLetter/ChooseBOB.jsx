@@ -1,5 +1,5 @@
-import NextCloseBTN from "@components/NotMyMainPage/NextCloseBTN";
-import BOB from "@components/NotMyMainPage/BOB";
+import Top from "@components/NotMyMainPage/MakeLetter/TopOfChooseBOB";
+import BOB from "@components/NotMyMainPage/MakeLetter/BOB";
 import choco from "/images/letter_choco.png";
 import cream from "/images/letter_cream.png";
 import mint from "/images/letter_mint.png";
@@ -19,11 +19,11 @@ const ChooseBOB = () => {
 
   return (
     <>
-      <NextCloseBTN />
+      <Top />
       <div className="h-[100%] flex flex-col items-start justify-between text-left">
         <div className="grid grid-cols-2">
           {colors.map((color, index) => (
-            <BOB key={index} color={color} />
+            <BOB key={index} index={index} color={color} />
           ))}
         </div>
       </div>

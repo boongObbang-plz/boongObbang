@@ -38,6 +38,8 @@ module.exports = {
           "pink-blink 1s cubic-bezier(0.39, 0.58, 0.57, 1) infinite;",
         "purple-blink":
           "purple-blink 1s cubic-bezier(0.39, 0.58, 0.57, 1) infinite;",
+        "fade-out":
+          "fade-out 3s"
       },
       keyframes: {
         "red-blink": {
@@ -58,7 +60,13 @@ module.exports = {
         "purple-blink": {
           "50%": { background: "#DEA8FF" },
         },
+        "fade-out": {
+          "100%": { opacity: 0 },
+        },
       },
+      screens: {
+        "letter": "135px",
+      }
     },
   },
   plugins: [],
