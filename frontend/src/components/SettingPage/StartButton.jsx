@@ -15,7 +15,7 @@ const StartButton = () => {
         }
     }, [alertOpen])
 
-	function onClickStartButton() {
+	onClickStartButton = () => {
         if (cart.name.length === 0)
             setAlertOpen({isOpen: true, message: "가게 이름을 입력해주세요!"})
 	}
