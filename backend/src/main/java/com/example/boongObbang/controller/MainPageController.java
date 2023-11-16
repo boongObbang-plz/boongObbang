@@ -1,5 +1,6 @@
 package com.example.boongObbang.controller;
 
+import com.example.boongObbang.dto.LinkResponseDto;
 import com.example.boongObbang.dto.MainPageResponseDto;
 import com.example.boongObbang.jwt.JwtProvider;
 import com.example.boongObbang.response.CustomResponse;
@@ -31,6 +32,17 @@ public class MainPageController {
 		MainPageResponseDto mainPageResponseDto = mainPageService.getMainPage(email, provider);
 
 		return new ResponseEntity(CustomResponse.response(HttpStatus.OK.value(), ResponseMessage.SUCCESS, mainPageResponseDto),
+			HttpStatus.OK);
+	}
+
+	@GetMapping("/link")
+	public ResponseEntity getLink(@RequestHeader("Authorization") String token) {
+		String email = jwtProvider.getEmail(token);
+		String provider = jwtProvider.getProvider(token);
+
+		LinkResponseDto linkResponseDto = mainPageService.getLink(email, provider);
+
+		return new ResponseEntity(CustomResponse.response(HttpStatus.OK.value(), ResponseMessage.SUCCESS, linkResponseDto),
 			HttpStatus.OK);
 	}
 }
