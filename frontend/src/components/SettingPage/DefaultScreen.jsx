@@ -2,7 +2,6 @@ import Header   from '@components/SettingPage/Header'
 import Name     from '@components/SettingPage/Name'
 import PreView  from '@components/SettingPage/PreView'
 import StartButton   from '@components/SettingPage/StartButton'
-import { useState } from 'react'
 
 const DefaultScreen = () => {
 
