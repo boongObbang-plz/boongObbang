@@ -37,7 +37,7 @@ public class MessageRepositoryTest {
 
 		//when
 		Message message = Message.builder()
-			.to("받는사람")
+			.recipient("받는사람")
 			.message("메시지~~~~~")
 			.madeBy("글쓴사람")
 			.color(1)
@@ -64,7 +64,7 @@ public class MessageRepositoryTest {
 
 		//when
 		Message message1 = Message.builder()
-			.to("받는사람")
+			.recipient("받는사람")
 			.message("메시지~~~~~")
 			.madeBy("글쓴사람")
 			.color(1)
@@ -72,7 +72,7 @@ public class MessageRepositoryTest {
 			.user(user).build();
 
 		Message message2 = Message.builder()
-			.to("받는사람2")
+			.recipient("받는사람2")
 			.message("메시지~~~~~2")
 			.madeBy("글쓴사람2")
 			.color(2)
@@ -80,7 +80,7 @@ public class MessageRepositoryTest {
 			.user(user).build();
 
 		Message message3 = Message.builder()
-			.to("받는사람3")
+			.recipient("받는사람3")
 			.message("메시지~~~~~3")
 			.madeBy("글쓴사람3")
 			.color(3)
