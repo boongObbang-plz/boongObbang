@@ -25,4 +25,13 @@ const modalShareState = atom({
   default: false,
 });
 
-export { modalHelperState, modalLetterState, modalNoticeState, modalReadLetterState, modalShareState };
+const cartState = atom({
+  key: "roofColorState",
+  default: {
+    name: "",
+    color: 0,
+    light: 0,
+  }
+})
+
+export { modalHelperState, modalLetterState, modalNoticeState, modalReadLetterState, modalShareState, cartState };

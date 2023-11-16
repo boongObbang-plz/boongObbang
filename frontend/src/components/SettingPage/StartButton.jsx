@@ -5,13 +5,6 @@ const StartButton = () => {
 
 	function onClickStartButton() {
         console.log()
-		// if (name.length === 0)
-		// 	setNameError("가게 이름을 입력해주세요")
-		// else {
-		// 	// API 보내주기
-		// 	// 성공 알림..?
-		// 	// routing
-		// }
 	}
 
     return (
