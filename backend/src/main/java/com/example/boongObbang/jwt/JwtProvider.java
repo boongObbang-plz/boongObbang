@@ -45,7 +45,7 @@ public class JwtProvider {
 			.signWith(SignatureAlgorithm.HS256, secretKey).compact();
 
 		Token token = Token.builder()
-			.email(provider + "-" + "email")
+			.email(provider + "-" + email)
 			.jwt(jwtToken).build();
 
 		redisRepository.save(token);
