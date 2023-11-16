@@ -3,10 +3,13 @@ package com.example.boongObbang.service;
 import com.example.boongObbang.dto.CreateSettingRequestDto;
 import com.example.boongObbang.dto.PatchSettingRequestDto;
 import com.example.boongObbang.entity.Setting;
+import com.example.boongObbang.entity.Token;
 import com.example.boongObbang.entity.User;
+import com.example.boongObbang.exception.exceptions.InvalidAccessTokenException;
 import com.example.boongObbang.exception.exceptions.NoExistEmailException;
 import com.example.boongObbang.exception.exceptions.NoExistSettingException;
 import com.example.boongObbang.repository.SettingRepository;
+import com.example.boongObbang.repository.TokenRedisRepository;
 import com.example.boongObbang.repository.UserRepository;
 import com.example.boongObbang.response.ResponseMessage;
 import java.util.Optional;
@@ -21,6 +24,9 @@ public class SettingService {
 
 	@Autowired
 	UserRepository userRepository;
+
+	@Autowired
+	private TokenRedisRepository redisRepository;
 
 	public void createSetting(CreateSettingRequestDto createSettingRequestDto, String email, String provider) {
 		Optional<User> user = userRepository.findByEmailAndProvider(email, provider);
@@ -93,5 +99,17 @@ public class SettingService {
 		setting.ifPresent(value -> settingRepository.delete(value));
 
 		userRepository.delete(user.get());
+	}
+
+	public void logout(String token) {
+
+		Optional<Token> redisToken = redisRepository.findByJwt(token);
+
+		if (redisToken.isPresent()) {
+			redisRepository.delete(redisToken.get());
+		}
+		else {
+			throw new InvalidAccessTokenException(ResponseMessage.INVALID_ACCESS_TOKEN);
+		}
 	}
 }

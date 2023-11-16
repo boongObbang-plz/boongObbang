@@ -36,7 +36,7 @@ public class SecurityConfig {
 			.authorizeHttpRequests((request) -> request.requestMatchers("/login/**").permitAll()
 				.requestMatchers("/main/**").permitAll()
 				.requestMatchers("/").permitAll()
-				.requestMatchers("/settings").permitAll());
+				.requestMatchers("/settings/**").permitAll());
 
 
 		httpSecurity.sessionManagement((session) -> session.sessionCreationPolicy(
