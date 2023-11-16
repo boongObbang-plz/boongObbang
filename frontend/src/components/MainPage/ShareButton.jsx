@@ -16,7 +16,9 @@ const ShareButton = () => {
 
     return (
         <div className="w-[10%] mr-[1%]">
-            <button onClick={() => setAlertOpen({isOpen: true, message: "공유 링크가 저장되었습니다!"})}><img src={Share} alt="share button"/></button>
+            <button onClick={() => setAlertOpen({isOpen: true, message: "공유 링크가 저장되었습니다!"})}>
+                <img src={Share} alt="share button"/>
+            </button>
         </div>
     )
 }
