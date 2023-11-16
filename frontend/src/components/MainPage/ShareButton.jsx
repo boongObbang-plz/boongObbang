@@ -1,24 +1,22 @@
 import Share from "/images/icon_share.png"
 import { useEffect } from "react"
-import { useSetRecoilState, useRecoilValue } from "recoil"
-import { modalShareState } from "@states/ModalState"
+import { useRecoilState } from "recoil"
+import { modalAlertState } from "@states/ModalState"
 
 const ShareButton = () => {
-    const setModalOpen = useSetRecoilState(modalShareState)
-    const getModalOpen = useRecoilValue(modalShareState)
-
+    const [ alertOpen, setAlertOpen ] = useRecoilState(modalAlertState);
+    
     useEffect(() => {
-        if (getModalOpen) {
-            const timer = setTimeout(() => {
-                setModalOpen(false)
-            }, 3000)
-            return () => clearTimeout(timer)
+        if (alertOpen) {
+            setTimeout(() => {
+                setAlertOpen({isOpen: false, message: ""})
+            }, 2000)
         }
-    }, [getModalOpen])
+    }, [alertOpen])
 
     return (
         <div className="w-[10%] mr-[1%]">
-            <button onClick={() => setModalOpen(true)}><img src={Share} alt="share button"/></button>
+            <button onClick={() => setAlertOpen({isOpen: true, message: "공유 링크가 저장되었습니다!"})}><img src={Share} alt="share button"/></button>
         </div>
     )
 }

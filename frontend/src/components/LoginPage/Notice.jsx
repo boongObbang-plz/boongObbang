@@ -1,6 +1,6 @@
-import MessageTitle from "./MessageTitle"
-import Message from "./Message"
-import CloseButton from "./CloseButton"
+import MessageTitle from "@components/LoginPage/MessageTitle"
+import Message from "@components/LoginPage/Message"
+import CloseButton from "@components/LoginPage/CloseButton"
 
 const Notice = () => {
 

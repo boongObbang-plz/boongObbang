@@ -2,6 +2,7 @@ package com.example.boongObbang.dto;
 
 import com.example.boongObbang.response.ResponseMessage;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,9 +12,9 @@ public class CreateSettingRequestDto {
 	@NotBlank(message = ResponseMessage.NO_EXIST_VALUE)
 	private String name;
 
-	@NotBlank(message = ResponseMessage.NO_EXIST_VALUE)
+	@NotNull(message = ResponseMessage.NO_EXIST_VALUE)
 	private int color;
 
-	@NotBlank(message = ResponseMessage.NO_EXIST_VALUE)
+	@NotNull(message = ResponseMessage.NO_EXIST_VALUE)
 	private int light;
 }

@@ -4,9 +4,9 @@ import ShareButton from "@components/MainPage/ShareButton";
 
 const Bottom = ({ dday }) => {
   return (
-    <div className="h-screen w-[100%] border-t-4 border-black bg-bottom-color flex flex-col items-center justify-between">
+    <div className="relative w-full h-[30vh] border-t-4 border-black bg-bottom-color">
       <DDay dday={dday}/>
-      <div className="flex items-end justify-end pr-[2%] mb-[2%]">
+      <div className="absolute bottom-1 mt-3 mb-3 flex items-center justify-end pr-[2%]">
         <ShareButton/>
         <SettingButton/>
       </div>

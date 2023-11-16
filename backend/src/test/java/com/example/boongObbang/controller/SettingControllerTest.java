@@ -1,6 +1,7 @@
 package com.example.boongObbang.controller;
 
 import com.example.boongObbang.dto.CreateSettingRequestDto;
+import com.example.boongObbang.dto.PatchSettingRequestDto;
 import com.example.boongObbang.entity.User;
 import com.example.boongObbang.jwt.JwtProvider;
 import com.example.boongObbang.repository.UserRepository;
@@ -16,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.transaction.annotation.Transactional;
@@ -60,6 +62,7 @@ public class SettingControllerTest {
 
 		//when
 		ResultActions result = mockMvc.perform(MockMvcRequestBuilders.post("/settings")
+				.with(csrf())
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON)
 				.content(data)
@@ -92,6 +95,7 @@ public class SettingControllerTest {
 
 		//when
 		ResultActions result = mockMvc.perform(MockMvcRequestBuilders.post("/settings")
+			.with(csrf())
 			.contentType(MediaType.APPLICATION_JSON)
 			.accept(MediaType.APPLICATION_JSON)
 			.content(data)
@@ -125,6 +129,7 @@ public class SettingControllerTest {
 
 		//when
 		ResultActions result = mockMvc.perform(MockMvcRequestBuilders.post("/settings")
+			.with(csrf())
 			.contentType(MediaType.APPLICATION_JSON)
 			.accept(MediaType.APPLICATION_JSON)
 			.content(data)
@@ -132,5 +137,93 @@ public class SettingControllerTest {
 
 		//then
 		assertEquals(HttpStatus.UNAUTHORIZED.value(), result.andReturn().getResponse().getStatus());
+	}
+
+	@Test
+	@DisplayName("마차 수정하기 성공 테스트")
+	public void successPatch() throws Exception {
+		//given
+		String email = "settingcontroller@test.com";
+		User user = User.builder()
+			.email(email)
+			.uuid(UUID.randomUUID().toString())
+			.provider("google").build();
+
+		userRepository.save(user);
+
+		String token = jwtProvider.createToken(email, "google");
+
+		CreateSettingRequestDto createSettingRequestDto = new CreateSettingRequestDto();
+
+		createSettingRequestDto.setName("주은이네 붕어빵");
+		createSettingRequestDto.setColor(0);
+		createSettingRequestDto.setLight(1);
+
+		String data = objectMapper.writeValueAsString(createSettingRequestDto);
+
+		mockMvc.perform(MockMvcRequestBuilders.post("/settings")
+			.with(csrf())
+			.contentType(MediaType.APPLICATION_JSON)
+			.accept(MediaType.APPLICATION_JSON)
+			.content(data)
+			.header(HttpHeaders.AUTHORIZATION, token));
+
+		//when
+		PatchSettingRequestDto patchSettingRequestDto = new PatchSettingRequestDto();
+
+		int light = 3;
+		String name = "00붕어빵";
+
+		patchSettingRequestDto.setLight(3);
+		patchSettingRequestDto.setName(name);
+
+		String settingData = objectMapper.writeValueAsString(patchSettingRequestDto);
+
+		ResultActions result = mockMvc.perform(MockMvcRequestBuilders.patch("/settings")
+									.contentType(MediaType.APPLICATION_JSON)
+									.accept(MediaType.APPLICATION_JSON)
+									.content(settingData)
+									.header(HttpHeaders.AUTHORIZATION, token));
+		//then
+		assertEquals(HttpStatus.OK.value(), result.andReturn().getResponse().getStatus());
+	}
+
+	@Test
+	@DisplayName("마차 삭제하기 성공 테스트")
+	public void successDelete() throws Exception {
+		//given
+		String email = "settingcontroller@test.com";
+		User user = User.builder()
+			.email(email)
+			.uuid(UUID.randomUUID().toString())
+			.provider("google").build();
+
+		userRepository.save(user);
+
+		String token = jwtProvider.createToken(email, "google");
+
+		CreateSettingRequestDto createSettingRequestDto = new CreateSettingRequestDto();
+
+		createSettingRequestDto.setName("주은이네 붕어빵");
+		createSettingRequestDto.setColor(0);
+		createSettingRequestDto.setLight(1);
+
+		String data = objectMapper.writeValueAsString(createSettingRequestDto);
+
+		mockMvc.perform(MockMvcRequestBuilders.post("/settings")
+			.with(csrf())
+			.contentType(MediaType.APPLICATION_JSON)
+			.accept(MediaType.APPLICATION_JSON)
+			.content(data)
+			.header(HttpHeaders.AUTHORIZATION, token));
+
+		//when
+		ResultActions result = mockMvc.perform(MockMvcRequestBuilders.delete("/settings")
+			.contentType(MediaType.APPLICATION_JSON)
+			.accept(MediaType.APPLICATION_JSON)
+			.header(HttpHeaders.AUTHORIZATION, token));
+
+		//then
+		assertEquals(HttpStatus.OK.value(), result.andReturn().getResponse().getStatus());
 	}
 }

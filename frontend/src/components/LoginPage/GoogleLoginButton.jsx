@@ -2,8 +2,8 @@
 
 const GoogleLoginButton = () => {
     return (
-        <div className="pb-[20px] w-[80%]">
-            <button className="h-[60px] bg-[#FFFFFF] rounded-[10px] border-[3px] border-[#000000] text-[25px]">구글 로그인</button>
+        <div className="w-[90%] h-[60px] bg-[#FFFFFF] rounded-[12px] text-center text-[30px] text-[#191919] flex justify-center mb-[2%]">
+            <button>구글 로그인</button>
         </div>
     )
 }

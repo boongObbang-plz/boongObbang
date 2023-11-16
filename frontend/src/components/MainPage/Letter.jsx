@@ -12,8 +12,14 @@ const Letter = ({ letterLoc, tagLoc, message }) => {
   const setModalOpen = useSetRecoilState(modalReadLetterState);
   return (
     <div onClick={() => setModalOpen(true)}>
-      <img className={`absolute ${letterLoc[0]} ${letterLoc[1]} w-[30%]`} src={colors[message.color]} alt='letter'/>
-      <div className={`absolute ${tagLoc[0]} ${tagLoc[1]} flex justify-center items-center w-[26%] h-[7%] text-[1.1vh]`}>
+      <img
+        className={`absolute ${letterLoc[0]} ${letterLoc[1]} w-[30%]`}
+        src={colors[message.color]}
+        alt="letter"
+      />
+      <div
+        className={`absolute ${tagLoc[0]} ${tagLoc[1]} flex justify-center items-center w-[26%] h-[7%] text-[8px] min-[400px]:text-[11px] min-[500px]:text-[13px] min-[600px]:text-[16px]`}
+      >
         {/* <h1 className='text-center'>{message.made_by}</h1> */}
         <div>{message.made_by}</div>
       </div> 

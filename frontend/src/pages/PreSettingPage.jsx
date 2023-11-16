@@ -2,7 +2,7 @@ import DefaultScreen from "@components/SettingPage/DefaultScreen"
 
 const PreSettingPage = () => {
     return (
-        <div className="flex justify-centers">
+        <div className="flex justify-center">
             <DefaultScreen />
         </div>
     )

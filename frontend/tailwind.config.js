@@ -64,6 +64,9 @@ module.exports = {
           "100%": { opacity: 0 },
         },
       },
+      screens: {
+        "letter": "135px",
+      }
     },
   },
   plugins: [],

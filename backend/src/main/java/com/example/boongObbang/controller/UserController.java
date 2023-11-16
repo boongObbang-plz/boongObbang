@@ -3,10 +3,14 @@ package com.example.boongObbang.controller;
 import com.example.boongObbang.dto.LoginRequestDto;
 import com.example.boongObbang.dto.LoginResponseDto;
 import com.example.boongObbang.dto.LoginServiceDto;
+import com.example.boongObbang.entity.User;
+import com.example.boongObbang.jwt.JwtProvider;
+import com.example.boongObbang.repository.UserRepository;
 import com.example.boongObbang.response.CustomResponse;
 import com.example.boongObbang.response.ResponseMessage;
 import com.example.boongObbang.service.UserService;
 import java.util.Objects;
+import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +26,28 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private UserRepository userRepository;
+
+	@Autowired
+	private JwtProvider jwtProvider;
+
+	@PostMapping("/test")
+	public ResponseEntity test() {
+		User user = User.builder()
+			.email("test@test.com")
+			.provider("google")
+			.uuid(UUID.randomUUID().toString()).build();
+
+		userRepository.save(user);
+
+		String token = jwtProvider.createToken("test@test.com", "google");
+
+		return new ResponseEntity(
+			CustomResponse.response(HttpStatus.OK.value(), ResponseMessage.SUCCESS, token),
+			HttpStatus.OK);
+	}
 
 	@PostMapping("/kakao")
 	public ResponseEntity loginKakao(@RequestBody LoginRequestDto loginRequestDto, BindingResult bindingResult) {

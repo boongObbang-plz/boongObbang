@@ -7,12 +7,25 @@ const modalHelperState = atom({
 
 const modalLetterState = atom({
   key: "modalLetterState", // unique ID (with respect to other atoms/selectors)
-  default: false, // default value (aka initial value)
+  default: {
+    isOpen: false,
+    page: 1,
+  }, // default value (aka initial value)
 });
 
-const modalNoticeState = atom({
-  key: "modalNoticeState",
-  default: false,
+const writeLetterState = atom({
+  key: "writeLetterState", // unique ID (with respect to other atoms/selectors)
+  default: {
+    color: 0,
+    to: "",
+    message: "",
+    from: "",
+  }, // default value (aka initial value)
+});
+
+const modalSubmitState = atom({
+  key: "modalSubmitState", // unique ID (with respect to other atoms/selectors)
+  default: false, // default value (aka initial value)
 });
 
 const modalReadLetterState = atom({
@@ -20,8 +33,8 @@ const modalReadLetterState = atom({
   default: false,
 });
 
-const modalShareState = atom({
-  key: "modalShareState",
+const modalLoginHelperState = atom({
+  key: "modalLoginHelperState",
   default: false,
 });
 
@@ -32,6 +45,14 @@ const cartState = atom({
     color: 0,
     light: 0,
   }
-})
+});
 
-export { modalHelperState, modalLetterState, modalNoticeState, modalReadLetterState, modalShareState, cartState };
+const modalAlertState = atom({
+  key: "modalAlertState",
+  default: {
+    isOpen: false,
+    message: "",
+  },
+});
+
+export { modalHelperState, modalLetterState, writeLetterState, modalSubmitState, modalAlertState, modalReadLetterState, cartState, modalLoginHelperState };

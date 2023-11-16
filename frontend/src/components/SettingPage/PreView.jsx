@@ -1,16 +1,16 @@
-import { useState } from "react";
 import roofR    from "/images/preview_roof_red.png"
 import roofO    from "/images/preview_roof_orange.png"
 import roofG    from "/images/preview_roof_green.png"
 import roofB    from "/images/preview_roof_blue.png"
-import ChooseRoof from "./ChooseRoof";
-import Name from "./Name";
 import { useRecoilState } from "recoil";
 import { cartState } from "@states//ModalState";
-import ChooseLight from "./ChooseLight";
+import ChooseRoof from "@components/SettingPage/ChooseRoof";
+import ChooseLight from "@components/SettingPage/ChooseLight";
+import Label from "@components/SettingPage/Label";
+import Light from "@components/MainPage/Light";
 
-const PreView = ({ setColorValue, setLightValue }) => {
-	const [roofColor, setRoofColor] = useRecoilState(cartState)
+const PreView = () => {
+	const [cart, setCart] = useRecoilState(cartState)
 
 	const ColorOptions = [
 		{ key: 0, value: roofR},
@@ -21,17 +21,19 @@ const PreView = ({ setColorValue, setLightValue }) => {
 
     return (
         <div className="w-[100%] flex flex-col items-center">
-            <div className="text-[35px] font-normal pb-[5px]">포장마차 꾸미기</div>
-            <div className="flex items-center w-[80%] h-[228px] bg-white rounded-[10px]"><img src={ColorOptions[roofColor.color].value}/></div>
-			<div className="py-[5px] text-[19px] font-normal">지붕 색상</div>  
+			<Label message={"포장마차 꾸미기"} />
+            <div className="w-[80%] bg-white rounded-[10px]">
+				<img src={ColorOptions[cart.color].value}/>
+				<div className="w-[100%] px-[10%]">		
+					<Light selectedIdx={cart.light} />
+				</div>
+			</div>
+			<Label message={"지붕 색상"} />
 			<ChooseRoof />
-			<div className="py-[5px] text-[19px] font-normal">조명 장식</div>
+			<Label message={"조명 장식"} />
 			<ChooseLight />
-            
-            
         </div>
     )
-
 }
 
 export default PreView

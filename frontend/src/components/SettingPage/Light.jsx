@@ -9,7 +9,7 @@ const Light = ({light, index}) => {
     }
 
     return (
-        <div onClick={() => onClickRoof(index)}>
+        <div className="mx-2 mt-1" onClick={() => onClickRoof(index)}>
             <div
             className="flex  items-center justify-center w-[132px] h-[132px] bg-[#FFFFFF] rounded-[30px]"
             style={{ "borderWidth": "7px", "borderColor": index === lightColor.light ? "#192655" : "#FFFFFF"}}
