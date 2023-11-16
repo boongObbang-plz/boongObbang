@@ -28,6 +28,25 @@ const modalSubmitState = atom({
   default: false, // default value (aka initial value)
 });
 
+const modalReadLetterState = atom({
+  key: "modalReadLetterState",
+  default: false,
+});
+
+const modalLoginHelperState = atom({
+  key: "modalLoginHelperState",
+  default: false,
+});
+
+const cartState = atom({
+  key: "roofColorState",
+  default: {
+    name: "",
+    color: 0,
+    light: 0,
+  }
+});
+
 const modalAlertState = atom({
   key: "modalAlertState",
   default: {
@@ -36,4 +55,4 @@ const modalAlertState = atom({
   },
 });
 
-export { modalHelperState, modalLetterState, writeLetterState, modalSubmitState, modalAlertState };
+export { modalHelperState, modalLetterState, writeLetterState, modalSubmitState, modalAlertState, modalReadLetterState, cartState, modalLoginHelperState };

@@ -4,11 +4,14 @@ import mint from "/images/letter_mint.png";
 import pizza from "/images/letter_pizza.png";
 import redbean from "/images/letter_redbean.png";
 import sweetpotato from "/images/letter_sweetpotato.png";
+import { useSetRecoilState } from 'recoil';
+import { modalReadLetterState } from '@states/ModalState';
 
 const Letter = ({ letterLoc, tagLoc, message }) => {
   const colors = [redbean, cream, sweetpotato, pizza, choco, mint];
+  const setModalOpen = useSetRecoilState(modalReadLetterState);
   return (
-    <div>
+    <div onClick={() => setModalOpen(true)}>
       <img
         className={`absolute ${letterLoc[0]} ${letterLoc[1]} w-[30%]`}
         src={colors[message.color]}
@@ -19,8 +22,8 @@ const Letter = ({ letterLoc, tagLoc, message }) => {
       >
         {/* <h1 className='text-center'>{message.made_by}</h1> */}
         <div>{message.made_by}</div>
-      </div>
-    </div>
+      </div> 
+    </div> 
   );
 };
 

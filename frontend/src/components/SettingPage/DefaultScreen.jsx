@@ -1,23 +1,15 @@
-import Button   from './StartButton'
-import Header   from './Header'
-import Name     from './Name'
-import PreView  from './PreView'
-import StartButton   from './StartButton'
-import { useState } from 'react'
+import Header   from '@components/SettingPage/Header'
+import Name     from '@components/SettingPage/Name'
+import PreView  from '@components/SettingPage/PreView'
+import StartButton   from '@components/SettingPage/StartButton'
 
 const DefaultScreen = () => {
-    const [nn, setName] = useState("")
-    const [nameError, setNameError] = useState("")
-    const [colorValue, setColorValue] = useState(0)
-	const [lightValue, setLightValue] = useState(0)
 
     return (
-        <div className="w-[393px] h-[1060px] flex flex-col">
-            <Header/>
-            <Name setName={setName} setNameError={setNameError}/>
-            <div className="flex justify-start pl-[10%] text-[20px] font-normal">{nameError}</div>
-            <PreView setColorValue={setColorValue} setLightValue={setLightValue}/>
-            <button onClick={() => {console.log(nn)}}>이름 확인</button>
+        <div className="flex flex-col justify-center items-center h-full w-full max-w-[709px] max-h-[1366px] text-title-color">
+            <Header />
+            <Name />
+            <PreView />
             <StartButton/>
         </div>
     )

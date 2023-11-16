@@ -1,9 +1,9 @@
-import { modalHelperState } from "@states//ModalState";
+import { modalLoginHelperState } from "@states//ModalState";
 import closeImage from "/images/icon_close.png";
 import { useSetRecoilState } from "recoil";
 
 const CloseButton = () => {
-  const setHelperOpen = useSetRecoilState(modalHelperState);
+  const setHelperOpen = useSetRecoilState(modalLoginHelperState);
 
   return (
     <div className="w-[100%] flex justify-end">

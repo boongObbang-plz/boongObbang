@@ -1,9 +1,10 @@
-import LoginPage from "@components/LoginPage/LoginPage";
+import LoginPage from "@pages/LoginPage";
 import Layout from "@components/layout";
 import MainPage from "@pages/MainPage";
 import NotMyMainPage from "@pages/NotMyMainPage";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { RecoilRoot } from "recoil";
+import PreSettingPage from "@pages/PreSettingPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
             <Route path="/" element={<LoginPage />} index />
             <Route path="/mainpage" element={<MainPage />} />
             <Route path="/main" element={<NotMyMainPage />} />
+            <Route path="/settings" element={<PreSettingPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

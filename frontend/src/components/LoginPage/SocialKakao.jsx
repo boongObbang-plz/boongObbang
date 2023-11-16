@@ -9,9 +9,10 @@ const SocialKakao = () => {
     window.location.href = kakaoURL;
   };
   return (
-    <div className="w-[90%]">
+    <div className="w-[90%] h-[60px] bg-[#FEE500] rounded-[12px] text-center text-[30px] text-[#191919] flex justify-center">
       <button onClick={handleLogin}>
-        <img src={KakaoLogin} />
+        <img src="" alt="" />
+        카카오 로그인
       </button>
     </div>
   );

@@ -1,4 +1,4 @@
-import NoticeButton from "@components/LoginPage/NoticeButton";
+import NoticeButton from "@components/NotMyMainPage/NoticeBTN";
 import DDay from "@components/MainPage/DDay";
 import MakeLetterBTN from "@components/NotMyMainPage/MakeLetterBTN";
 import MyPageBTN from "@components/NotMyMainPage/MyPageBTN";

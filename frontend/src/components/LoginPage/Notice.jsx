@@ -1,12 +1,12 @@
-import MessageTitle from "./MessageTitle"
-import Message from "./Message"
-import CloseButton from "./CloseButton"
+import MessageTitle from "@components/LoginPage/MessageTitle"
+import Message from "@components/LoginPage/Message"
+import CloseButton from "@components/LoginPage/CloseButton"
 
-const Notice = ({setModalIsOpen}) => {
+const Notice = () => {
 
     return (
         <div className="w-[100%] h-[980px] bg-[#FFFFFF] text-[#000000] flex flex-col items-center justify-start px-[7%] pt-[5%] pb-[10%]">
-            <CloseButton setModalIsOpen={setModalIsOpen} />
+            <CloseButton />
             <div className="h-[100%] flex flex-col items-start justify-between text-left">
             <h3 className="text-[20px] font-bold">🎄환영합니다!🎄</h3>
             <div>

@@ -3,7 +3,7 @@ import board from "/images/bg_board.png";
 const Board = () => {
   return (
     <div>
-      <img src={board} />
+      <img className="border-t-4 border-black" src={board} alt="board"/>
     </div>
   );
 };
