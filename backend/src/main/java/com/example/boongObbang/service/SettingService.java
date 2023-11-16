@@ -80,4 +80,18 @@ public class SettingService {
 
 		settingRepository.save(new_setting);
 	}
+
+	public void deleteSetting(String email, String provider) {
+		Optional<User> user = userRepository.findByEmailAndProvider(email, provider);
+
+		if (user.isEmpty()) {
+			throw new NoExistEmailException(ResponseMessage.NO_EXIST_EMAIL);
+		}
+
+		Optional<Setting> setting = settingRepository.findByUserId(user.get().getId());
+
+		setting.ifPresent(value -> settingRepository.delete(value));
+
+		userRepository.delete(user.get());
+	}
 }

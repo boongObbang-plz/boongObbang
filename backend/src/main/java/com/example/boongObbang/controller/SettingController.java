@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -51,11 +52,21 @@ public class SettingController {
 
 	@PatchMapping("")
 	public ResponseEntity patch(@RequestBody PatchSettingRequestDto patchSettingRequestDto, @RequestHeader("Authorization") String token) {
-
 		String email = jwtProvider.getEmail(token);
 		String provider = jwtProvider.getProvider(token);
 
 		settingService.patchSetting(patchSettingRequestDto, email, provider);
+
+		return new ResponseEntity(CustomResponse.response(HttpStatus.OK.value(), ResponseMessage.SUCCESS),
+			HttpStatus.OK);
+	}
+
+	@DeleteMapping("")
+	public ResponseEntity delete(@RequestHeader("Authorization") String token) {
+		String email = jwtProvider.getEmail(token);
+		String provider = jwtProvider.getProvider(token);
+
+		settingService.deleteSetting(email, provider);
 
 		return new ResponseEntity(CustomResponse.response(HttpStatus.OK.value(), ResponseMessage.SUCCESS),
 			HttpStatus.OK);
