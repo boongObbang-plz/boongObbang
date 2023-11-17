@@ -8,7 +8,6 @@ import com.example.boongObbang.response.CustomResponse;
 import com.example.boongObbang.response.ResponseMessage;
 import com.example.boongObbang.service.MainPageService;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
