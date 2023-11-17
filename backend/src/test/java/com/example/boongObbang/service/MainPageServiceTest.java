@@ -290,11 +290,11 @@ public class MainPageServiceTest {
 
 		//when
 		assertDoesNotThrow(() -> {
-			mainPageService.deleteMessage(email, provider, 1);
+			mainPageService.deleteMessage(email, provider, message.getId());
 		});
 
 		//then
-		Optional<Message> result = messageRepository.findById(1L);
+		Optional<Message> result = messageRepository.findById(message.getId());
 
 		assertEquals(result.get().isDeleted(), true);
 	}
@@ -338,7 +338,7 @@ public class MainPageServiceTest {
 
 		//when
 		Throwable throwable = assertThrows(RuntimeException.class, () -> {
-			mainPageService.deleteMessage(email, provider, 1);
+			mainPageService.deleteMessage(email, provider, 128);
 		});
 
 		//then
