@@ -62,8 +62,6 @@ public class MainPageController {
 			HttpStatus.OK);
 	}
 
-
-	//TODO: 편지 읽기 기능에서 d_day체크 controller에서 하기
 	@GetMapping("/message/{idx}")
 	public ResponseEntity readMessage(@PathVariable("idx") Long idx, @RequestHeader("Authorization") String token) {
 		String email = jwtProvider.getEmail(token);
