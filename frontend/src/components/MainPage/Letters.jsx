@@ -24,13 +24,15 @@ const Letters = ({ messages }) => {
     ["top-[-8%]", "left-[37%]"],
     ["top-[-8%]", "right-[7%]"],
   ];
+
+  var idx = messages.length;
   const rendering = [...messages].reverse().map((message) => {
     if (message) {
-      var locationIdx = message.idx >= 9 ? message.idx % 9 : message.idx;
+      var locationIdx = --idx >= 9 ? idx : idx;
       return (
         <Letter
           className="absolute"
-          key={message.idx}
+          key={idx}
           letterLoc={letterLocation[locationIdx]}
           tagLoc={tagLocation[locationIdx]}
           message={message}
