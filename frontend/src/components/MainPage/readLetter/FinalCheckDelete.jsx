@@ -3,16 +3,14 @@ import icon_close from "/images/icon_close.png";
 import { useEffect } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import {
-  modalLetterState,
-  writeLetterState,
+  modalReadLetterState,
   modalSubmitState,
   modalAlertState,
 } from "@states//ModalState";
 
-const FinalCheckSubmit = () => {
-  const setLetterOpen = useSetRecoilState(modalLetterState);
-  const [writeLetter, setWriteLetter] = useRecoilState(writeLetterState);
-  const setSubmitOpen = useSetRecoilState(modalSubmitState);
+const FinalCheckDelete = () => {
+  const [readOpen, setReadOpen] = useRecoilState(modalReadLetterState);
+  const setDeleteOpen = useSetRecoilState(modalSubmitState);
   const [alertOpen, setAlertOpen] = useRecoilState(modalAlertState);
 
   useEffect(() => {
@@ -23,30 +21,29 @@ const FinalCheckSubmit = () => {
     }
   }, [alertOpen]);
 
-  const clickSubmit = () => {
-    setSubmitOpen({ isOpen: false, isSubmit: true });
-    setLetterOpen({ isOpen: false, page: 1 });
-    setAlertOpen({ isOpen: true, message: "편지가 등록되었어요😉" });
+  const clickDelete = () => {
+    setDeleteOpen({ isOpen: false, isSubmit: false });
+    setReadOpen(false);
+    setAlertOpen({ isOpen: true, message: "삭제가 완료되었어요😉" });
 
     //todo: api 호출
-    setWriteLetter({ color: 0, to: "", message: "", from: "" });
   };
 
   return (
     <div className="flex flex-col text-center">
-      <div>등록 후 수정 및 삭제가 불가능해요🥺</div>
-      <div>등록 하시겠어요?</div>
+      <div>삭제 후 복원이 불가능해요🥺</div>
+      <div>삭제 하시겠어요?</div>
       <div className="flex justify-center">
         <img
           src={icon_submit}
           className="w-[30px] mt-2 mr-3"
-          onClick={() => clickSubmit()}
+          onClick={() => clickDelete()}
           alt="submit button"
         />
         <img
           src={icon_close}
           className="w-[30px] mt-2 ml-3"
-          onClick={() => setSubmitOpen(false)}
+          onClick={() => setDeleteOpen(false)}
           alt="close button"
         />
       </div>
@@ -54,4 +51,4 @@ const FinalCheckSubmit = () => {
   );
 };
 
-export default FinalCheckSubmit;
+export default FinalCheckDelete;
