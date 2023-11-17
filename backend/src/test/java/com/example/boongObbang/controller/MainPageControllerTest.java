@@ -4,8 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 
 import com.example.boongObbang.dto.CreateSettingRequestDto;
+import com.example.boongObbang.entity.Message;
 import com.example.boongObbang.entity.User;
 import com.example.boongObbang.jwt.JwtProvider;
+import com.example.boongObbang.repository.MessageRepository;
 import com.example.boongObbang.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.UUID;
@@ -38,6 +40,9 @@ public class MainPageControllerTest {
 
 	@Autowired
 	JwtProvider jwtProvider;
+
+	@Autowired
+	MessageRepository messageRepository;
 
 	@Test
 	@DisplayName("나의 메인페이지 불러오기 성공 테스트")
@@ -103,4 +108,75 @@ public class MainPageControllerTest {
 		//then
 		assertEquals(HttpStatus.OK.value(), result.andReturn().getResponse().getStatus());
 	}
+
+	@Test
+	@DisplayName("편지 삭제하기 성공 테스트")
+	public void successDelete() throws Exception {
+		//given
+		String email = "delete@test.com";
+		User user = User.builder()
+			.email(email)
+			.uuid(UUID.randomUUID().toString())
+			.provider("google").build();
+
+		userRepository.save(user);
+
+		String token = jwtProvider.createToken(email, "google");
+
+		Message message1 = Message.builder()
+			.recipient("받는사람")
+			.message("메시지~~~~~")
+			.madeBy("글쓴사람")
+			.color(1)
+			.ip("ip주소~~~~~~")
+			.user(user).build();
+
+		messageRepository.save(message1);
+
+		//when
+		ResultActions result = mockMvc.perform(MockMvcRequestBuilders.patch("/mainpage/message/{idx}", message1.getId())
+			.with(csrf())
+			.contentType(MediaType.APPLICATION_JSON)
+			.accept(MediaType.APPLICATION_JSON)
+			.header(HttpHeaders.AUTHORIZATION, token));
+
+		//then
+		assertEquals(HttpStatus.OK.value(), result.andReturn().getResponse().getStatus());
+	}
+
+	@Test
+	@DisplayName("편지 삭제하기 실패 테스트(존재하지 않는 편지)")
+	public void failDelete() throws Exception {
+		//given
+		String email = "delete@test.com";
+		User user = User.builder()
+			.email(email)
+			.uuid(UUID.randomUUID().toString())
+			.provider("google").build();
+
+		userRepository.save(user);
+
+		String token = jwtProvider.createToken(email, "google");
+
+		Message message1 = Message.builder()
+			.recipient("받는사람")
+			.message("메시지~~~~~")
+			.madeBy("글쓴사람")
+			.color(1)
+			.ip("ip주소~~~~~~")
+			.user(user).build();
+
+		messageRepository.save(message1);
+
+		//when
+		ResultActions result = mockMvc.perform(MockMvcRequestBuilders.patch("/mainpage/message/{idx}", 26)
+			.with(csrf())
+			.contentType(MediaType.APPLICATION_JSON)
+			.accept(MediaType.APPLICATION_JSON)
+			.header(HttpHeaders.AUTHORIZATION, token));
+
+		//then
+		assertEquals(HttpStatus.BAD_REQUEST.value(), result.andReturn().getResponse().getStatus());
+	}
+
 }
