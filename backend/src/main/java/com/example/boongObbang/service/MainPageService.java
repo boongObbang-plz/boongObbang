@@ -56,8 +56,10 @@ public class MainPageService {
 
 		List<MessageDto> messageDtos = new ArrayList<>();
 
-		//TODO: 삭제된 편지는 가져오지 않기
 		for (Message message : messageList) {
+			if (message.isDeleted())
+				continue;
+
 			MessageDto messageDto = new MessageDto();
 
 			messageDto.setIdx(message.getId());
