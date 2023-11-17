@@ -15,8 +15,6 @@ import com.example.boongObbang.repository.MessageRepository;
 import com.example.boongObbang.repository.SettingRepository;
 import com.example.boongObbang.repository.UserRepository;
 import com.example.boongObbang.response.ResponseMessage;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
