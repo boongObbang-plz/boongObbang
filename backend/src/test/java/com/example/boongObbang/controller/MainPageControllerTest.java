@@ -179,4 +179,39 @@ public class MainPageControllerTest {
 		assertEquals(HttpStatus.BAD_REQUEST.value(), result.andReturn().getResponse().getStatus());
 	}
 
+	@Test
+	@DisplayName("편지 읽기 성공 테스트(크리스마스 이전)")
+	public void successRead() throws Exception {
+		//given
+		String email = "read@test.com";
+		User user = User.builder()
+			.email(email)
+			.uuid(UUID.randomUUID().toString())
+			.provider("google").build();
+
+		userRepository.save(user);
+
+		String token = jwtProvider.createToken(email, "google");
+
+		Message message1 = Message.builder()
+			.recipient("받는사람")
+			.message("메시지~~~~~")
+			.madeBy("글쓴사람")
+			.color(1)
+			.ip("ip주소~~~~~~")
+			.user(user).build();
+
+		messageRepository.save(message1);
+
+		//when
+		ResultActions result = mockMvc.perform(MockMvcRequestBuilders.get("/mainpage/message/{idx}", message1.getId())
+			.with(csrf())
+			.contentType(MediaType.APPLICATION_JSON)
+			.accept(MediaType.APPLICATION_JSON)
+			.header(HttpHeaders.AUTHORIZATION, token));
+
+		//then
+		assertEquals(HttpStatus.ACCEPTED.value(), result.andReturn().getResponse().getStatus());
+	}
+
 }
