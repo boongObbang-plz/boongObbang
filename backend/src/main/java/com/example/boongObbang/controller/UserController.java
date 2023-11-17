@@ -33,6 +33,7 @@ public class UserController {
 	@Autowired
 	private JwtProvider jwtProvider;
 
+	//TODO: 프론트와 연결하면 지울 것
 	@PostMapping("/test")
 	public ResponseEntity test() {
 		User user = User.builder()
