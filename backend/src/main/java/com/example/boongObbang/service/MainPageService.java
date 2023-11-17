@@ -3,15 +3,19 @@ package com.example.boongObbang.service;
 import com.example.boongObbang.dto.LinkResponseDto;
 import com.example.boongObbang.dto.MainPageResponseDto;
 import com.example.boongObbang.dto.MessageDto;
+import com.example.boongObbang.dto.ReadMessageResponseDto;
 import com.example.boongObbang.entity.Message;
 import com.example.boongObbang.entity.Setting;
 import com.example.boongObbang.entity.User;
 import com.example.boongObbang.exception.exceptions.NoExistEmailException;
+import com.example.boongObbang.exception.exceptions.NoExistMessageException;
 import com.example.boongObbang.exception.exceptions.NoExistSettingException;
 import com.example.boongObbang.repository.MessageRepository;
 import com.example.boongObbang.repository.SettingRepository;
 import com.example.boongObbang.repository.UserRepository;
 import com.example.boongObbang.response.ResponseMessage;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -34,6 +38,7 @@ public class MainPageService {
 
 	public MainPageResponseDto getMainPage(String email, String provider) {
 
+		//TODO: 아래 코드와 같이 중복되는 코드는 하나의 함수로 빼기
 		Optional<User> user = userRepository.findByEmailAndProvider(email, provider);
 
 		if (user.isEmpty()) {
@@ -50,6 +55,7 @@ public class MainPageService {
 
 		List<MessageDto> messageDtos = new ArrayList<>();
 
+		//TODO: 삭제된 편지는 가져오지 않기
 		for (Message message : messageList) {
 			MessageDto messageDto = new MessageDto();
 
@@ -92,4 +98,90 @@ public class MainPageService {
 
 		return linkResponseDto;
 	}
+
+	public void deleteMessage(String email, String provider, long idx) {
+		Optional<User> user = userRepository.findByEmailAndProvider(email, provider);
+
+		if (user.isEmpty()) {
+			throw new NoExistEmailException(ResponseMessage.NO_EXIST_EMAIL);
+		}
+
+		//idx에 해당하는 message가 있는지 검사
+		Optional<Message> findByIdxMessage = messageRepository.findById(idx);
+
+		if (findByIdxMessage.isEmpty()) {
+			throw new NoExistMessageException(ResponseMessage.NO_EXIST_MESSAGE);
+		}
+
+		//idx에 해당하는 message가 유저에게 쓴 편지인지 검사
+		List<Message> userMessageList = messageRepository.findByUserId(user.get().getId());
+
+		boolean flag = false;
+
+		for (Message message : userMessageList) {
+			if (message.getId() == idx) {
+				flag = true;
+				break;
+			}
+		}
+
+		if (!flag) {
+			throw new NoExistMessageException(ResponseMessage.NO_EXIST_MESSAGE);
+		}
+
+		Message new_message = Message.builder()
+			.id(findByIdxMessage.get().getId())
+			.user(findByIdxMessage.get().getUser())
+			.recipient(findByIdxMessage.get().getRecipient())
+			.message(findByIdxMessage.get().getMessage())
+			.madeBy(findByIdxMessage.get().getMadeBy())
+			.color(findByIdxMessage.get().getColor())
+			.ip(findByIdxMessage.get().getIp())
+			.deleted(true).build();
+
+		messageRepository.save(new_message);
+	}
+
+	//TODO: 편지 삭제 구현 이후 다시 구현 예정
+//	public ReadMessageResponseDto readMessage(String email, String provider, long idx) {
+//		//유저가 존재하는지 검사
+//		Optional<User> user = userRepository.findByEmailAndProvider(email, provider);
+//
+//		if (user.isEmpty()) {
+//			throw new NoExistEmailException(ResponseMessage.NO_EXIST_EMAIL);
+//		}
+//
+//		//idx에 해당하는 message가 있는지 검사
+//		Optional<Message> findByIdMessage = messageRepository.findById(idx);
+//
+//		if (findByIdMessage.isEmpty()) {
+//			throw new NoExistMessageException(ResponseMessage.NO_EXIST_MESSAGE);
+//		}
+//
+//		//idx에 해당하는 message가 유저에게 쓴 편지인지 검사
+//		List<Message> userMessageList = messageRepository.findByUserId(user.get().getId());
+//
+//		boolean flag = false;
+//
+//		for (Message message : userMessageList) {
+//			if (message.getId() == idx) {
+//				flag = true;
+//				break;
+//			}
+//		}
+//
+//		if (!flag) {
+//			throw new NoExistMessageException(ResponseMessage.NO_EXIST_MESSAGE);
+//		}
+//
+//		//TODO: 삭제된 편지인지 검사
+//
+//		ReadMessageResponseDto readMessageResponseDto = new ReadMessageResponseDto();
+//
+//		readMessageResponseDto.setTo(findByIdMessage.get().getRecipient());
+//		readMessageResponseDto.setMessage(findByIdMessage.get().getMessage());
+//		readMessageResponseDto.setMade_by(findByIdMessage.get().getMadeBy());
+//
+//		return readMessageResponseDto;
+//	}
 }
