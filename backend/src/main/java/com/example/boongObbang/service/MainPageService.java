@@ -7,6 +7,7 @@ import com.example.boongObbang.dto.ReadMessageResponseDto;
 import com.example.boongObbang.entity.Message;
 import com.example.boongObbang.entity.Setting;
 import com.example.boongObbang.entity.User;
+import com.example.boongObbang.exception.exceptions.DeletedMessageException;
 import com.example.boongObbang.exception.exceptions.NoExistEmailException;
 import com.example.boongObbang.exception.exceptions.NoExistMessageException;
 import com.example.boongObbang.exception.exceptions.NoExistSettingException;
@@ -142,46 +143,47 @@ public class MainPageService {
 		messageRepository.save(new_message);
 	}
 
-	//TODO: 편지 삭제 구현 이후 다시 구현 예정
-//	public ReadMessageResponseDto readMessage(String email, String provider, long idx) {
-//		//유저가 존재하는지 검사
-//		Optional<User> user = userRepository.findByEmailAndProvider(email, provider);
-//
-//		if (user.isEmpty()) {
-//			throw new NoExistEmailException(ResponseMessage.NO_EXIST_EMAIL);
-//		}
-//
-//		//idx에 해당하는 message가 있는지 검사
-//		Optional<Message> findByIdMessage = messageRepository.findById(idx);
-//
-//		if (findByIdMessage.isEmpty()) {
-//			throw new NoExistMessageException(ResponseMessage.NO_EXIST_MESSAGE);
-//		}
-//
-//		//idx에 해당하는 message가 유저에게 쓴 편지인지 검사
-//		List<Message> userMessageList = messageRepository.findByUserId(user.get().getId());
-//
-//		boolean flag = false;
-//
-//		for (Message message : userMessageList) {
-//			if (message.getId() == idx) {
-//				flag = true;
-//				break;
-//			}
-//		}
-//
-//		if (!flag) {
-//			throw new NoExistMessageException(ResponseMessage.NO_EXIST_MESSAGE);
-//		}
-//
-//		//TODO: 삭제된 편지인지 검사
-//
-//		ReadMessageResponseDto readMessageResponseDto = new ReadMessageResponseDto();
-//
-//		readMessageResponseDto.setTo(findByIdMessage.get().getRecipient());
-//		readMessageResponseDto.setMessage(findByIdMessage.get().getMessage());
-//		readMessageResponseDto.setMade_by(findByIdMessage.get().getMadeBy());
-//
-//		return readMessageResponseDto;
-//	}
+	public ReadMessageResponseDto readMessage(String email, String provider, long idx) {
+		//유저가 존재하는지 검사
+		Optional<User> user = userRepository.findByEmailAndProvider(email, provider);
+
+		if (user.isEmpty()) {
+			throw new NoExistEmailException(ResponseMessage.NO_EXIST_EMAIL);
+		}
+
+		//idx에 해당하는 message가 있는지 검사
+		Optional<Message> findByIdMessage = messageRepository.findById(idx);
+
+		if (findByIdMessage.isEmpty()) {
+			throw new NoExistMessageException(ResponseMessage.NO_EXIST_MESSAGE);
+		}
+
+		//idx에 해당하는 message가 유저에게 쓴 편지인지 검사
+		List<Message> userMessageList = messageRepository.findByUserId(user.get().getId());
+
+		boolean flag = false;
+
+		for (Message message : userMessageList) {
+			if (message.getId() == idx) {
+				flag = true;
+				break;
+			}
+		}
+
+		if (!flag) {
+			throw new NoExistMessageException(ResponseMessage.NO_EXIST_MESSAGE);
+		}
+
+		if (findByIdMessage.get().isDeleted()) {
+			throw new DeletedMessageException(ResponseMessage.DELETED_MESSAGE);
+		}
+
+		ReadMessageResponseDto readMessageResponseDto = new ReadMessageResponseDto();
+
+		readMessageResponseDto.setTo(findByIdMessage.get().getRecipient());
+		readMessageResponseDto.setMessage(findByIdMessage.get().getMessage());
+		readMessageResponseDto.setMade_by(findByIdMessage.get().getMadeBy());
+
+		return readMessageResponseDto;
+	}
 }
