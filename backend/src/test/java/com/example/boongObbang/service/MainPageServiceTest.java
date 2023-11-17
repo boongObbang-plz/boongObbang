@@ -299,6 +299,93 @@ public class MainPageServiceTest {
 		assertEquals(result.get().isDeleted(), true);
 	}
 
+	@Test
+	@DisplayName("편지 삭제 실패 테스트(존재하지 않는 유저)")
+	public void failDeleteMessage() {
+		//given
+		String email = "deleteMessageUser@test.com";
+		String provider = "google";
+
+		User user = User.builder()
+			.email(email)
+			.uuid(UUID.randomUUID().toString())
+			.provider(provider).build();
+
+		userRepository.save(user);
+
+		//when
+		Throwable throwable = assertThrows(RuntimeException.class, () -> {
+			mainPageService.deleteMessage(email, "kakao", 1);
+		});
+
+		//then
+		assertEquals(throwable.getMessage(), ResponseMessage.NO_EXIST_EMAIL);
+	}
+
+	@Test
+	@DisplayName("편지 삭제 실패 테스트(존재하지 않는 편지)")
+	public void failDeleteMessageNoExist() {
+		//given
+		String email = "deleteMessageNoExist@test.com";
+		String provider = "google";
+
+		User user = User.builder()
+			.email(email)
+			.uuid(UUID.randomUUID().toString())
+			.provider(provider).build();
+
+		userRepository.save(user);
+
+		//when
+		Throwable throwable = assertThrows(RuntimeException.class, () -> {
+			mainPageService.deleteMessage(email, provider, 1);
+		});
+
+		//then
+		assertEquals(throwable.getMessage(), ResponseMessage.NO_EXIST_MESSAGE);
+	}
+
+	@Test
+	@DisplayName("편지 삭제 실패 테스트(삭제하고자 하는 편지의 주인이 아닐때)")
+	public void failDeleteMessageNo() {
+		//given
+		String email = "deleteMessageUserNo@test.com";
+		String provider = "google";
+
+		User user = User.builder()
+			.email(email)
+			.uuid(UUID.randomUUID().toString())
+			.provider(provider).build();
+
+		userRepository.save(user);
+
+		String new_user = "newUser@test.com";
+
+		User newUser = User.builder()
+			.email(new_user)
+			.uuid(UUID.randomUUID().toString())
+			.provider(provider).build();
+
+		userRepository.save(newUser);
+
+		Message message = Message.builder()
+			.recipient("받는사람")
+			.message("메시지~~~~~")
+			.madeBy("글쓴사람")
+			.color(1)
+			.ip("ip주소~~~~~~")
+			.user(user).build();
+
+		messageRepository.save(message);
+
+		//when
+		Throwable throwable = assertThrows(RuntimeException.class, () -> {
+			mainPageService.deleteMessage(new_user, provider, 1);
+		});
+
+		//then
+		assertEquals(throwable.getMessage(), ResponseMessage.NO_EXIST_MESSAGE);
+	}
 
 //TODO: 편지 삭제하기 구현 이후 수정하여 다시 구현 예정
 
