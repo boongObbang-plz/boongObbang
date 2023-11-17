@@ -1,5 +1,6 @@
 package com.example.boongObbang.service;
 
+import com.example.boongObbang.dto.LinkResponseDto;
 import com.example.boongObbang.dto.MainPageResponseDto;
 import com.example.boongObbang.dto.MessageDto;
 import com.example.boongObbang.entity.Message;
@@ -74,5 +75,22 @@ public class MainPageService {
 		mainPageResponseDto.setMessages(messageDtos);
 
 		return mainPageResponseDto;
+	}
+
+	public LinkResponseDto getLink(String email, String provider) {
+		Optional<User> user = userRepository.findByEmailAndProvider(email, provider);
+
+		if (user.isEmpty()) {
+			throw new NoExistEmailException(ResponseMessage.NO_EXIST_EMAIL);
+		}
+
+		//TODO: 추후에 url 변경
+		String base_url = "http://localhost:8080/main/";
+
+		LinkResponseDto linkResponseDto = new LinkResponseDto();
+
+		linkResponseDto.setLink(base_url + user.get().getUuid());
+
+		return linkResponseDto;
 	}
 }

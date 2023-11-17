@@ -78,4 +78,29 @@ public class MainPageControllerTest {
 		//then
 		assertEquals(HttpStatus.OK.value(), result.andReturn().getResponse().getStatus());
 	}
+
+	@Test
+	@DisplayName("링크 가져오기 성공 테스트")
+	public void successLink() throws Exception {
+		//given
+		String email = "linkcontroller@test.com";
+		User user = User.builder()
+			.email(email)
+			.uuid(UUID.randomUUID().toString())
+			.provider("google").build();
+
+		userRepository.save(user);
+
+		String token = jwtProvider.createToken(email, "google");
+
+		//when
+		ResultActions result = mockMvc.perform(MockMvcRequestBuilders.get("/mainpage/link")
+			.with(csrf())
+			.contentType(MediaType.APPLICATION_JSON)
+			.accept(MediaType.APPLICATION_JSON)
+			.header(HttpHeaders.AUTHORIZATION, token));
+
+		//then
+		assertEquals(HttpStatus.OK.value(), result.andReturn().getResponse().getStatus());
+	}
 }

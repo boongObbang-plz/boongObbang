@@ -210,4 +210,48 @@ public class MainPageServiceTest {
 		assertEquals(throwable.getMessage(), ResponseMessage.NO_EXIST_SETTING);
 	}
 
+	@Test
+	@DisplayName("링크 조회 성공 테스트")
+	public void getLink() {
+		//given
+		String email = "messageserviclinke@test.com";
+		String provider = "google";
+
+		User user = User.builder()
+			.email(email)
+			.uuid(UUID.randomUUID().toString())
+			.provider(provider).build();
+
+		userRepository.save(user);
+
+		//when
+		//then
+		assertDoesNotThrow(() -> {
+			mainPageService.getLink(email, provider);
+		});
+	}
+
+	@Test
+	@DisplayName("링크 조회 실패 테스트(존재하지 않는 유저)")
+	public void getLinkFail() {
+		//given
+		String email = "messageserviclinkfail@test.com";
+		String provider = "google";
+
+		User user = User.builder()
+			.email(email)
+			.uuid(UUID.randomUUID().toString())
+			.provider(provider).build();
+
+		userRepository.save(user);
+
+		//when
+		Throwable throwable = assertThrows(RuntimeException.class, () -> {
+			mainPageService.getLink(email, "kakao");
+		});
+
+		//then
+		assertEquals(throwable.getMessage(), ResponseMessage.NO_EXIST_EMAIL);
+	}
+
 }
