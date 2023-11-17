@@ -6,7 +6,7 @@ import StartButton   from '@components/SettingPage/StartButton'
 const DefaultScreen = () => {
 
     return (
-        <div className="flex flex-col justify-center items-center h-full w-full max-w-[709px] max-h-[1366px] text-title-color">
+        <div className="flex flex-col justify-center items-center text-title-color">
             <Header />
             <Name />
             <PreView />

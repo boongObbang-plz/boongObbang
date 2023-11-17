@@ -18,8 +18,8 @@ const LoginPage = () => {
     { "idx" : 8, "color" : 3 },
   ]
   return (
-    <div className="flex justify-center">
-      <div className="flex flex-col justify-center items-center h-full w-full max-w-[709px] max-h-[1366px]">
+    <div className="flex h-full">
+      <div className="flex flex-col justify-center items-center">
       <Roof />
       <Title />
       <Grill />
