@@ -743,8 +743,6 @@ public class MainPageServiceTest {
 		messageRepository.save(message2);
 		messageRepository.save(message3);
 
-		mainPageService.deleteMessage(email, provider, message2.getId());
-
 		//when
 		var ref = new Object() {
 			MainPageResponseDto mainPageResponseDto;
@@ -808,8 +806,6 @@ public class MainPageServiceTest {
 		messageRepository.save(message1);
 		messageRepository.save(message2);
 		messageRepository.save(message3);
-
-		mainPageService.deleteMessage(email, provider, message2.getId());
 
 		//when
 		Throwable throwable = assertThrows(RuntimeException.class, () -> {
