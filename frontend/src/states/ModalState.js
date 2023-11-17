@@ -25,7 +25,10 @@ const writeLetterState = atom({
 
 const modalSubmitState = atom({
   key: "modalSubmitState", // unique ID (with respect to other atoms/selectors)
-  default: false, // default value (aka initial value)
+  default: {
+    isOpen: false,
+    isSubmit: true,
+  }, // default value (aka initial value)
 });
 
 const modalReadLetterState = atom({
@@ -44,7 +47,7 @@ const cartState = atom({
     name: "",
     color: 0,
     light: 0,
-  }
+  },
 });
 
 const modalAlertState = atom({
@@ -55,4 +58,13 @@ const modalAlertState = atom({
   },
 });
 
-export { modalHelperState, modalLetterState, writeLetterState, modalSubmitState, modalAlertState, modalReadLetterState, cartState, modalLoginHelperState };
+export {
+  modalHelperState,
+  modalLetterState,
+  writeLetterState,
+  modalSubmitState,
+  modalAlertState,
+  modalReadLetterState,
+  cartState,
+  modalLoginHelperState,
+};
