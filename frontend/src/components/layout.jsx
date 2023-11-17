@@ -13,7 +13,7 @@ import {
 import MakeLetter from "@components/NotMyMainPage/MakeLetter/MakeLetter";
 import FinalCheckSubmit from "@components/NotMyMainPage/MakeLetter/FinalCheckSubmit";
 import Notice from "@components/NotMyMainPage/Notice";
-import LetterPop from "@components/MainPage/LetterPop";
+import LetterPop from "@components/MainPage/readLetter/LetterPop";
 import LoginNotice from "@components/LoginPage/Notice";
 import FinalCheckDelete from "./MainPage/readLetter/FinalCheckDelete";
 
