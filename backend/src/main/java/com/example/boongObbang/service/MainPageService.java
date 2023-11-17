@@ -50,11 +50,10 @@ public class MainPageService {
 
 		List<MessageDto> messageDtos = new ArrayList<>();
 
-		for (int i = 0; i < messageList.size(); i++) {
+		for (Message message : messageList) {
 			MessageDto messageDto = new MessageDto();
-			Message message = messageList.get(i);
 
-			messageDto.setIdx(i);
+			messageDto.setIdx(message.getId());
 			messageDto.setColor(message.getColor());
 			messageDto.setMade_by(message.getMadeBy());
 
