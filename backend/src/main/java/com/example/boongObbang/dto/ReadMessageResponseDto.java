@@ -5,8 +5,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class MessageDto {
-	private long idx;
-	private int color;
+public class ReadMessageResponseDto {
+	private String to;
+	private String message;
 	private String made_by;
 }
