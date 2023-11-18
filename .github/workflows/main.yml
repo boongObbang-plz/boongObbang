@@ -31,7 +31,7 @@ jobs:
           docker-compose push
 
       - name: EC2 Docker Run
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v0.1.4
         with:
           host: ${{ secrets.INSTANCE }}
           key: ${{ secrets.KEY }}
