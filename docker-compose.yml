@@ -1,83 +1,76 @@
- version: '3'
+# version: '3'
 
- services:
-   redis:
-     image: redis:latest
-     container_name: redis
-     command: redis-server --port 6379
-     hostname: redis
-     labels:
-       - 'name=redis'
-       - 'mode=standalone'
-     ports:
-       - 6379:6379
-     networks:
-       - boong
-
-   mariadb:
-     container_name: mariadb
-     build: ./mariadb/
-     image: boongobbang/boongobbang-mariadb:latest
-     hostname: mariadb
-     #volumes:
-     #  - v_mariadb:/var/lib/mysql
-     env_file:
-       - .env
-     ports:
-       - 3300:3300 #3306을 써야하지만 충돌이 일어나므로 3300으로 사용
-     networks:
-       - boong
-
-   backend:
-     container_name: backend
-     build: ./backend/
-     image: boongobbang/boongobbang-backend:latest
-     hostname: backend
-     env_file:
-       - .env
-     ports:
-       - 8080:8080
-     networks:
-       - boong
-     depends_on:
-       - redis
-       - mariadb
-
-
-   # 클러스터에서 실행할 때 사용
-   frontend:
-     build: ./frontend
-     image: boongobbang/boongobbang-frontend:latest
-     environment:
-       # - NODE_ENV=production
-       - NODE_ENV=development
-     volumes:
-       - ./frontend/src:/app/src
-     ports:
-       - "5173:5173"
-     networks:
-       - boong
-
-#   frontend:
-#     container_name: frontend
-#     build: ./frontend/
+# services:
+#   redis:
+#     image: redis:latest
+#     container_name: redis
+#     command: redis-server --port 6379
+#     hostname: redis
+#     labels:
+#       - 'name=redis'
+#       - 'mode=standalone'
 #     ports:
-#       - 3000:3000
+#       - 6379:6379
 #     networks:
 #       - boong
 
+#   mariadb:
+#     container_name: mariadb
+#     build: ./mariadb/
+#     hostname: mariadb
+#     #volumes:
+#     #  - v_mariadb:/var/lib/mysql
+#     env_file:
+#       - .env
+#     ports:
+#       - 3300:3300 #3306을 써야하지만 충돌이 일어나므로 3300으로 사용
+#     networks:
+#       - boong
+
+#   backend:
+#     container_name: backend
+#     build: ./backend/
+#     hostname: backend
+#     env_file:
+#       - .env
+#     ports:
+#       - 8080:8080
+#     networks:
+#       - boong
+#     depends_on:
+#       - redis
+#       - mariadb
+
+#   frontend:
+#     container_name: frontend
+#     networks:
+#       - boong
+
+# networks:
+#   boong:
+#     driver: bridge
 
 #TODO: ec2에서는 볼륨 적용하기
 
- volumes:
-   v_mariadb:
-     name: v_mariadb
-     driver: local
-     driver_opts:
-       type: 'none'
-       o: 'bind'
-       device: '/Users'
+# volumes:
+#   v_mariadb:
+#     name: v_mariadb
+#     driver: local
+#     driver_opts:
+#       type: 'none'
+#       o: 'bind'
+#       device: '/Users'
 
- networks:
-   boong:
-     driver: bridge
+
+# 클러스터에서 실행할 때 사용
+services:
+  frontend:
+    build: ./frontend
+    image: boongobbang/boongobbang-frontend:latest
+    environment:
+      # - NODE_ENV=production
+      - NODE_ENV=development
+    volumes:
+      - ./frontend/src:/app/src
+    ports:
+      - "5173:5173"
