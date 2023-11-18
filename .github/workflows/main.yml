@@ -37,8 +37,7 @@ jobs:
           key: ${{ secrets.KEY }}
           username: ${{ secrets.USER }}
           script: |
-            docker rm -rf $(docker ps -pa)
-            docker rmi ${{ secrets.DOCKER_EMAIL }}/${{ secrets.DOCKER_REPOSITORY }}
+            sh ./init_docker.sh
             docker pull ${{ secrets.DOCKER_EMAIL }}/${{ secrets.DOCKER_REPOSITORY }}
             docker-compose up -d
           
