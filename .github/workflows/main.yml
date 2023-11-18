@@ -24,4 +24,21 @@ jobs:
           mkdir -p ./backend/src/main/resources
           echo "${{ secrets.SPRING_PROPERTIES }}" > ./backend/src/main/resources/application.properties
 
-      - run: docker-compose up -d
+      - name: Push Docker Image to Dockerhub
+        run: |
+          docker login -u ${{ secrets.DOCKER_EMAIL }} -p ${{ secrets.DOCKER_PW }}
+          docker build -t ${{ secrets.DOCKER_EMAIL }}
+          docker push ${{ secrets.DOCKER_EMAIL }}/${{ secrets.DOCKER_REPOSITORY }}
+
+      - name: EC2 Docker Run
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.INSTANCE }}
+          key: ${{ secrets.KEY }}
+          username: ${{ secrets.USER }}
+        run: |
+          docker rm -rf $(docker ps -pa)
+          docker rmi ${{ secrets.DOCKER_EMAIL }}/${{ secrets.DOCKER_REPOSITORY }}
+          docker pull ${{ secrets.DOCKER_EMAIL }}/${{ secrets.DOCKER_REPOSITORY }}
+          docker-compose up -d
+          
