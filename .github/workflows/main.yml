@@ -36,7 +36,7 @@ jobs:
           host: ${{ secrets.INSTANCE }}
           key: ${{ secrets.KEY }}
           username: ${{ secrets.USER }}
-        run: |
+        script: |
           docker rm -rf $(docker ps -pa)
           docker rmi ${{ secrets.DOCKER_EMAIL }}/${{ secrets.DOCKER_REPOSITORY }}
           docker pull ${{ secrets.DOCKER_EMAIL }}/${{ secrets.DOCKER_REPOSITORY }}
