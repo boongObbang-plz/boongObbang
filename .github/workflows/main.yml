@@ -1,0 +1,28 @@
+name: boogObbangPlz
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Make Docker Env
+        run : |
+          touch ./.env
+          echo "{{ DOCKER_ENV }} " > ./.env
+          
+
+      - name: Make application.properties
+        run : |
+          cd ./backend/src/main/resources
+          touch ./application.properties
+          echo "${{ secrets.SPRING_PROPERTIES }}" > ./application.properties
+
+      - run: docker compose up -d
