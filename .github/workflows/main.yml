@@ -31,14 +31,14 @@ jobs:
           docker-compose push
 
       - name: EC2 Docker Run
-        uses: appleboy/ssh-action@v0.1.4
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.INSTANCE }}
           key: ${{ secrets.KEY }}
           username: ${{ secrets.USER }}
           script: |
-           docker rm -rf $(docker ps -pa)
-           docker rmi ${{ secrets.DOCKER_EMAIL }}/${{ secrets.DOCKER_REPOSITORY }}
-           docker pull ${{ secrets.DOCKER_EMAIL }}/${{ secrets.DOCKER_REPOSITORY }}
-           docker-compose up -d
+            docker rm -rf $(docker ps -pa)
+            docker rmi ${{ secrets.DOCKER_EMAIL }}/${{ secrets.DOCKER_REPOSITORY }}
+            docker pull ${{ secrets.DOCKER_EMAIL }}/${{ secrets.DOCKER_REPOSITORY }}
+            docker-compose up -d
           
