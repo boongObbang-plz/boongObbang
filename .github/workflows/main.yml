@@ -27,8 +27,8 @@ jobs:
       - name: Push Docker Image to Dockerhub
         run: |
           docker login -u ${{ secrets.DOCKER_EMAIL }} -p ${{ secrets.DOCKER_PW }}
-          docker build -t ${{ secrets.DOCKER_EMAIL }} .
-          docker push ${{ secrets.DOCKER_EMAIL }}/${{ secrets.DOCKER_REPOSITORY }}
+          docker-compose build
+          docker-compose push
 
       - name: EC2 Docker Run
         uses: appleboy/ssh-action@master
