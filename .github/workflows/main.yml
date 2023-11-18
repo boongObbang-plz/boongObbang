@@ -16,14 +16,12 @@ jobs:
       - name: Make Docker Env
         run : |
           touch ./.env
-          echo "{{ DOCKER_ENV }} " > ./.env
+          echo "{{ secrets.DOCKER_ENV }}" > ./.env
           
 
       - name: Make application.properties
-        run : |
-          mkdir ./backend/src/main/resources
-          cd ./backend/src/main/resources
-          touch ./application.properties
-          echo "${{ secrets.SPRING_PROPERTIES }}" > ./application.properties
+        run: |
+          mkdir -p ./backend/src/main/resources
+          echo "${{ secrets.SPRING_PROPERTIES }}" > ./backend/src/main/resources/application.properties
 
-      - run: docker compose up -d
+      - run: docker-compose up -d
