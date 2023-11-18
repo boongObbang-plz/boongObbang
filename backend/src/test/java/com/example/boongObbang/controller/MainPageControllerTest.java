@@ -214,4 +214,54 @@ public class MainPageControllerTest {
 		assertEquals(HttpStatus.ACCEPTED.value(), result.andReturn().getResponse().getStatus());
 	}
 
+	@Test
+	@DisplayName("남의 메인페이지 불러오기 성공 테스트")
+	public void successGetOtherMainPage() throws Exception {
+		//given
+		String email = "otherpagecontroller@test.com";
+		String uuid = UUID.randomUUID().toString();
+
+		User user = User.builder()
+			.email(email)
+			.uuid(uuid)
+			.provider("google").build();
+
+		userRepository.save(user);
+
+		String token = jwtProvider.createToken(email, "google");
+
+		CreateSettingRequestDto createSettingRequestDto = new CreateSettingRequestDto();
+
+		createSettingRequestDto.setName("주은이네 붕어빵");
+		createSettingRequestDto.setColor(0);
+		createSettingRequestDto.setLight(1);
+
+		String data = objectMapper.writeValueAsString(createSettingRequestDto);
+
+		mockMvc.perform(MockMvcRequestBuilders.post("/settings")
+			.with(csrf())
+			.contentType(MediaType.APPLICATION_JSON)
+			.accept(MediaType.APPLICATION_JSON)
+			.content(data)
+			.header(HttpHeaders.AUTHORIZATION, token));
+
+		Message message1 = Message.builder()
+			.recipient("받는사람")
+			.message("메시지~~~~~")
+			.madeBy("글쓴사람")
+			.color(1)
+			.ip("ip주소~~~~~~")
+			.user(user).build();
+
+		messageRepository.save(message1);
+
+		//when
+		ResultActions result = mockMvc.perform(MockMvcRequestBuilders.get("/main/{uuid}", uuid)
+			.with(csrf())
+			.contentType(MediaType.APPLICATION_JSON)
+			.accept(MediaType.APPLICATION_JSON));
+
+		//then
+		assertEquals(HttpStatus.OK.value(), result.andReturn().getResponse().getStatus());
+	}
 }

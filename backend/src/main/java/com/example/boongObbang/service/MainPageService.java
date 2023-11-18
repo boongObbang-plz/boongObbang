@@ -11,6 +11,7 @@ import com.example.boongObbang.exception.exceptions.DeletedMessageException;
 import com.example.boongObbang.exception.exceptions.NoExistEmailException;
 import com.example.boongObbang.exception.exceptions.NoExistMessageException;
 import com.example.boongObbang.exception.exceptions.NoExistSettingException;
+import com.example.boongObbang.exception.exceptions.UrlErrorException;
 import com.example.boongObbang.repository.MessageRepository;
 import com.example.boongObbang.repository.SettingRepository;
 import com.example.boongObbang.repository.UserRepository;
@@ -185,5 +186,51 @@ public class MainPageService {
 		readMessageResponseDto.setMade_by(findByIdMessage.get().getMadeBy());
 
 		return readMessageResponseDto;
+	}
+
+	public MainPageResponseDto getOtherMainPage(String uuid) {
+		Optional<User> user = userRepository.findByUuid(uuid);
+
+		if (user.isEmpty())
+			throw new UrlErrorException(ResponseMessage.URL_ERROR);
+
+		//TODO: 나의 메인페이지와 동일한 로직이므로 함수 파기
+		Optional<Setting> setting = settingRepository.findByUserId(user.get().getId());
+
+		if (setting.isEmpty()) {
+			throw new NoExistSettingException(ResponseMessage.NO_EXIST_SETTING);
+		}
+
+		List<Message> messageList = messageRepository.findByUserId(user.get().getId());
+
+		List<MessageDto> messageDtos = new ArrayList<>();
+
+		for (Message message : messageList) {
+			if (message.isDeleted())
+				continue;
+
+			MessageDto messageDto = new MessageDto();
+
+			messageDto.setIdx(message.getId());
+			messageDto.setColor(message.getColor());
+			messageDto.setMade_by(message.getMadeBy());
+
+			messageDtos.add(messageDto);
+		}
+
+		LocalDate christmas = LocalDate.of(2023, 12, 25);
+		LocalDate currentDate = LocalDate.now();
+
+		long d_day = ChronoUnit.DAYS.between(currentDate, christmas);
+
+		MainPageResponseDto mainPageResponseDto = new MainPageResponseDto();
+
+		mainPageResponseDto.setName(setting.get().getName());
+		mainPageResponseDto.setLight(setting.get().getLight());
+		mainPageResponseDto.setColor(setting.get().getColor());
+		mainPageResponseDto.setD_day(d_day);
+		mainPageResponseDto.setMessages(messageDtos);
+
+		return mainPageResponseDto;
 	}
 }

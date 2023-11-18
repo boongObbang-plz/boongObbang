@@ -7,6 +7,7 @@ import com.example.boongObbang.exception.exceptions.NoExistEmailException;
 import com.example.boongObbang.exception.exceptions.NoExistMessageException;
 import com.example.boongObbang.exception.exceptions.NoExistSettingException;
 import com.example.boongObbang.exception.exceptions.NoExistValueException;
+import com.example.boongObbang.exception.exceptions.UrlErrorException;
 import com.example.boongObbang.response.CustomResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -63,5 +64,12 @@ public class CustomExceptionHandler {
 		return new ResponseEntity(
 			CustomResponse.response(HttpStatus.BAD_REQUEST.value(), e.getMessage()),
 			HttpStatus.BAD_REQUEST);
+	}
+
+	@ExceptionHandler
+	public ResponseEntity UrlErrorExceptionHandler(UrlErrorException e) {
+		return new ResponseEntity(
+			CustomResponse.response(HttpStatus.NOT_FOUND.value(), e.getMessage()),
+			HttpStatus.NOT_FOUND);
 	}
 }

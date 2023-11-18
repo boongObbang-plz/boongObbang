@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.http.HttpStatus;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 
@@ -43,7 +44,9 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 		);
 
 		//인증, 인가가 필요없는 uri
-		if (url.contains(request.getRequestURI())) {
+		AntPathMatcher pathMatcher = new AntPathMatcher();
+
+		if (url.stream().anyMatch(pattern -> pathMatcher.match(pattern, request.getRequestURI()))) {
 			filterChain.doFilter(request, response);
 			return;
 		}

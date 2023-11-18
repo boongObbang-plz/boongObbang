@@ -17,4 +17,7 @@ public class ResponseMessage {
 	//마차
 	public static final String NO_EXIST_SETTING = "마차가 존재하지 않습니다";
 
+	//페이지
+	public static final String URL_ERROR = "올바르지 않은 url 입니다";
+
 }
