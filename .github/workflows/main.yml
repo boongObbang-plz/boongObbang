@@ -38,6 +38,8 @@ jobs:
           username: ${{ secrets.USER }}
           script: |
             sh ./init_docker.sh
-            docker pull ${{ secrets.DOCKER_EMAIL }}/${{ secrets.DOCKER_REPOSITORY }}
+            docker pull ${{ secrets.DOCKER_EMAIL }}/${{ secrets.DOCKER_REPOSITORY }}-frontend
+            docker pull ${{ secrets.DOCKER_EMAIL }}/${{ secrets.DOCKER_REPOSITORY }}-backend
+            docker pull ${{ secrets.DOCKER_EMAIL }}/${{ secrets.DOCKER_REPOSITORY }}-mariadb
             docker-compose up -d
           
