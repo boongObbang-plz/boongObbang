@@ -33,7 +33,7 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
         run:
-          aws s3 cp --delete --region ap-northeast-2 ./$GITHUB_SHA.zip s3://${{ secrets.S3 }}/${{ secrets.S3 }}/$GITHUB_SHA.zip
+          aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://${{ secrets.S3 }}/${{ secrets.S3 }}/$GITHUB_SHA.zip
 
       - name: Code Deploy To EC2
         run:
