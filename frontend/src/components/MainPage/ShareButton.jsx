@@ -6,7 +6,6 @@ import axios from "axios"
 
 const ShareButton = () => {
     const [ alertOpen, setAlertOpen ] = useRecoilState(modalAlertState);
-    const serverUrl = "mainpage/link"
 
     useEffect(() => {
         if (alertOpen) {
@@ -17,11 +16,7 @@ const ShareButton = () => {
     }, [alertOpen])
 
     const onClickShareButton = () => {
-        const msg = "";
-        axios.get(serverUrl).then(res => {
-            
-        })
-
+        const msg = "링크를 카카오톡이나 SNS로 공유하고 친구들에게 붕어빵 가게를 부탁해봐요🍞";
         setAlertOpen({isOpen: true, message:msg})
     }
 
