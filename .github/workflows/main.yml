@@ -24,12 +24,6 @@ jobs:
           mkdir -p ./backend/src/main/resources
           echo "${{ secrets.SPRING_PROPERTIES }}" > ./backend/src/main/resources/application.properties
 
-      - name: Push Docker Image to Dockerhub
-        run: |
-          docker login -u ${{ secrets.DOCKER_EMAIL }} -p ${{ secrets.DOCKER_PW }}
-          docker-compose build
-          docker-compose push
-
       - name: Deliver to AWS S3
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
