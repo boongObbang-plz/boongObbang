@@ -2,10 +2,11 @@ import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { modalAlertState } from "@states//ModalState";
 import { cartState } from "@states//ModalState";
-
+import { useNavigate } from "react-router";
 const StartButton = () => {
   const [cart, setCart] = useRecoilState(cartState);
   const [alertOpen, setAlertOpen] = useRecoilState(modalAlertState);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (alertOpen) {
@@ -18,6 +19,8 @@ const StartButton = () => {
   const onClickStartButton = () => {
     if (cart.name.length === 0)
       setAlertOpen({ isOpen: true, message: "가게 이름을 입력해주세요!" });
+    else
+      navigate("/mainpage");
   };
 
   return (
