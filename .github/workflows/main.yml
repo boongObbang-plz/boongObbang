@@ -30,14 +30,12 @@ jobs:
           docker-compose build
           docker-compose push
 
-      - name: EC2 Docker Run
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.INSTANCE }}
-          key: ${{ secrets.KEY }}
-          username: ${{ secrets.USER }}
-          script: |
-            sh ./init_docker.sh
-            docker pull ${{ secrets.DOCKER_EMAIL }}/${{ secrets.DOCKER_REPOSITORY }}-frontend
-            docker-compose up -d
+      - name: Deliver to AWS S3
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
+        run:
+          aws s3 cp --recursive --region ap-northeast-2 dist s3:::boongobbangplz
+
+
           
