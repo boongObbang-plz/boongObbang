@@ -35,4 +35,5 @@ public class Message {
 	private int color;
 
 	private String ip;
+	private boolean deleted = false;
 }
