@@ -28,11 +28,15 @@ jobs:
         run: zip -qq -r ./$GITHUB_SHA.zip .
         shell: bash
 
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.ACCESS_KEY }}
+          aws-region: ap-northeast-2
+
+
       - name: Deliver to AWS S3
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
-          DEFAULT_REGION_NAME: ap-northeast-2
         run:
           aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://${{ secrets.S3 }}/${{ secrets.S3 }}/$GITHUB_SHA.zip
 
