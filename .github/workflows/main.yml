@@ -8,7 +8,7 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
@@ -42,6 +42,7 @@ jobs:
             --application-name ${{ secrets.CODE_DEPLOY_APP_NAME }}
             --deployment-config-name CodeDeployDefault.AllAtOnce
             --deployment-group-name ${{ secrets.CODE_DEPLOY_GROUP }}
+            --region ap-northeast-2
             --s3-location bucket=${{ secrets.S3 }},bundleType=zip,key=${{ secrets.S3 }}/$GITHUB_SHA.zip
 
           
