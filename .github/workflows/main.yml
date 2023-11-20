@@ -24,12 +24,23 @@ jobs:
           mkdir -p ./backend/src/main/resources
           echo "${{ secrets.SPRING_PROPERTIES }}" > ./backend/src/main/resources/application.properties
 
+      - name: Make zip file
+        run: zip -qq -r ./$GITHUB_SHA.zip .
+        shell: bash
+
       - name: Deliver to AWS S3
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
         run:
-          aws s3 sync --delete --region ap-northeast-2 . s3://boongobbangplz
+          aws s3 sync --delete --region ap-northeast-2 ./$GITHUB_SHA.zip s3://${{ secrets.S3 }}/$GITHUB_SHA.zip --source .
 
+      - name: Code Deploy To EC2
+        run:
+          aws deploy create-deployment 
+            --application-name ${{ secrets.CODE_DEPLOY_APP_NAME }}
+            --deployment-config-name CodeDeployDefault.AllAtOnce
+            --deployment-group-name ${{ secrets.CODE_DEPLOY_GROUP }}
+            --s3-location bucket=${{ secrets.S3 }},bundleType=zip,key=$GITHUB_SHA.zip
 
           
