@@ -9,14 +9,14 @@ const BOB = ({ index, color }) => {
   };
 
   return (
-  <div className="w-full mx-2 mt-3" onClick={() => clickBOB(index)}>
+  <div className="w-full justify-center mt-3" onClick={() => clickBOB(index)}>
       <div
-        className="flex  items-center justify-center w-[90%] h-[90%] bg-[#DDDCDC] rounded-xl"
+        className="flex items-center justify-center h-[90%] bg-[#DDDCDC] rounded-xl"
         style={{ "borderWidth": "5px", "borderColor": index === writeLetter.color ? "#192655" : "#DDDCDC"}}
       >
         <img className="w-[90%]" src={color[0]} alt="boongobbang" />
       </div>
-      <div className="text-center">{color[1]}</div>
+      <div className="w-[90%] text-center">{color[1]}</div>
     </div>
   );
 };
