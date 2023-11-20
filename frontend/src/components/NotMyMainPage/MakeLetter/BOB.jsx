@@ -16,7 +16,7 @@ const BOB = ({ index, color }) => {
       >
         <img className="w-[90%]" src={color[0]} alt="boongobbang" />
       </div>
-      <div className="w-[90%] text-center">{color[1]}</div>
+      <div className=" text-center">{color[1]}</div>
     </div>
   );
 };
