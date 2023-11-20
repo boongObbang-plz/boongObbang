@@ -30,16 +30,30 @@ const Layout = () => {
 
   Modal.defaultStyles.overlay.backgroundColor = "transparent";
 
-  const letterStyled = {
+  const helperStyled = {
     content: {
-      width: "351px",
-      height: "560px",
+      width: "80%",
+      height: "80%",
       top: "50%",
       left: "50%",
       transform: "translate(-50%, -50%)",
       borderRadius: "10px",
       paddingTop: "10px",
       paddingBottom: "10px",
+
+    },
+  };
+
+  const letterStyled = {
+    content: {
+      width: "80%",
+      height: "fit-content",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      borderRadius: "10px",
+      paddingTop: "10px",
+      paddingBottom: "20px",
     },
   };
 
@@ -72,11 +86,16 @@ const Layout = () => {
         <MakeLetter />
       </Modal>
       {/* 남의 메인 페이지 도움말 */}
-      <Modal isOpen={helperOpen} onRequestClose={() => setHelperOpen(false)}>
+      <Modal 
+        style={helperStyled}
+        isOpen={helperOpen}
+        onRequestClose={() => setHelperOpen(false)}
+      >
         <Notice />
       </Modal>
       {/* 로그인 도움말 */}
       <Modal
+        style={helperStyled}
         isOpen={loginHelperOpen}
         onRequestClose={() => setLoginHelperOpen(false)}
       >
