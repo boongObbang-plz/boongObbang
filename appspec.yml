@@ -7,8 +7,8 @@ files:
     overwrite: yes
 permissions:
   - object: /var/www/
-    owner: ec2
-    group: ec2
+    owner: root
+    group: root
 hooks:
   AfterInstall:
     - location: script/deploy.sh
