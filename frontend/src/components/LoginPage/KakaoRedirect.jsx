@@ -1,21 +1,16 @@
 import { useEffect } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router";
+import { loginState } from "@states//ModalState";
+import { useRecoilState } from "recoil";
 
 const KakaoRedirect = () => {
     const authCode = new URL(document.location.toString()).searchParams.get('code');
     const navigate = useNavigate();
-    const serverUrl = "http://localhost:5173/login/oauth2/code/kakao";
-    
+    const serverUrl = "/login/oauth2/code/kakao";
+    const [login, setLogin] = useRecoilState(loginState);
+
     useEffect(() => {
-        console.log(authCode)   //code 내용 확인 
-        axios.post(serverUrl, { code: authCode }).then((res) => {
-            console.log(res.status);
-            navigate("/mainpage")
-        })
-        .catch((err) => {
-            console.error(err);
-        })
+        console.log(authCode)
     }, [])
 
     return (

@@ -2,7 +2,6 @@ import Share from "/images/icon_share.png"
 import { useEffect } from "react"
 import { useRecoilState } from "recoil"
 import { modalAlertState } from "@states/ModalState"
-import axios from "axios"
 
 const ShareButton = () => {
     const [ alertOpen, setAlertOpen ] = useRecoilState(modalAlertState);
