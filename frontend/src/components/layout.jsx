@@ -128,12 +128,12 @@ const Layout = () => {
       </Modal>
       {/* 알림창 */}
       <Modal
-        className="w-[100%] h-[5%] flex justify-center fixed bottom-10 animate-fade-out outline-none"
+        className="w-[100%] h-[10%] flex justify-center fixed bottom-[50%] animate-fade-out outline-none"
         isOpen={alertOpen.isOpen}
         onRequestClose={() => setAlertOpen({ isOpen: false, message: "" })}
         ariaHideApp={false}
       >
-        <div className="w-[80%] bg-[#FFFFFF] rounded-[5px] flex justify-center items-center">
+        <div className="w-[80%] bg-[#FFFFFF] rounded-[5px] flex justify-center items-center text-xs min-[400px]:text-[15px] min-[500px]:text-[17px] min-[600px]:text-[20px]">
           {alertOpen.message}
         </div>
       </Modal>
