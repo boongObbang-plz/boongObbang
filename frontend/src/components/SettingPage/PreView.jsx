@@ -20,11 +20,11 @@ const PreView = () => {
 	]
 
     return (
-        <div className="w-[100%] flex flex-col items-center">
+        <div className="w-full flex flex-col items-center">
 			<Label message={"포장마차 꾸미기"} />
             <div className="w-[80%] bg-white rounded-[10px]">
 				<img src={ColorOptions[cart.color].value} alt="roof"/>
-				<div className="w-[100%] px-[10%]">		
+				<div className="w-full px-[10%]">		
 					<Light selectedIdx={cart.light} />
 				</div>
 			</div>

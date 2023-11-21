@@ -26,7 +26,7 @@ const Name = () => {
                 <div className="flex text-[20px] font-normal">{nameCount} / 10 자</div>
             </div>
             <div className="flex flex-col">
-                <div className="flex justify-center"><input className="w-[100%] h-[70px] px-4 text-black bg-white text-[25px] rounded-[10px]" type="text" onChange={onChangeName} maxLength={MAX_LENGTH}/></div>
+                <div className="flex justify-center"><input className="w-full h-[70px] px-4 text-black bg-white text-[25px] rounded-[10px]" type="text" onChange={onChangeName} maxLength={MAX_LENGTH}/></div>
                 <div className="h-[20px] text-[20px]">{errMsg}</div>
             </div>      
         </div>

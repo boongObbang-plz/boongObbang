@@ -2,7 +2,7 @@ import DefaultScreen from "@components/MainPage/DefaultScreen";
 
 const MainPage = () => {
   return (
-    <div className="flex h-full">
+    <div className="flex h-screen">
       <DefaultScreen />
     </div>
   );

@@ -6,7 +6,7 @@ const CloseButton = () => {
   const setHelperOpen = useSetRecoilState(modalLoginHelperState);
 
   return (
-    <div className="w-[100%] flex justify-end">
+    <div className="w-full flex justify-end">
       <button className="w-[30px]" onClick={() => setHelperOpen(false)}>
         <img src={closeImage} alt="close" />
       </button>
