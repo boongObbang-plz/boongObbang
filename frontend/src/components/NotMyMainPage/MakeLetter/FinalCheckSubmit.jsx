@@ -46,7 +46,7 @@ const FinalCheckSubmit = () => {
         <img
           src={icon_close}
           className="w-[30px] mt-2 ml-3"
-          onClick={() => setSubmitOpen(false)}
+          onClick={() => setSubmitOpen({ isOpen: false, isSubmit: false})}
           alt="close button"
         />
       </div>

@@ -42,7 +42,7 @@ const Top = () => {
       setAlertOpen({ isOpen: true, message: "Made by를 입력해주세요😉" });
       return;
     }
-    setSubmitOpen({ isOpen: true, isSubmit: true });
+    setSubmitOpen({ isOpen: true, isSubmit: 1 });
   };
 
   return (
