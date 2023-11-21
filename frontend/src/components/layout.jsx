@@ -59,8 +59,8 @@ const Layout = () => {
 
   const finalCheckStyled = {
     content: {
-      width: "320px",
-      height: "110px",
+      width: "70%",
+      height: "15%",
       top: "50%",
       left: "50%",
       transform: "translate(-50%, -50%)",
