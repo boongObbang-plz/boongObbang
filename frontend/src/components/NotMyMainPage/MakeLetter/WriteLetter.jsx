@@ -42,27 +42,27 @@ const WriteLetter = () => {
     return (
     <>
         <Top />
-        <div className="h-[100%] flex flex-col items-start justify-between text-left">
-            <div className="w-72 flex justify-between mt-2">
-                <div className="w-20 flex justify-center text-lg min-[400px]:text-[17px] min-[500px]:text-[20px] min-[600px]:text-[24px]">To</div>
+        <div className="h-full w-full flex flex-col">
+            <div className="h-full w-full flex justify-center mt-2">
+                <div className="w-1/3 flex justify-center items-center text-lg min-[400px]:text-[17px] min-[500px]:text-[20px] min-[600px]:text-[24px]">To</div>
                 <input 
                     type="text"
-                    className="w-52 h-8  border-l-[25px] border-[#DDDCDC] bg-[#DDDCDC] rounded-lg focus:outline-0"
+                    className="h-8 w-3/4 border-l-[25px] border-[#DDDCDC] bg-[#DDDCDC] rounded-lg focus:outline-0 min-[500px]:h-[2rem] min-[600px]:h-[2.5rem] min-[700px]:h-[3rem]"
                     onChange={onChangeTo}
                     value={writeLetter.to}
                 />
             </div>
             <textarea 
                 type="text"
-                className="w-72 h-[23rem] border-[25px] border-[#DDDCDC] bg-[#DDDCDC] rounded-lg  mt-4 focus:outline-0"
+                className="w-full h-[22rem] border-[25px] border-[#DDDCDC] bg-[#DDDCDC] rounded-lg  mt-4 focus:outline-0 min-[500px]:h-[29.5rem] min-[600px]:h-[35rem] min-[700px]:h-[40rem]"
                 onChange={onChangeMessage}
                 value={writeLetter.message}
             />
-            <div className="w-72 flex justify-between mt-4">
-                <div className="w-20 flex justify-center text-lg min-[400px]:text-[17px] min-[500px]:text-[20px] min-[600px]:text-[24px]">From</div>
+            <div className="flex justify-between mt-4">
+                <div className="w-1/3 flex justify-center items-center text-lg min-[400px]:text-[17px] min-[500px]:text-[20px] min-[600px]:text-[24px]">From</div>
                 <input 
                     type="text"
-                    className="w-52 h-8  border-l-[25px] border-[#DDDCDC] bg-[#DDDCDC] rounded-lg focus:outline-0"
+                    className="h-8  w-3/4 border-l-[25px] border-[#DDDCDC] bg-[#DDDCDC] rounded-lg focus:outline-0 min-[500px]:h-[2rem] min-[600px]:h-[2.5rem] min-[700px]:h-[3rem]"
                     onChange={onChangeFrom}
                     value={writeLetter.from}
                 />

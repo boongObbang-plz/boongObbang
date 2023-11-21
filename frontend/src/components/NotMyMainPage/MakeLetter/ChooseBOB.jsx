@@ -21,7 +21,7 @@ const ChooseBOB = () => {
     <>
       <Top />
       <div className="h-full flex flex-col">
-        <div className="h-full w-full grid grid-cols-2 gap-2 place-content-around">
+        <div className="h-full w-full grid grid-cols-2 gap-2">
           {colors.map((color, index) => (
             <BOB key={index} index={index} color={color} />
           ))}
