@@ -1,6 +1,6 @@
 import Board from "@components/LoginPage/Board";
 import Bottom from "@components/LoginPage/Bottom";
-import Roof from "@components/LoginPage/Roof";
+import Roof from "@components/MainPage/Roof";
 import Title from "@components/LoginPage/Title";
 import Grill from "@components/MainPage/Grill";
 import Letters from "@components/MainPage/Letters"
@@ -20,7 +20,7 @@ const LoginPage = () => {
   return (
     <div className="flex h-full">
       <div className="flex flex-col justify-center items-center">
-      <Roof />
+      <Roof roof={0} light={0}/>
       <Title />
       <Grill />
       <div className="relative w-full pointer-events-none">
