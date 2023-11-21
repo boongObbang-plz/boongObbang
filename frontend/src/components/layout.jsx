@@ -82,6 +82,7 @@ const Layout = () => {
         style={letterStyled}
         isOpen={letterOpen.isOpen}
         onRequestClose={() => closeMakeLetter()}
+        ariaHideApp={false}
       >
         <MakeLetter />
       </Modal>
@@ -90,6 +91,7 @@ const Layout = () => {
         style={helperStyled}
         isOpen={helperOpen}
         onRequestClose={() => setHelperOpen(false)}
+        ariaHideApp={false}
       >
         <Notice />
       </Modal>
@@ -98,6 +100,7 @@ const Layout = () => {
         style={helperStyled}
         isOpen={loginHelperOpen}
         onRequestClose={() => setLoginHelperOpen(false)}
+        ariaHideApp={false}
       >
         <LoginNotice />
       </Modal>
@@ -106,6 +109,7 @@ const Layout = () => {
         style={letterStyled}
         isOpen={readOpen}
         onRequestClose={() => setReadOpen(false)}
+        ariaHideApp={false}
       >
         <LetterPop />
       </Modal>
@@ -114,6 +118,7 @@ const Layout = () => {
         style={finalCheckStyled}
         isOpen={submitOpen.isOpen}
         onRequestClose={() => setSubmitOpen({ isOpen: false, isSubmit: true })}
+        ariaHideApp={false}
       >
         {submitOpen.isSubmit === true ? (
           <FinalCheckSubmit />
@@ -126,6 +131,7 @@ const Layout = () => {
         className="w-[100%] h-[10%] flex justify-center fixed bottom-10 animate-fade-out outline-none"
         isOpen={alertOpen.isOpen}
         onRequestClose={() => setAlertOpen({ isOpen: false, message: "" })}
+        ariaHideApp={false}
       >
         <div className="w-[80%] bg-[#FFFFFF] rounded-[5px] flex justify-center items-center">
           {alertOpen.message}
