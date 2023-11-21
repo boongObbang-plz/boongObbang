@@ -16,7 +16,7 @@ jobs:
       - name: Make Docker Env
         run : |
           touch ./.env
-          echo "{{ secrets.DOCKER_ENV }}" > ./.env
+          echo "${{ secrets.DOCKER_ENV }}" > ./.env
           
 
       - name: Make application.properties
