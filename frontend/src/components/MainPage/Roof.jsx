@@ -7,9 +7,9 @@ import Light from "@components/MainPage/Light";
 const Roof = ({ roof, light }) => {
   const roofs = [redRoof, orangeRoof, greenRoof, blueRoof];
 
-  return (
-    <div className="min-h-[169px]">
-      <img src={roofs[roof]} className="w-full" alt="roof" />
+  return (  
+    <div className="relative w-full h-[169px]">
+      <img src={roofs[roof]} className="absolute top-0 w-full h-[169px] min-h-[169px]" alt="roof" />
       <Light selectedIdx={light} />
     </div>
   );

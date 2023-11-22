@@ -2,11 +2,11 @@ import LightBulbs from "@components/MainPage/LightBulbs";
 
 const Light = ({ selectedIdx }) => {
   return (
-    <div className="relative bottom-[30vw] right-2 ">
-      <div className="w-[102%] h-5 rounded-[80%] -rotate-12 shadow-light">
+    <div className="relative mx-auto top-10">
+      <div className="absolute w-full h-6 rounded-[80%] -rotate-12 shadow-light">
         <LightBulbs selectedIdx={selectedIdx} secondLine={false} />
       </div> 
-      <div className="relative bottom-[20px] w-[102%] h-5 rounded-[80%] rotate-12 shadow-light">
+      <div className="absolute w-full h-6 rounded-[80%] rotate-12 shadow-light">
         <LightBulbs selectedIdx={selectedIdx} secondLine={true} />
       </div>
     </div>

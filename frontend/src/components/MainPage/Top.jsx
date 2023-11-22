@@ -4,7 +4,7 @@ import Grill from "@components/MainPage/Grill";
 
 const Top = ({ title, roof, light }) => {
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex w-full flex-col justify-center items-center">
       <Roof roof={roof} light={light} />
       <Title title={title} />
       <Grill />

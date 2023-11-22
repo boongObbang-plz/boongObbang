@@ -5,7 +5,7 @@ import MyPageBTN from "@components/NotMyMainPage/MyPageBTN";
 
 const Bottom = ({ dday }) => {
   return (
-    <div className="flex flex-col w-full h-full justify-between flex-auto border-t-4 border-black bg-bottom-color">
+    <div className="flex flex-col w-full h-[400px] justify-between flex-auto border-t-4 border-black bg-bottom-color">
       <NoticeButton />
       <DDay dday={dday} />
       <div className="flex bottom-1 mt-5 mb-3 justify-between ">
