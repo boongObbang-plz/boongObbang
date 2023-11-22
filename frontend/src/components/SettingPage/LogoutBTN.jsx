@@ -6,7 +6,7 @@ const LogoutBTN = () => {
 
     return (
         <button onClick={() => setSubmitOpen({isOpen: true, isSubmit: 2})}
-        className="pb-[1%]">
+        className="pb-[2%] text-[20px] min-[400px]:text-[22px] min-[500px]:text-[24px] min-[600px]:text-[26px] hover:underline">
             로그아웃
         </button>
     )

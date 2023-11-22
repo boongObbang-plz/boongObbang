@@ -26,7 +26,7 @@ const StartButton = () => {
   return (
     <div className="flex flex-col items-center w-[100%] pt-[40px]">
       <button
-        className="w-[45%] h-[60px] bg-zinc-400 rounded-[10px] text-black text-3xl font-normal"
+        className="w-[45%] h-[60px] bg-zinc-400 rounded-[10px] text-black text-[24px] min-[400px]:text-[28px] min-[500px]:text-[32px] min-[600px]:text-[35px]"
         onClick={onClickStartButton}
       >
         영업 시작

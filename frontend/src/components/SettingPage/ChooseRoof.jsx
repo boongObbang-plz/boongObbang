@@ -7,7 +7,7 @@ const ChooseRoof = () => {
 
     return (
         <>
-            <div className="h-[100%] flex flex-col items-start justify-between text-left">
+            <div className="h-[100%] w-[80%]">
                 <div className="grid grid-cols-4">
                     {roofs.map((index) => (
                         <Roof key={index} index={index} />

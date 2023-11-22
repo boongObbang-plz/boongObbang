@@ -9,8 +9,8 @@ const CloseBTN = () => {
     }
 
     return (
-        <div className="w-[100%] flex justify-end pt-[3%] pr-[3%]">
-            <button className="w-[30px]" onClick={onClickCloseBTN}>
+        <div className="w-[100%] flex justify-end pt-[4%] pr-[4%]">
+            <button className="w-[7%]" onClick={onClickCloseBTN}>
                 <img src={closeImage} alt="close" />
             </button>
         </div>
