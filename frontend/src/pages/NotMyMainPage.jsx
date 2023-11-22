@@ -9,21 +9,17 @@ const NotMyMainPage = () => {
   else console.log("api 연동 실패");
 
   return (
-    <div className="flex w-screen h-full">
+    <div className="flex w-screen h-screen">
       <div className="flex w-full h-full flex-col justify-center items-center">
-        <div className="flex h-3/5 w-full ">
+        <div className="flex h-2/5 w-full ">
           <Top
             title={fakeData.data.name}
             roof={fakeData.data.roof}
             light={fakeData.data.light}
             />
         </div>
-        <div className="h-2/5 w-full ">
           <Display messages={fakeData.data.messages} />
-        </div>
-        <div className="flex h-1/5 w-full">
           <Bottom dday={fakeData.data["d-day"]} />
-        </div>
       </div>
     </div>
   );
