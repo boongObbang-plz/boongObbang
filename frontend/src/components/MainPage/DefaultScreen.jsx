@@ -9,7 +9,7 @@ const DefaultScreen = () => {
   else console.log("api 연동 실패");
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center w-full min-[733px]:w-[733px] min-w-[375px]">
       <Top
         title={fakeData.data.name}
         roof={fakeData.data.roof}

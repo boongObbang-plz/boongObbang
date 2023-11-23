@@ -12,7 +12,7 @@ const DefaultScreen = () => {
     const [check, setCheck] = useState(true)
 
     return (
-        <div className="flex flex-col justify-center items-center text-title-color">
+        <div className="flex flex-col justify-center items-center  w-full min-[733px]:w-[733px] min-w-[375px] text-title-color">
             {check && <CloseBTN />}
             <Header />
             <Name />

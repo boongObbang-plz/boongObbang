@@ -20,9 +20,9 @@ const PreView = () => {
 	]
 
     return (
-        <div className="w-full flex flex-col items-center">
+        <div className="w-full h-full flex flex-col items-center">
 			<Label message={"포장마차 꾸미기"} />
-            <div className="relative w-[80%] bg-white rounded-[10px]">
+            <div className="relative h-full w-[80%] bg-white rounded-[10px]">
 				<img src={ColorOptions[cart.color].value} alt="roof" />
 				<div className="absolute top-[40%] w-full px-[10%]">	
 					<div className="w-[102%] h-5 rounded-[80%] -rotate-12 shadow-light">
