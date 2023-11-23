@@ -8,7 +8,7 @@ const DeleteButton = () => {
   return (
     <button
       className="w-[32px] mr-[2%]"
-      onClick={() => setDeleteOpen({ isOpen: true, isSubmit: false })}
+      onClick={() => setDeleteOpen({ isOpen: true, isSubmit: 0 })}
     >
       <img src={Delete} alt="delete button" />
     </button>

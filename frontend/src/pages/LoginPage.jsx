@@ -1,6 +1,6 @@
 import Board from "@components/LoginPage/Board";
 import Bottom from "@components/LoginPage/Bottom";
-import Roof from "@components/LoginPage/Roof";
+import Roof from "@components/MainPage/Roof";
 import Title from "@components/LoginPage/Title";
 import Grill from "@components/MainPage/Grill";
 import Letters from "@components/MainPage/Letters"
@@ -18,9 +18,9 @@ const LoginPage = () => {
     { "idx" : 8, "color" : 3 },
   ]
   return (
-    <div className="flex justify-center">
-      <div className="flex flex-col justify-center items-center h-full w-full max-w-[709px] max-h-[1366px]">
-      <Roof />
+    <div className="flex w-full h-full justify-center">
+      <div className="flex flex-col justify-center items-center w-[100%] min-[733px]:w-[733px] min-w-[375px]">
+      <Roof roof={0} light={0}/>
       <Title />
       <Grill />
       <div className="relative w-full pointer-events-none">

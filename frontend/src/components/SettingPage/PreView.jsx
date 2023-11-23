@@ -7,7 +7,7 @@ import { cartState } from "@states//ModalState";
 import ChooseRoof from "@components/SettingPage/ChooseRoof";
 import ChooseLight from "@components/SettingPage/ChooseLight";
 import Label from "@components/SettingPage/Label";
-import Light from "@components/MainPage/Light";
+import LightBulbs from "@components/MainPage/LightBulbs";
 
 const PreView = () => {
 	const [cart, setCart] = useRecoilState(cartState)
@@ -22,10 +22,15 @@ const PreView = () => {
     return (
         <div className="w-full flex flex-col items-center">
 			<Label message={"포장마차 꾸미기"} />
-            <div className="w-[80%] bg-white rounded-[10px]">
-				<img src={ColorOptions[cart.color].value} alt="roof"/>
-				<div className="w-full px-[10%]">		
-					<Light selectedIdx={cart.light} />
+            <div className="relative w-[80%] bg-white rounded-[10px]">
+				<img src={ColorOptions[cart.color].value} alt="roof" />
+				<div className="absolute top-[40%] w-full px-[10%]">	
+					<div className="w-[102%] h-5 rounded-[80%] -rotate-12 shadow-light">
+						<LightBulbs selectedIdx={cart.light} secondLine={false} />
+					</div> 
+					<div className="relative bottom-[20px] w-[102%] h-5 rounded-[80%] rotate-12 shadow-light">
+						<LightBulbs selectedIdx={cart.light} secondLine={true} />
+					</div>
 				</div>
 			</div>
 			<Label message={"지붕 색상"} />

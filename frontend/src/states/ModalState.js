@@ -27,7 +27,7 @@ const modalSubmitState = atom({
   key: "modalSubmitState", // unique ID (with respect to other atoms/selectors)
   default: {
     isOpen: false,
-    isSubmit: true,
+    isSubmit: 1,
   }, // default value (aka initial value)
 });
 
@@ -58,6 +58,15 @@ const modalAlertState = atom({
   },
 });
 
+const loginState = atom({
+  key: "loginState",
+  default: {
+    url: "http://localhost:8080",
+    isLogin: false,
+    token: "",
+  },
+});
+
 export {
   modalHelperState,
   modalLetterState,
@@ -67,4 +76,5 @@ export {
   modalReadLetterState,
   cartState,
   modalLoginHelperState,
+  loginState,
 };

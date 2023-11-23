@@ -64,7 +64,10 @@ WORKDIR /app
 
 COPY --chown=node:node package.json package-lock.json* ./
 
-RUN npm ci --include=dev && npm cache clean --force
+RUN npm cache clean --force
+RUN npm config set strict-ssl false
+RUN npm ci --include=dev
+
 
 COPY --chown=node:node . .
 

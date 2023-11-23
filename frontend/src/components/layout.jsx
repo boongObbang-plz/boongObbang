@@ -15,7 +15,9 @@ import FinalCheckSubmit from "@components/NotMyMainPage/MakeLetter/FinalCheckSub
 import Notice from "@components/NotMyMainPage/Notice";
 import LetterPop from "@components/MainPage/readLetter/LetterPop";
 import LoginNotice from "@components/LoginPage/Notice";
-import FinalCheckDelete from "./MainPage/readLetter/FinalCheckDelete";
+import FinalCheckDelete from "@components//MainPage/readLetter/FinalCheckDelete";
+import FinalCheckLogout from "@components/SettingPage/FinalCheckLogout";
+import FinalCheckDeleteId from "@components/SettingPage/FinalCheckDeleteId";
 
 const Layout = () => {
   const [letterOpen, setLetterOpen] = useRecoilState(modalLetterState);
@@ -120,7 +122,11 @@ const Layout = () => {
         onRequestClose={() => setSubmitOpen({ isOpen: false, isSubmit: true })}
         ariaHideApp={false}
       >
-        {submitOpen.isSubmit === true ? (
+        {submitOpen.isSubmit === 3 ? (
+          <FinalCheckDeleteId />
+        ) : submitOpen.isSubmit === 2 ? (
+          <FinalCheckLogout />
+        ) : submitOpen.isSubmit === 1 ? (
           <FinalCheckSubmit />
         ) : (
           <FinalCheckDelete />
