@@ -20,8 +20,8 @@ const ChooseBOB = () => {
   return (
     <>
       <Top />
-      <div className="h-[100%] flex flex-col items-start justify-between text-left">
-        <div className="grid grid-cols-2">
+      <div className="h-full flex flex-col">
+        <div className="h-full w-full grid grid-cols-2 gap-2">
           {colors.map((color, index) => (
             <BOB key={index} index={index} color={color} />
           ))}

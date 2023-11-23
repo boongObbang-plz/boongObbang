@@ -33,19 +33,19 @@ const FinalCheckSubmit = () => {
   };
 
   return (
-    <div className="flex flex-col text-center">
-      <div>등록 후 수정 및 삭제가 불가능해요🥺</div>
-      <div>등록 하시겠어요?</div>
+    <div className="h-full w-full flex flex-col justify-center items-center text-xs min-[400px]:text-[15px] min-[500px]:text-[17px] min-[600px]:text-[20px]">
+      <div className="m-1">등록 후 수정 및 삭제가 불가능해요🥺</div>
+      <div className="m-1">등록 하시겠어요?</div>
       <div className="flex justify-center">
         <img
           src={icon_submit}
-          className="w-[30px] mt-2 mr-3"
+          className="w-[10%] mt-2 mr-3"
           onClick={() => clickSubmit()}
           alt="submit button"
         />
         <img
           src={icon_close}
-          className="w-[30px] mt-2 ml-3"
+          className="w-[10%] mt-2 ml-3"
           onClick={() => setSubmitOpen(false)}
           alt="close button"
         />

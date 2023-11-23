@@ -21,7 +21,7 @@ const StartButton = () => {
   };
 
   return (
-    <div className="flex flex-col items-center w-[100%] pt-[40px]">
+    <div className="flex flex-col items-center w-full pt-[40px]">
       <button
         className="w-[45%] h-[60px] bg-zinc-400 rounded-[10px] text-black text-3xl font-normal"
         onClick={onClickStartButton}

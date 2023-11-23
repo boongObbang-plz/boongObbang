@@ -16,7 +16,7 @@ const Display = ({ messages }) => {
   }, [currentPage]);
   // TODO:scroll 부드럽게 넘기기 적용
   return (
-    <>
+    <div className="flex w-full">
       <div className="relative -mt-1 w-full">
         <Letters messages={messages.slice(start, end)} />
         {totalPages > 1 && currentPage !== 1 ? (
@@ -37,7 +37,7 @@ const Display = ({ messages }) => {
         ) : null}
         <img className="border-t-4 border-black w-full" src={board} alt="display" />
       </div>
-    </>
+    </div>
   );
 };
 
