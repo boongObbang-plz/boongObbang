@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import com.example.boongObbang.dto.CreateSettingRequestDto;
 import com.example.boongObbang.dto.MainPageResponseDto;
 import com.example.boongObbang.dto.ReadMessageResponseDto;
+import com.example.boongObbang.dto.WriteMessageResponseDto;
 import com.example.boongObbang.entity.Message;
 import com.example.boongObbang.entity.User;
 import com.example.boongObbang.repository.MessageRepository;
@@ -810,6 +811,86 @@ public class MainPageServiceTest {
 		//when
 		Throwable throwable = assertThrows(RuntimeException.class, () -> {
 			mainPageService.getOtherMainPage(UUID.randomUUID().toString());
+		});
+
+		//then
+		assertEquals(throwable.getMessage(), ResponseMessage.URL_ERROR);
+	}
+
+	@Test
+	@DisplayName("편지 쓰기 성공 테스트")
+	public void successWriteMessage() {
+		//given
+		String email = "writeservice@test.com";
+		String provider = "google";
+
+		String uuid = UUID.randomUUID().toString();
+
+		User user = User.builder()
+			.email(email)
+			.uuid(uuid)
+			.provider(provider).build();
+
+		userRepository.save(user);
+
+		CreateSettingRequestDto createSettingRequestDto = new CreateSettingRequestDto();
+
+		createSettingRequestDto.setName("주은이네 붕어빵");
+		createSettingRequestDto.setColor(1);
+		createSettingRequestDto.setLight(1);
+
+		settingService.createSetting(createSettingRequestDto, email, provider);
+
+		//when
+		WriteMessageResponseDto writeMessageResponseDto = new WriteMessageResponseDto();
+
+		writeMessageResponseDto.setTo("누구에게~~");
+		writeMessageResponseDto.setMessage("메세지~~~~~");
+		writeMessageResponseDto.setMade_by("누가썼음~~");
+		writeMessageResponseDto.setColor(1);
+
+		assertDoesNotThrow(() -> {
+			 mainPageService.writeMessage(writeMessageResponseDto, uuid, "ip주소~~~~~");
+		});
+
+		//then
+		assertEquals(messageRepository.findByUserId(user.getId()).size(),1);
+	}
+
+	@Test
+	@DisplayName("편지 쓰기 실패 테스트(존재하지 않는 uuid일 때)")
+	public void failWriteMessage() {
+		//given
+		String email = "writeservicefail@test.com";
+		String provider = "google";
+
+		String uuid = UUID.randomUUID().toString();
+
+		User user = User.builder()
+			.email(email)
+			.uuid(uuid)
+			.provider(provider).build();
+
+		userRepository.save(user);
+
+		CreateSettingRequestDto createSettingRequestDto = new CreateSettingRequestDto();
+
+		createSettingRequestDto.setName("주은이네 붕어빵");
+		createSettingRequestDto.setColor(1);
+		createSettingRequestDto.setLight(1);
+
+		settingService.createSetting(createSettingRequestDto, email, provider);
+
+		//when
+		WriteMessageResponseDto writeMessageResponseDto = new WriteMessageResponseDto();
+
+		writeMessageResponseDto.setTo("누구에게~~");
+		writeMessageResponseDto.setMessage("메세지~~~~~");
+		writeMessageResponseDto.setMade_by("누가썼음~~");
+		writeMessageResponseDto.setColor(1);
+
+		Throwable throwable = assertThrows(RuntimeException.class, () -> {
+			mainPageService.writeMessage(writeMessageResponseDto, UUID.randomUUID().toString(), "ip주소~~~~~");
 		});
 
 		//then

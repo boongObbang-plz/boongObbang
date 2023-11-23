@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 
 import com.example.boongObbang.dto.CreateSettingRequestDto;
+import com.example.boongObbang.dto.WriteMessageResponseDto;
 import com.example.boongObbang.entity.Message;
 import com.example.boongObbang.entity.User;
 import com.example.boongObbang.jwt.JwtProvider;
@@ -263,5 +264,56 @@ public class MainPageControllerTest {
 
 		//then
 		assertEquals(HttpStatus.OK.value(), result.andReturn().getResponse().getStatus());
+	}
+
+	@Test
+	@DisplayName("편지쓰기 성공 테스트")
+	public void successWrite() throws Exception {
+		//given
+		String email = "writecontroller@test.com";
+		String uuid = UUID.randomUUID().toString();
+
+		User user = User.builder()
+			.email(email)
+			.uuid(uuid)
+			.provider("google").build();
+
+		userRepository.save(user);
+
+		String token = jwtProvider.createToken(email, "google");
+
+		CreateSettingRequestDto createSettingRequestDto = new CreateSettingRequestDto();
+
+		createSettingRequestDto.setName("주은이네 붕어빵");
+		createSettingRequestDto.setColor(0);
+		createSettingRequestDto.setLight(1);
+
+		String data = objectMapper.writeValueAsString(createSettingRequestDto);
+
+		mockMvc.perform(MockMvcRequestBuilders.post("/settings")
+			.with(csrf())
+			.contentType(MediaType.APPLICATION_JSON)
+			.accept(MediaType.APPLICATION_JSON)
+			.content(data)
+			.header(HttpHeaders.AUTHORIZATION, token));
+
+		WriteMessageResponseDto writeMessageResponseDto = new WriteMessageResponseDto();
+
+		writeMessageResponseDto.setTo("to~~~");
+		writeMessageResponseDto.setMessage("message~~~~");
+		writeMessageResponseDto.setMade_by("made by~~~~~");
+		writeMessageResponseDto.setColor(2);
+
+		String data2 = objectMapper.writeValueAsString(writeMessageResponseDto);
+
+		//when
+		ResultActions result = mockMvc.perform(MockMvcRequestBuilders.post("/main/{uuid}", uuid)
+			.with(csrf())
+			.contentType(MediaType.APPLICATION_JSON)
+			.accept(MediaType.APPLICATION_JSON)
+			.content(data2));
+
+		//then
+		assertEquals(HttpStatus.SEE_OTHER.value(), result.andReturn().getResponse().getStatus());
 	}
 }

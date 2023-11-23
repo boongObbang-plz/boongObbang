@@ -4,6 +4,7 @@ import com.example.boongObbang.dto.LinkResponseDto;
 import com.example.boongObbang.dto.MainPageResponseDto;
 import com.example.boongObbang.dto.MessageDto;
 import com.example.boongObbang.dto.ReadMessageResponseDto;
+import com.example.boongObbang.dto.WriteMessageResponseDto;
 import com.example.boongObbang.entity.Message;
 import com.example.boongObbang.entity.Setting;
 import com.example.boongObbang.entity.User;
@@ -232,5 +233,22 @@ public class MainPageService {
 		mainPageResponseDto.setMessages(messageDtos);
 
 		return mainPageResponseDto;
+	}
+
+	public void writeMessage(WriteMessageResponseDto writeMessageResponseDto, String uuid, String ip) {
+		Optional<User> user = userRepository.findByUuid(uuid);
+
+		if (user.isEmpty())
+			throw new UrlErrorException(ResponseMessage.URL_ERROR);
+
+		Message message = Message.builder()
+			.user(user.get())
+			.recipient(writeMessageResponseDto.getTo())
+			.message(writeMessageResponseDto.getMessage())
+			.madeBy(writeMessageResponseDto.getMade_by())
+			.color(writeMessageResponseDto.getColor())
+			.ip(ip).build();
+
+		messageRepository.save(message);
 	}
 }
