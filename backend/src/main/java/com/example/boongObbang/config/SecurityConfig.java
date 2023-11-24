@@ -3,6 +3,8 @@ package com.example.boongObbang.config;
 import com.example.boongObbang.jwt.JwtAuthorizationFilter;
 import com.example.boongObbang.jwt.JwtProvider;
 import com.example.boongObbang.repository.UserRepository;
+import jakarta.servlet.http.HttpServletRequest;
+import java.util.Collections;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -36,7 +38,19 @@ public class SecurityConfig {
 		JwtAuthorizationFilter jwtAuthorizationFilter;
 		
 		httpSecurity
-			.cors((cors)->cors.configurationSource(corsFilterFilterRegistrationBean()))
+			.cors((cors)->cors.configurationSource(new CorsConfigurationSource() {
+				@Override
+				public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
+					CorsConfiguration config = new CorsConfiguration();
+					config.setAllowedOrigins(Collections.singletonList("*"));
+					config.setAllowedMethods(Collections.singletonList("*"));
+					config.setAllowCredentials(true);
+					config.setAllowedHeaders(Collections.singletonList("*"));
+					config.setExposedHeaders(Collections.singletonList("*"));
+					config.setMaxAge(3600L);
+					return config;
+				}
+			}))
 			.csrf(AbstractHttpConfigurer::disable)
 			.authorizeHttpRequests((request) -> request.requestMatchers("/login/**").permitAll()
 				.requestMatchers("/main/**").permitAll()
