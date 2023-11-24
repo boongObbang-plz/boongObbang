@@ -63,6 +63,7 @@ public class SecurityConfig {
 		config.addAllowedHeader("*");
 		config.addAllowedMethod("*");
 		config.setMaxAge(6000L);
+		config.addExposedHeader("Authorization");
 
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 
