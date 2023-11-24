@@ -36,13 +36,15 @@ public class UserController {
 	//TODO: 프론트와 연결하면 지울 것
 	@PostMapping("/test")
 	public ResponseEntity test() {
-		User user = User.builder()
-			.email("test@test.com")
-			.provider("google")
-			.uuid(UUID.randomUUID().toString()).build();
 
-		userRepository.save(user);
+		if (userRepository.findByEmailAndProvider("test@test.com", "google").isEmpty()) {
+			User user = User.builder()
+				.email("test@test.com")
+				.provider("google")
+				.uuid(UUID.randomUUID().toString()).build();
 
+			userRepository.save(user);
+		}
 		String token = jwtProvider.createToken("test@test.com", "google");
 
 		return new ResponseEntity(
