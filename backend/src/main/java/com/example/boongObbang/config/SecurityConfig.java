@@ -15,6 +15,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
@@ -35,7 +36,7 @@ public class SecurityConfig {
 		JwtAuthorizationFilter jwtAuthorizationFilter;
 		
 		httpSecurity
-			.cors((cors) -> cors.disable())
+			.cors((cors)->cors.configurationSource(corsFilterFilterRegistrationBean()))
 			.csrf(AbstractHttpConfigurer::disable)
 			.authorizeHttpRequests((request) -> request.requestMatchers("/login/**").permitAll()
 				.requestMatchers("/main/**").permitAll()
@@ -55,7 +56,7 @@ public class SecurityConfig {
 	}
 
 	@Bean
-	public FilterRegistrationBean<CorsFilter> corsFilterFilterRegistrationBean() {
+	public CorsConfigurationSource corsFilterFilterRegistrationBean() {
 		CorsConfiguration config = new CorsConfiguration();
 
 		config.setAllowCredentials(false);
@@ -69,10 +70,7 @@ public class SecurityConfig {
 
 		source.registerCorsConfiguration("/**", config);
 
-		FilterRegistrationBean<CorsFilter> filterBean = new FilterRegistrationBean<>(new CorsFilter(source));
-		filterBean.setOrder(0);
-
-		return filterBean;
+		return source;
 	}
 
 }
