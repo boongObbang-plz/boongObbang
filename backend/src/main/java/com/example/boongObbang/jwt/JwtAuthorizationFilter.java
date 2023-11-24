@@ -22,8 +22,8 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
-	private JwtProvider jwtProvider;
-	private UserRepository userRepository;
+	private final JwtProvider jwtProvider;
+	private final UserRepository userRepository;
 
 	public JwtAuthorizationFilter(JwtProvider jwtProvider, UserRepository userRepository) {
 		this.jwtProvider = jwtProvider;
