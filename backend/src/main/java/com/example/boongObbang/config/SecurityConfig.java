@@ -31,7 +31,7 @@ public class SecurityConfig {
 		JwtAuthorizationFilter jwtAuthorizationFilter;
 		
 		httpSecurity
-			.cors(AbstractHttpConfigurer::disable)
+			.cors((cors) -> cors.disable())
 			.csrf(AbstractHttpConfigurer::disable)
 			.authorizeHttpRequests((request) -> request.requestMatchers("/login/**").permitAll()
 				.requestMatchers("/main/**").permitAll()
