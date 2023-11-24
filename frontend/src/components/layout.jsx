@@ -46,6 +46,7 @@ const Layout = () => {
     },
   };
 
+  //todo: 최대 크기 이후 모달창 크기 조절
   const letterStyled = {
     content: {
       width: "80%",
