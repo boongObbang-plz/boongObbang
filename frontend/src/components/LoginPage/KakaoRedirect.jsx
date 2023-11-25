@@ -12,18 +12,24 @@ const KakaoRedirect = () => {
     useEffect(() => {
         fetch(login.url + urlPath, {
             method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
                code: authCode, 
             }),
         })
         .then(res => res.json())
         .then(data => {
-            setLogin({ isLogin: true, token: data.data, url: login.url })   //테스트 후 isLogin: false로 변경
             console.log("login-status : " + data.status)
-            if (data.status === 200)    //기존 로그인
+            if (data.status === 200) {
+                setLogin({ isLogin: true, token: data.data, url: login.url })
                 navigate('/mainpage')
-            if (data.status === 201)    //최초 로그인
+            }
+            if (data.status === 201) {
+                setLogin({ isLogin: false, token: data.data, url: login.url })
                 navigate('/settings')
+            }
         })
     }, [])
     return (

@@ -1,16 +1,29 @@
 import icon_submit from "/images/icon_submit.png";
 import icon_close from "/images/icon_close.png";
-import { useSetRecoilState } from "recoil";
-import { modalSubmitState } from "@states/ModalState";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { modalSubmitState, loginState } from "@states/ModalState";
 import { useNavigate } from "react-router-dom";
 
 const FinalCheckLogout = () => {
     const setPopOpen = useSetRecoilState(modalSubmitState)
     const navigate = useNavigate()
-
+    const [login, setLogin] = useRecoilState(loginState);
+    
     const clickCheck = () => {
-        setPopOpen(false)
-        navigate("/")
+        fetch(login.url + "/settings/logout", {
+            method: "POST",
+            headers: {
+                Authorization: login.token
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === 200) {
+                setLogin({ isLogin: false, token: "", url: login.url })
+                setPopOpen(false)
+                navigate("/")
+            }
+        })
     }
 
     return (

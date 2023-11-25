@@ -6,10 +6,31 @@ import CloseBTN from '@components/SettingPage/CloseBTN'
 import LogoutBTN from '@components/SettingPage/LogoutBTN'
 import DeleteIdBTN from '@components/SettingPage/DeleteIdBTN'
 import QnABTN from '@components/SettingPage/QnABTN'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useRecoilState } from "recoil";
+import { cartState, loginState } from "@states//ModalState";
+
 const DefaultScreen = () => {
-    // 201 - false, 200 - true
-    const [check, setCheck] = useState(true)
+    const [login, setLogin] = useRecoilState(loginState);
+    const [cart, setCart] = useRecoilState(cartState);
+    const [check, setCheck] = useState(login.isLogin);
+
+    useEffect(() => {
+        console.log("islogin: "+login.isLogin)
+        if (login.isLogin) {
+            fetch(login.url + "/mainpage", {
+                method: "GET",
+                headers: {
+                    Authorization: login.token
+                },
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log("settings-status : "+data.status)
+                setCart({ name: data.data.name, color: data.data.color, light: data.data.light })
+            })
+        }
+    }, [])
 
     return (
         <div className="flex flex-col justify-center items-center  w-full min-[733px]:w-[733px] min-w-[375px] text-title-color">

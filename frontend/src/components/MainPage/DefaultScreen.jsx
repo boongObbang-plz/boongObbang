@@ -10,20 +10,17 @@ const DefaultScreen = () => {
   const [getData, setGetData] = useState({color: 0, d_day: 100, light:0, messages: [], name: ""});
 
   useEffect(() => {
-    if (login.token !== "") {
-      fetch(login.url + "/mainpage", {
-        method: "GET",
-        headers: {
-          Authorization: login.token
-        },
-      })
-      .then(res => res.json())
-      .then(data => {
-        setGetData(data.data)
-      })
-    }
+    fetch(login.url + "/mainpage", {
+      method: "GET",
+      headers: {
+        Authorization: login.token
+      },
+    })
+    .then(res => res.json())
+    .then(data => {
+      setGetData(data.data)
+    })
   }, [])
-    
 
   return (
     <div className="flex w-full h-full flex-col justify-center items-center min-[733px]:w-[733px] min-w-[375px]">
