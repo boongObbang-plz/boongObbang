@@ -44,6 +44,12 @@ public class UserController {
 				.uuid(UUID.randomUUID().toString()).build();
 
 			userRepository.save(user);
+
+			String token = jwtProvider.createToken("test@test.com", "google");
+
+			return new ResponseEntity(
+				CustomResponse.response(HttpStatus.CREATED.value(), ResponseMessage.SUCCESS, token),
+				HttpStatus.CREATED);
 		}
 		String token = jwtProvider.createToken("test@test.com", "google");
 
