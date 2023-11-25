@@ -55,7 +55,8 @@ public class SecurityConfig {
 				.requestMatchers("/main/**").permitAll()
 				.requestMatchers("/mainpage/**").permitAll()
 				.requestMatchers("/").permitAll()
-				.requestMatchers("/settings/**").permitAll());
+				.requestMatchers("/settings/**").permitAll()
+				.requestMatchers("/error").permitAll());
 
 
 		httpSecurity.sessionManagement((session) -> session.sessionCreationPolicy(
