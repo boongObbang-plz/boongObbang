@@ -61,7 +61,7 @@ const modalAlertState = atom({
 const loginState = atom({
   key: "loginState",
   default: {
-    url: "http://localhost:8080",
+    url: "http://3.35.28.186:8080",
     isLogin: false,
     token: "",
   },

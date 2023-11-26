@@ -1,22 +1,30 @@
 import Share from "/images/icon_share.png"
-import { useEffect } from "react"
 import { useRecoilState } from "recoil"
-import { modalAlertState } from "@states/ModalState"
+import { modalAlertState, loginState } from "@states/ModalState"
 
 const ShareButton = () => {
     const [ alertOpen, setAlertOpen ] = useRecoilState(modalAlertState);
-
-    useEffect(() => {
-        if (alertOpen) {
-            setTimeout(() => {
-                setAlertOpen({isOpen: false, message: ""})
-            }, 2000)
-        }
-    }, [alertOpen])
+    const [login, setLogin] = useRecoilState(loginState);
 
     const onClickShareButton = () => {
         const msg = "링크를 카카오톡이나 SNS로 공유하고 친구들에게 붕어빵 가게를 부탁해봐요🍞";
-        setAlertOpen({isOpen: true, message:msg})
+        
+        fetch(login.url + "/mainpage/link", {
+            method: "GET",
+            headers: {
+                Authorization: login.token
+            },
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            let link = data.data.link
+            //clipboard에 link 추가하기
+            setAlertOpen({isOpen: true, message:msg+link})
+            setTimeout(() => {
+                setAlertOpen({isOpen: false, message: ""})
+            }, 3000)
+        })
     }
 
     return (
