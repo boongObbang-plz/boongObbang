@@ -1,6 +1,6 @@
 const LetterpopTextArea = ({ text }) => {
     return (
-        <div className="w-full h-[100%] bg-[#DDDCDC] rounded-[15px] text-start px-[5%] py-[3%]">
+        <div className="w-full h-[22rem] border-[25px] border-[#DDDCDC] bg-[#DDDCDC] rounded-lg  mt-4 items-center">
         {text}
         </div>
     )
