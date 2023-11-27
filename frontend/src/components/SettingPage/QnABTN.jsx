@@ -1,9 +1,9 @@
 const QnABTN = () => {
 
     return (
-        <button className="text-[20px] min-[400px]:text-[22px] min-[500px]:text-[24px] min-[600px]:text-[26px] hover:underline">
-            문의하기
-        </button>
+        <div className="text-[13px] min-[400px]:text-[15px] min-[500px]:text-[18px] min-[600px]:text-[20px] my-[10%]">
+            QnA : boongObbangPlz@gmail.com
+        </div>
     )
 }
 
