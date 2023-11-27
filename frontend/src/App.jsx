@@ -16,7 +16,7 @@ function App() {
             <Route path="/" element={<LoginPage />} index />
             <Route path="/login/oauth2/code/kakao" element={<KakaoRedirect />} />
             <Route path="/mainpage" element={<MainPage />} />
-            <Route path="/main" element={<NotMyMainPage />} />
+            <Route path="/main/*" element={<NotMyMainPage />} />
             <Route path="/settings" element={<SettingPage />} />
           </Route>
         </Routes>
