@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react'
 import { useRecoilState } from "recoil";
 import { cartState, loginState } from "@states//ModalState";
 
-const DefaultScreen = () => {
+const SettingPage = () => {
     const [login, setLogin] = useRecoilState(loginState);
     const [cart, setCart] = useRecoilState(cartState);
     const [check, setCheck] = useState(login.isLogin);
@@ -33,7 +33,8 @@ const DefaultScreen = () => {
     }, [])
 
     return (
-        <div className="flex flex-col justify-center items-center  w-full min-[733px]:w-[733px] min-w-[375px] text-title-color">
+        <div className="flex w-screen h-full justify-center">
+            <div className="flex flex-col justify-center items-center  w-full min-[733px]:w-[733px] min-w-[375px] text-title-color">
             {check && <CloseBTN />}
             <Header />
             <Name />
@@ -42,10 +43,11 @@ const DefaultScreen = () => {
             <div className='flex flex-col w-[100%] items-start pl-[10%] mt-[50px] text-[25px]'>
                 {check && <LogoutBTN />}
                 {check && <DeleteIdBTN />}
-                {check && <QnABTN />}
             </div>
+            {check && <QnABTN />}
+        </div>
         </div>
     )
 }
 
-export default DefaultScreen
+export default SettingPage
