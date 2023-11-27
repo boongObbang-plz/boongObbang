@@ -26,13 +26,11 @@ const LetterPop = () => {
   }, [])
 
   return (
-    <div className="w-full h-[100%] text-[20px] font-bold p-[6%]">
+    <div className="w-full h-full flex flex-col justify-center">
       <LetterPopButtons />
-      <LetterPopLabel label={"To"} text={getData.to} />
-      <div className="h-[60%]">
-        <LetterPopTextArea text={getData.message} />
-      </div>
-      <LetterPopLabel label={"Made by"} text={getData.made_by} />
+      <LetterPopLabel label={"To"} text={"aaa"} />
+      <LetterPopTextArea text={getData.message} />
+      <LetterPopLabel label={"Made by"} text={"aaa"} />
     </div>
   );
 };

@@ -47,14 +47,14 @@ const WriteLetter = () => {
                 <div className="w-1/3 flex justify-center items-center text-lg min-[400px]:text-[17px] min-[500px]:text-[20px] min-[600px]:text-[24px]">To</div>
                 <input 
                     type="text"
-                    className="h-8 w-3/4 border-l-[25px] border-[#DDDCDC] bg-[#DDDCDC] rounded-lg focus:outline-0 min-[500px]:h-[2rem] min-[600px]:h-[2.5rem] min-[700px]:h-[3rem]"
+                    className="h-8 w-2/3 border-l-[10px] border-[#DDDCDC] bg-[#DDDCDC] rounded-lg focus:outline-0 min-[500px]:h-[2rem] min-[600px]:h-[2.5rem] min-[700px]:h-[3rem] text-md min-[400px]:text-[16px] min-[500px]:text-[19px] min-[600px]:text-[23px]"
                     onChange={onChangeTo}
                     value={writeLetter.to}
                 />
             </div>
             <textarea 
                 type="text"
-                className="w-full h-[22rem] border-[25px] border-[#DDDCDC] bg-[#DDDCDC] rounded-lg  mt-4 focus:outline-0 min-[500px]:h-[29.5rem] min-[600px]:h-[35rem] min-[700px]:h-[40rem]"
+                className="w-full h-[22rem] border-[25px] border-[#DDDCDC] bg-[#DDDCDC] rounded-lg  mt-4 focus:outline-0 min-[500px]:h-[29.5rem] min-[600px]:h-[35rem] min-[700px]:h-[40rem] text-md min-[400px]:text-[16px] min-[500px]:text-[19px] min-[600px]:text-[23px]"
                 onChange={onChangeMessage}
                 value={writeLetter.message}
             />
@@ -62,7 +62,7 @@ const WriteLetter = () => {
                 <div className="w-1/3 flex justify-center items-center text-lg min-[400px]:text-[17px] min-[500px]:text-[20px] min-[600px]:text-[24px]">Made by</div>
                 <input 
                     type="text"
-                    className="h-8  w-3/4 border-l-[25px] border-[#DDDCDC] bg-[#DDDCDC] rounded-lg focus:outline-0 min-[500px]:h-[2rem] min-[600px]:h-[2.5rem] min-[700px]:h-[3rem]"
+                    className="h-8 w-2/3 border-l-[10px] border-[#DDDCDC] bg-[#DDDCDC] rounded-lg focus:outline-0 min-[500px]:h-[2rem] min-[600px]:h-[2.5rem] min-[700px]:h-[3rem] text-md min-[400px]:text-[16px] min-[500px]:text-[19px] min-[600px]:text-[23px]"
                     onChange={onChangeFrom}
                     value={writeLetter.made_by}
                 />

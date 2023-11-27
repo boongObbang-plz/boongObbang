@@ -6,11 +6,11 @@ const CloseButton = () => {
     const setModalOpen = useSetRecoilState(modalReadLetterState)
     
     return (
-        <div className="flex justify-end">
-            <button className="w-[30px]" onClick={() => setModalOpen({isOpen: false, idx: 0})}>
-                <img src={closeImage} alt="close button"/>
-            </button>
-        </div>
+        <img
+            src={closeImage}
+            alt="close button"
+            className="w-[10%] m-2"
+            onClick={() => setModalOpen({isOpen: false, idx: 0})}/>
     )
 }
 

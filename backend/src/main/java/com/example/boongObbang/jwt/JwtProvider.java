@@ -23,7 +23,7 @@ public class JwtProvider {
 	private String secretKey;
 
 	@Autowired
-	private TokenRedisRepository redisRepository;
+	private final TokenRedisRepository redisRepository;
 
 	@PostConstruct
 	protected void init() {

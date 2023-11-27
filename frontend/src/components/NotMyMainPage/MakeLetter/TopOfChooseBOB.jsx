@@ -14,7 +14,7 @@ const Top = () => {
 
   return (
     <div className="w-full flex justify-between">
-      <div className="w-full flex items-center text-xl ml-2 min-[500px]:text-[25px] min-[600px]:text-[28px]">붕어빵 고르기</div>
+      <div className="w-full flex items-center text-lg ml-2 min-[400px]:text-[22px] min-[500px]:text-[25px] min-[600px]:text-[28px]">붕어빵 고르기</div>
       <div className="w-full flex justify-end">
         <img 
         className="w-[20%] m-2"
