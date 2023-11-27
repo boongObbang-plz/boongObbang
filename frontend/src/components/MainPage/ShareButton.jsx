@@ -7,7 +7,7 @@ const ShareButton = () => {
     const [login, setLogin] = useRecoilState(loginState);
 
     const onClickShareButton = () => {
-        const msg = "링크를 카카오톡이나 SNS로 공유하고 친구들에게 붕어빵 가게를 부탁해봐요🍞";
+        const msg = "링크를 복사했어요. 카카오톡이나 SNS로 공유하고 친구들에게 붕어빵 가게를 부탁해봐요🍞";
         
         fetch(login.url + "/mainpage/link", {
             method: "GET",
@@ -19,8 +19,8 @@ const ShareButton = () => {
         .then(data => {
             console.log(data)
             let link = data.data.link
-            //clipboard에 link 추가하기
-            setAlertOpen({isOpen: true, message:msg+link})
+            navigator.clipboard.writeText(link);
+            setAlertOpen({isOpen: true, message:msg})
             setTimeout(() => {
                 setAlertOpen({isOpen: false, message: ""})
             }, 3000)
