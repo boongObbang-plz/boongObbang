@@ -13,7 +13,7 @@ const Letter = ({ letterLoc, tagLoc, message }) => {
   const login = useRecoilValue(loginState);
 
   const checkLogin = () => {
-    if (login.isLoin)
+    if (login.isLogin)
       setModalOpen(true)
   }
 
