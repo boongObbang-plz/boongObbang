@@ -1,17 +1,22 @@
 import icon_submit from "/images/icon_submit.png";
 import icon_close from "/images/icon_close.png";
 import { useEffect } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import {
   modalReadLetterState,
   modalSubmitState,
   modalAlertState,
+  loginState,
+  lettersState
 } from "@states//ModalState";
 
 const FinalCheckDelete = () => {
   const [readOpen, setReadOpen] = useRecoilState(modalReadLetterState);
   const setDeleteOpen = useSetRecoilState(modalSubmitState);
   const [alertOpen, setAlertOpen] = useRecoilState(modalAlertState);
+  const login = useRecoilValue(loginState);
+  const selectedLetter = useRecoilValue(modalReadLetterState);
+  const [lettersCount, setLettersCount] = useRecoilState(lettersState);
 
   useEffect(() => {
     if (alertOpen.isOpen) {
@@ -22,11 +27,19 @@ const FinalCheckDelete = () => {
   }, [alertOpen]);
 
   const clickDelete = () => {
-    setDeleteOpen({ isOpen: false, isSubmit: false });
-    setReadOpen({ isOpen: false, idx: 0});
-    setAlertOpen({ isOpen: true, message: "삭제가 완료되었어요😉" });
-
-    //todo: api 호출
+    fetch(login.url + "/mainpage/message/" + selectedLetter.idx, {
+      method: "PATCH",
+      headers: {
+        Authorization: login.token
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      setDeleteOpen({ isOpen: false, isSubmit: false });
+      setReadOpen({ isOpen: false, idx: 0});
+      setAlertOpen({ isOpen: true, message: "삭제가 완료되었어요😉" });
+      setLettersCount({count: lettersCount.count - 1});
+    })
   };
 
   return (

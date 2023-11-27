@@ -10,7 +10,6 @@ const LetterPop = () => {
   const selectedLetter = useRecoilValue(modalReadLetterState);
   const [getData, setGetData] = useState({to: "", message: "", made_by: ""});
 
-  console.log(selectedLetter.idx);
   useEffect(() => {
     fetch(login.url + "/mainpage/message/" + selectedLetter.idx, {
       method: "GET",
