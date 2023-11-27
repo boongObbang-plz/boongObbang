@@ -4,14 +4,21 @@ import mint from "/images/letter_mint.png";
 import pizza from "/images/letter_pizza.png";
 import redbean from "/images/letter_redbean.png";
 import sweetpotato from "/images/letter_sweetpotato.png";
-import { useSetRecoilState } from 'recoil';
-import { modalReadLetterState } from '@states/ModalState';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { modalReadLetterState, loginState } from '@states/ModalState';
 
 const Letter = ({ letterLoc, tagLoc, message }) => {
   const colors = [redbean, cream, sweetpotato, pizza, choco, mint];
   const setModalOpen = useSetRecoilState(modalReadLetterState);
+  const login = useRecoilValue(loginState);
+
+  const checkLogin = () => {
+    if (login.isLoin)
+      setModalOpen(true)
+  }
+
   return (
-    <div onClick={() => setModalOpen(true)}>
+    <div onClick={() => checkLogin()}>
       <img
         className={`absolute ${letterLoc[0]} ${letterLoc[1]} w-[30%]`}
         src={colors[message.color]}
