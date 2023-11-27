@@ -7,7 +7,7 @@ const CloseButton = () => {
     
     return (
         <div className="flex justify-end">
-            <button className="w-[30px]" onClick={() => setModalOpen(false)}>
+            <button className="w-[30px]" onClick={() => setModalOpen({isOpen: false, idx: 0})}>
                 <img src={closeImage} alt="close button"/>
             </button>
         </div>

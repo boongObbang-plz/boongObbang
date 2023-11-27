@@ -31,7 +31,7 @@ const DefaultScreen = () => {
           light={getData.light}
         />
       </div>
-      <Display messages={getData.messages} />
+      <Display messages={getData.messages} dday={getData.d_day} />
       <Bottom dday={getData.d_day} />
     </div>
   );

@@ -23,7 +23,7 @@ const FinalCheckDelete = () => {
 
   const clickDelete = () => {
     setDeleteOpen({ isOpen: false, isSubmit: false });
-    setReadOpen(false);
+    setReadOpen({ isOpen: false, idx: 0});
     setAlertOpen({ isOpen: true, message: "삭제가 완료되었어요😉" });
 
     //todo: api 호출

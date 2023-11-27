@@ -4,21 +4,37 @@ import mint from "/images/letter_mint.png";
 import pizza from "/images/letter_pizza.png";
 import redbean from "/images/letter_redbean.png";
 import sweetpotato from "/images/letter_sweetpotato.png";
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { modalReadLetterState, loginState } from '@states/ModalState';
+import { useRecoilValue, useSetRecoilState, useRecoilState } from 'recoil';
+import { modalReadLetterState, loginState, modalAlertState } from '@states/ModalState';
+import { useEffect } from 'react';
 
-const Letter = ({ letterLoc, tagLoc, message }) => {
+const Letter = ({ letterLoc, tagLoc, message, dday }) => {
   const colors = [redbean, cream, sweetpotato, pizza, choco, mint];
   const setModalOpen = useSetRecoilState(modalReadLetterState);
+  const [ alertOpen, setAlertOpen ] = useRecoilState(modalAlertState);
   const login = useRecoilValue(loginState);
 
-  const checkLogin = () => {
+  useEffect(() => {
+    if (alertOpen.isOpen) {
+        setTimeout(() => {
+            setAlertOpen({isOpen: false, message: ""});
+        }, 2000);
+    }
+  }, [alertOpen]);
+
+  const clickLetter = () => {
     if (login.isLogin)
-      setModalOpen(true)
+    {
+      if (dday > 0 )
+        setAlertOpen({isOpen: true, message: "12월 25일부터 편지를 읽을 수 있어요😢"});
+      else
+        setModalOpen({ isOpen: true, idx: message.idx })
+    }
+    
   }
 
   return (
-    <div onClick={() => checkLogin()}>
+    <div onClick={() => clickLetter()}>
       <img
         className={`absolute ${letterLoc[0]} ${letterLoc[1]} w-[30%]`}
         src={colors[message.color]}

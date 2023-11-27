@@ -8,7 +8,7 @@ import { useRecoilState } from "recoil";
 
 const NotMyMainPage = () => {
   const { uuid } = useParams();
-  const [login, setLogin] = useRecoilState(loginState);
+  const [login] = useRecoilState(loginState);
   const [getData, setGetData] = useState({color: 0, d_day: 100, light:0, messages: [], name: ""});
   const [lettersCount] = useRecoilState(lettersState);
 
@@ -20,7 +20,6 @@ const NotMyMainPage = () => {
     .then(data => {
       setGetData(data.data);
     })
-    .catch(err => {console.log(err)})
   }, [lettersCount])
   
   return (

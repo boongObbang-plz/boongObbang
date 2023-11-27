@@ -33,7 +33,10 @@ const modalSubmitState = atom({
 
 const modalReadLetterState = atom({
   key: "modalReadLetterState",
-  default: false,
+  default: {
+    isOpen: false,
+    idx: 0,
+  }
 });
 
 const modalLoginHelperState = atom({

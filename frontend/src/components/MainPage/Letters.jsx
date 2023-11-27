@@ -1,6 +1,6 @@
 import Letter from "@components/MainPage/Letter";
 
-const Letters = ({ messages }) => {
+const Letters = ({ messages, dday }) => {
   const letterLocation = [
     ["top-[55%]", "left-[5%]"],
     ["top-[55%]", "left-[35%]"],
@@ -36,6 +36,7 @@ const Letters = ({ messages }) => {
           letterLoc={letterLocation[locationIdx]}
           tagLoc={tagLocation[locationIdx]}
           message={message}
+          dday={dday}
         />
       );
     }
