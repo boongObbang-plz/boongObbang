@@ -74,7 +74,7 @@ const Layout = () => {
 
   const closeMakeLetter = () => {
     setLetterOpen({ isOpen: false, page: 1 });
-    setWriteLetter({ color: 0, to: "", message: "", from: "" });
+    setWriteLetter({ color: 0, to: "", message: "", made_by: "" });
   };
 
   return (
@@ -110,8 +110,8 @@ const Layout = () => {
       {/* 편지 읽기 */}
       <Modal
         style={letterStyled}
-        isOpen={readOpen}
-        onRequestClose={() => setReadOpen(false)}
+        isOpen={readOpen.isOpen}
+        onRequestClose={() => setReadOpen({ isOpen: false, idx: 0 })}
         ariaHideApp={false}
       >
         <LetterPop />

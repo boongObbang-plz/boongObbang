@@ -67,6 +67,8 @@ services:
   frontend:
     build: ./frontend
     image: boongobbang/boongobbang-frontend:latest
+    env_file:
+      - .env
     environment:
       # - NODE_ENV=production
       - NODE_ENV=development

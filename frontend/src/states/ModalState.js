@@ -19,7 +19,7 @@ const writeLetterState = atom({
     color: 0,
     to: "",
     message: "",
-    from: "",
+    made_by: "",
   }, // default value (aka initial value)
 });
 
@@ -33,7 +33,10 @@ const modalSubmitState = atom({
 
 const modalReadLetterState = atom({
   key: "modalReadLetterState",
-  default: false,
+  default: {
+    isOpen: false,
+    idx: 0,
+  }
 });
 
 const modalLoginHelperState = atom({
@@ -67,6 +70,13 @@ const loginState = atom({
   },
 });
 
+const lettersState = atom({
+  key: "lettersState",
+  default: {
+    count: 0,
+  }
+});
+
 export {
   modalHelperState,
   modalLetterState,
@@ -77,4 +87,5 @@ export {
   cartState,
   modalLoginHelperState,
   loginState,
+  lettersState,
 };

@@ -36,7 +36,7 @@ const WriteLetter = () => {
             setAlertOpen({isOpen: true, message: "10자 까지 작성할 수 있어요😢"});
             return;
         }
-        setWriteLetter({...writeLetter, from: e.target.value});
+        setWriteLetter({...writeLetter, made_by: e.target.value});
     }
 
     return (
@@ -64,7 +64,7 @@ const WriteLetter = () => {
                     type="text"
                     className="h-8 w-2/3 border-l-[10px] border-[#DDDCDC] bg-[#DDDCDC] rounded-lg focus:outline-0 min-[500px]:h-[2rem] min-[600px]:h-[2.5rem] min-[700px]:h-[3rem] text-md min-[400px]:text-[16px] min-[500px]:text-[19px] min-[600px]:text-[23px]"
                     onChange={onChangeFrom}
-                    value={writeLetter.from}
+                    value={writeLetter.made_by}
                 />
             </div>
         </div>
