@@ -67,6 +67,13 @@ const loginState = atom({
   },
 });
 
+const lettersState = atom({
+  key: "lettersState",
+  default: {
+    count: 0,
+  }
+});
+
 export {
   modalHelperState,
   modalLetterState,
@@ -77,4 +84,5 @@ export {
   cartState,
   modalLoginHelperState,
   loginState,
+  lettersState,
 };

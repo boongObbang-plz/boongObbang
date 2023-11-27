@@ -3,13 +3,14 @@ import Display from "@components/MainPage/Display";
 import Bottom from "@components/NotMyMainPage/Bottom";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { loginState } from "@states//ModalState";
+import { loginState, lettersState } from "@states//ModalState";
 import { useRecoilState } from "recoil";
 
 const NotMyMainPage = () => {
   const { uuid } = useParams();
   const [login, setLogin] = useRecoilState(loginState);
   const [getData, setGetData] = useState({color: 0, d_day: 100, light:0, messages: [], name: ""});
+  const [lettersCount] = useRecoilState(lettersState);
 
   useEffect(() => {
     fetch(login.url + "/main/" + uuid, {
@@ -20,7 +21,7 @@ const NotMyMainPage = () => {
       setGetData(data.data);
     })
     .catch(err => {console.log(err)})
-  }, [])
+  }, [lettersCount])
   
   return (
     <div className="flex w-screen h-screen justify-center">

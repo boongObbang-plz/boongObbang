@@ -8,7 +8,8 @@ import {
   writeLetterState,
   modalSubmitState,
   modalAlertState,
-  loginState
+  loginState,
+  lettersState
 } from "@states//ModalState";
 
 const FinalCheckSubmit = () => {
@@ -17,6 +18,7 @@ const FinalCheckSubmit = () => {
   const setSubmitOpen = useSetRecoilState(modalSubmitState);
   const [alertOpen, setAlertOpen] = useRecoilState(modalAlertState);
   const [login, setLogin] = useRecoilState(loginState);
+  const [lettersCount, setLettersCount] = useRecoilState(lettersState);
   const { uuid } = useParams();
 
   useEffect(() => {
@@ -46,6 +48,7 @@ const FinalCheckSubmit = () => {
       setLetterOpen({ isOpen: false, page: 1 });
       setAlertOpen({ isOpen: true, message: "편지가 등록되었어요😉" });
       setWriteLetter({ color: 0, to: "", message: "", from: "" });
+      setLettersCount({count: lettersCount.count + 1});
     })
   };
 
