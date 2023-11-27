@@ -1,4 +1,7 @@
 import { atom } from "recoil";
+import { recoilPersist } from 'recoil-persist';
+
+const { persistAtom } = recoilPersist();
 
 const modalHelperState = atom({
   key: "modalHelperState", // unique ID (with respect to other atoms/selectors)
@@ -68,6 +71,7 @@ const loginState = atom({
     isLogin: false,
     token: "",
   },
+  effects_UNSTABLE: [persistAtom],
 });
 
 const lettersState = atom({

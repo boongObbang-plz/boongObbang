@@ -68,6 +68,7 @@ RUN npm cache clean --force
 RUN npm config set strict-ssl false
 RUN npm ci --include=dev
 
+RUN npm install recoil-persist
 
 COPY --chown=node:node . .
 
