@@ -1,24 +1,39 @@
 import Top from "@components/MainPage/Top";
 import Display from "@components/MainPage/Display";
 import Bottom from "@components/NotMyMainPage/Bottom";
-import fakeData from "@components/MainPage/fake_api_data.json";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { loginState, lettersState } from "@states//ModalState";
+import { useRecoilState } from "recoil";
 
 const NotMyMainPage = () => {
-  if (fakeData.status === 200) console.log("api 연동 성공");
-  else console.log("api 연동 실패");
+  const { uuid } = useParams();
+  const [login] = useRecoilState(loginState);
+  const [getData, setGetData] = useState({color: 0, d_day: 100, light:0, messages: [], name: ""});
+  const [lettersCount] = useRecoilState(lettersState);
 
+  useEffect(() => {
+    fetch(login.url + "/main/" + uuid, {
+      method: "GET",
+    })
+    .then(res => res.json())
+    .then(data => {
+      setGetData(data.data);
+    })
+  }, [lettersCount])
+  
   return (
     <div className="flex w-screen h-screen justify-center">
       <div className="flex w-full h-full flex-col justify-center items-center min-[733px]:w-[733px] min-w-[375px]">
         <div className="flex h-2/5 w-full ">
           <Top
-            title={fakeData.data.name}
-            roof={fakeData.data.roof}
-            light={fakeData.data.light}
+            title={getData.name}
+            roof={getData.color}
+            light={getData.light}
             />
         </div>
-          <Display messages={fakeData.data.messages} />
-          <Bottom dday={fakeData.data["d-day"]} />
+          <Display messages={getData.messages} dday={getData.d_day} />
+          <Bottom dday={getData.d_day} />
       </div>
     </div>
   );

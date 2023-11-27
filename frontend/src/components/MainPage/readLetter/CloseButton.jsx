@@ -10,7 +10,7 @@ const CloseButton = () => {
             src={closeImage}
             alt="close button"
             className="w-[10%] m-2"
-            onClick={() => setModalOpen(false)}/>
+            onClick={() => setModalOpen({isOpen: false, idx: 0})}/>
     )
 }
 
