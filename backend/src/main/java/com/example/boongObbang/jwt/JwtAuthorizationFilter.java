@@ -15,15 +15,16 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-
+@Slf4j
 public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
-	private JwtProvider jwtProvider;
-	private UserRepository userRepository;
+	private final JwtProvider jwtProvider;
+	private final UserRepository userRepository;
 
 	public JwtAuthorizationFilter(JwtProvider jwtProvider, UserRepository userRepository) {
 		this.jwtProvider = jwtProvider;
@@ -40,7 +41,8 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 			"/login/**",
 			"/login/oauth2/code/kakao",
 			"/login/oauth2/code/google",
-			"/login/oauth2/code/test"
+			"/login/oauth2/code/test",
+			"/error"
 		);
 
 		//인증, 인가가 필요없는 uri
@@ -57,9 +59,10 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 			if (token != null && !token.equalsIgnoreCase("")) {
 
 				//토큰 유효성 검사
-				if (!jwtProvider.isTokenValid(token))
+				if (!jwtProvider.isTokenValid(token)) {
+					log.info("token is not valid");
 					throw new InvalidAccessTokenException(ResponseMessage.INVALID_ACCESS_TOKEN);
-
+				}
 				//토큰 만료 검사
 				if (jwtProvider.isTokenExpired(token)) {
 					throw new ExpireAccessTokenException(ResponseMessage.EXPIRE_ACCESS_TOKEN);
@@ -74,14 +77,17 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
 					//db에 있는 사용자인지 검사
 					if (user.isEmpty()) {
+						log.info("token user no exist in db");
 						throw new InvalidAccessTokenException(ResponseMessage.INVALID_ACCESS_TOKEN);
 					}
 
 					filterChain.doFilter(request, response);
 				} else {
+					log.info("token email, provider is null");
 					throw new InvalidAccessTokenException(ResponseMessage.INVALID_ACCESS_TOKEN);
 				}
 			} else {
+				log.info("token is null");
 				throw new InvalidAccessTokenException(ResponseMessage.INVALID_ACCESS_TOKEN);
 			}
 		} catch (InvalidAccessTokenException e) {
