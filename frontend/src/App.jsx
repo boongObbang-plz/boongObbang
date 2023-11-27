@@ -4,7 +4,7 @@ import MainPage from "@pages/MainPage";
 import NotMyMainPage from "@pages/NotMyMainPage";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { RecoilRoot } from "recoil";
-import PreSettingPage from "@pages/PreSettingPage";
+import SettingPage from "@pages/SettingPage";
 import KakaoRedirect from "@components/LoginPage/KakaoRedirect";
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
             <Route path="/login/oauth2/code/kakao" element={<KakaoRedirect />} />
             <Route path="/mainpage" element={<MainPage />} />
             <Route path="/main/:uuid" element={<NotMyMainPage />} />
-            <Route path="/settings" element={<PreSettingPage />} />
+            <Route path="/settings" element={<SettingPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

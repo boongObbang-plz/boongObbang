@@ -31,7 +31,7 @@ const Layout = () => {
   );
 
   Modal.defaultStyles.overlay.backgroundColor = "transparent";
-
+  Modal.defaultStyles.content.maxWidth = "650px";
   const helperStyled = {
     content: {
       width: "80%",

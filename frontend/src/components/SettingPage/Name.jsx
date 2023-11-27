@@ -27,7 +27,7 @@ const Name = () => {
             </div>
             <div className="flex flex-col">
                 <div className="flex justify-center">
-                    <input className="w-full h-[70px] px-4 text-black bg-white text-[25px] rounded-[10px]" type="text" onChange={onChangeName} maxLength={MAX_LENGTH}/>
+                    <input className="w-full h-[70px] px-4 text-black bg-white text-[25px] rounded-[10px] outline-none" type="text" onChange={onChangeName} value={name.name} maxLength={MAX_LENGTH}/>
                 </div>
                 <div className="h-[20px] text-[15px] min-[500px]:text-[16px] min-[600px]:text-[18px]">{errMsg}</div>
             </div>      
