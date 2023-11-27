@@ -26,7 +26,7 @@ const Top = () => {
 
   const closeMakeLetter = () => {
     setLetterOpen({ isOpen: false, page: 1 });
-    setWriteLetter({ color: 0, to: "", message: "", from: "" });
+    setWriteLetter({ color: 0, to: "", message: "", made_by: "" });
   };
 
   const clickSubmit = () => {
@@ -38,7 +38,7 @@ const Top = () => {
       setAlertOpen({ isOpen: true, message: "편지의 내용을 입력해주세요😉" });
       return;
     }
-    if (writeLetter.from === "") {
+    if (writeLetter.made_by === "") {
       setAlertOpen({ isOpen: true, message: "Made by를 입력해주세요😉" });
       return;
     }

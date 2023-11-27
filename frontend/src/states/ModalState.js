@@ -19,7 +19,7 @@ const writeLetterState = atom({
     color: 0,
     to: "",
     message: "",
-    from: "",
+    made_by: "",
   }, // default value (aka initial value)
 });
 

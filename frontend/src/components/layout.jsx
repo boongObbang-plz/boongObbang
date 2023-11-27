@@ -73,7 +73,7 @@ const Layout = () => {
 
   const closeMakeLetter = () => {
     setLetterOpen({ isOpen: false, page: 1 });
-    setWriteLetter({ color: 0, to: "", message: "", from: "" });
+    setWriteLetter({ color: 0, to: "", message: "", made_by: "" });
   };
 
   return (
