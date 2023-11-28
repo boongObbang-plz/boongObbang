@@ -57,9 +57,6 @@ public class UserService {
 	private String google_secret_key;
 
 	public LoginServiceDto loginKakao(LoginRequestDto loginRequestDto) {
-
-		log.info("kakao token : " + loginRequestDto.getCode());
-
 		RestTemplate restTemplate = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
 		MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
@@ -69,6 +66,10 @@ public class UserService {
 		map.add("redirect_uri", kakao_redirect_url);
 		map.add("code", loginRequestDto.getCode());
 		map.add("client_secret", kakao_secret_key);
+
+		log.info("client_id : " + kakao_client_key);
+		log.info("redirect_uri : " + kakao_redirect_url);
+		log.info("client_secret : " + kakao_secret_key);
 
 		headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 
