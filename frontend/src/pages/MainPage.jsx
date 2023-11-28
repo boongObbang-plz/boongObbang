@@ -13,7 +13,6 @@ const MainPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(login.token);
     fetch(login.url + "/mainpage", {
       method: "GET",
       headers: {
