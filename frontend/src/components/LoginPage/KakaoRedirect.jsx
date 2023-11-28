@@ -6,17 +6,18 @@ import { useRecoilState } from "recoil";
 const KakaoRedirect = () => {
     const authCode = new URL(document.location.toString()).searchParams.get('code');
     const navigate = useNavigate();
-    const urlPath = "/login/oauth2/code/test";  //테스트 후 /login/oauth2/code/kakao로 변경
+    const urlPath = "/login/oauth2/code/kakao";  //테스트 후 /login/oauth2/code/kakao로 변경
     const [login, setLogin] = useRecoilState(loginState);
 
     useEffect(() => {
+        console.log(authCode)
         fetch(login.url + urlPath, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-               code: authCode, 
+               code: authCode,
             }),
         })
         .then(res => res.json())

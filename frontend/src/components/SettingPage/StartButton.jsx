@@ -26,9 +26,13 @@ const StartButton = () => {
     .then(res => res.json())
     .then(data => {
       console.log("settings- status: "+data.status) 
-      if (data.status === 201)  //최초 로그인
-        setLogin({ isLogin: true, token: login.token, url: login.url })
-      navigate('/mainpage')
+      if (data.status === 200 || data.status === 201) {
+        if (data.status === 201)  //최초 로그인
+          setLogin({ isLogin: true, token: login.token, url: login.url })
+        navigate('/mainpage')
+      }
+      setLogin({ isLogin: false, token: "", url: login.url })
+      navigate('/')
     })
   }
 

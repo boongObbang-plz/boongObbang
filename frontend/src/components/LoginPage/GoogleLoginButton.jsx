@@ -1,7 +1,7 @@
 import googleSymbol from "/images/google_symbol.png"
-const client_id = "";
+const client_id = import.meta.env.VITE_GOOGLE_API_ID;
 const redirect_uri = "http://localhost:5173/login/oauth2/code/google";
-const googleURL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code&scope=openid email profile`
+const googleURL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile`
 
 const handleLogin = () => {
     window.location.href = googleURL;
