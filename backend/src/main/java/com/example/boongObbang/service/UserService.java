@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -28,6 +29,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 @Service
+@Slf4j
 public class UserService {
 
 	@Autowired
@@ -84,6 +86,7 @@ public class UserService {
 		try {
 			kakaoDto = objectMapper.readValue(kakaoResponse.getBody(), KakaoDto.class);
 		} catch (JsonProcessingException e) {
+			log.info("kakao get token error");
 			e.printStackTrace();
 		}
 
@@ -142,6 +145,7 @@ public class UserService {
 		try {
 			kakaoProfileDto = objectMapper.readValue(kakaoProfileResponse.getBody(), KakaoProfileDto.class);
 		} catch (JsonProcessingException e) {
+			log.info("kakao find user error");
 			e.printStackTrace();
 		}
 
@@ -173,6 +177,7 @@ public class UserService {
 		try {
 			googleDto = objectMapper.readValue(googleResponse.getBody(), GoogleDto.class);
 		} catch (JsonProcessingException e) {
+			log.info("google get token error");
 			e.printStackTrace();
 		}
 
@@ -226,6 +231,7 @@ public class UserService {
 		try {
 			googleProfileDto = objectMapper.readValue(googleProfileResponse.getBody(), GoogleProfileDto.class);
 		} catch (JsonProcessingException e) {
+			log.info("google find user error");
 			e.printStackTrace();
 		}
 
