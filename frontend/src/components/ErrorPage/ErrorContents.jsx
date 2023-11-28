@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import boongOBbang from '/images/letter_redbean.png'
 
-const ErrorNotice = () => {
+const ErrorContents = () => {
     const navigate = useNavigate();
 
     return (
@@ -26,8 +26,8 @@ const ErrorNotice = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div>  
     )
 }
 
-export default ErrorNotice
+export default ErrorContents
