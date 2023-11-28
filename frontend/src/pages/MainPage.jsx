@@ -4,22 +4,34 @@ import Bottom from "@components/MainPage/Bottom";
 import { loginState, lettersState } from "@states//ModalState";
 import { useRecoilState } from "recoil";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const MainPage = () => {
   const [login, setLogin] = useRecoilState(loginState);
   const [lettersCount] = useRecoilState(lettersState);
   const [getData, setGetData] = useState({color: 0, d_day: 100, light:0, messages: [], name: ""});
+  const navigate = useNavigate();
 
   useEffect(() => {
+    console.log(login.token);
     fetch(login.url + "/mainpage", {
       method: "GET",
       headers: {
         Authorization: login.token
       },
     })
-    .then(res => res.json())
+    .then(res => {
+      if (!res.ok || res.status === 401) {
+        throw new Error("401");
+      }
+      res.json()
+    })
     .then(data => {
-      setGetData(data.data)
+      setGetData(data.data);
+    })
+    .catch(error => {
+      setLogin({ isLogin: false, token: "" });
+      navigate('/');
     })
   }, [lettersCount])
 
