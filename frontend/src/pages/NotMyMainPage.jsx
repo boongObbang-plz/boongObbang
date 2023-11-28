@@ -1,7 +1,7 @@
 import Top from "@components/MainPage/Top";
 import Display from "@components/MainPage/Display";
 import Bottom from "@components/NotMyMainPage/Bottom";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { loginState, lettersState } from "@states//ModalState";
 import { useRecoilState } from "recoil";
@@ -11,6 +11,7 @@ const NotMyMainPage = () => {
   const [login] = useRecoilState(loginState);
   const [getData, setGetData] = useState({color: 0, d_day: 100, light:0, messages: [], name: ""});
   const [lettersCount] = useRecoilState(lettersState);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(login.url + "/main/" + uuid, {
@@ -18,6 +19,8 @@ const NotMyMainPage = () => {
     })
     .then(res => res.json())
     .then(data => {
+      if (data.status !== 200)
+        navigate('*');
       setGetData(data.data);
     })
   }, [lettersCount])
