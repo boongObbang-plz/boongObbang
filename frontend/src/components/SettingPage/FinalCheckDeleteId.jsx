@@ -18,11 +18,9 @@ const FinalCheckDeleteId = () => {
         })
         .then(res => res.json())
         .then(data => {
-            if (data.status === 200) {
-                setLogin({ isLogin: false, token: "", url: login.url })
-                setPopOpen(false)
-                navigate("/")
-            }
+            setLogin({ isLogin: false, token: "", url: login.url })
+            setPopOpen(false)
+            navigate("/")
         })
     }
     return (
