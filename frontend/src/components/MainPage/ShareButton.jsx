@@ -1,10 +1,12 @@
 import Share from "/images/icon_share.png"
 import { useRecoilState } from "recoil"
 import { modalAlertState, loginState } from "@states/ModalState"
+import { useNavigate } from "react-router-dom";
 
 const ShareButton = () => {
     const [ alertOpen, setAlertOpen ] = useRecoilState(modalAlertState);
     const [login, setLogin] = useRecoilState(loginState);
+    const navigate = useNavigate();
 
     const onClickShareButton = () => {
         const msg = "링크를 복사했어요. 카카오톡이나 SNS로 공유하고 친구들에게 붕어빵 가게를 부탁해봐요🍞";
@@ -15,7 +17,12 @@ const ShareButton = () => {
                 Authorization: login.token
             },
         })
-        .then(res => res.json())
+        .then(res => {
+            if (!res.ok || res.status === 401) {
+                throw new Error("401");
+            }
+            res.json()
+        })
         .then(data => {
             console.log(data)
             let link = data.data.link
@@ -25,6 +32,10 @@ const ShareButton = () => {
                 setAlertOpen({isOpen: false, message: ""})
             }, 3000)
         })
+        .catch(error => {
+            setLogin({ isLogin: false, token: "" });
+            navigate('/');
+          })
     }
 
     return (
