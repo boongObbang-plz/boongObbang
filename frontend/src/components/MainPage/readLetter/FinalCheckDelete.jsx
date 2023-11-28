@@ -9,6 +9,7 @@ import {
   loginState,
   lettersState
 } from "@states//ModalState";
+import { useNavigate } from "react-router-dom";
 
 const FinalCheckDelete = () => {
   const [readOpen, setReadOpen] = useRecoilState(modalReadLetterState);
@@ -17,7 +18,8 @@ const FinalCheckDelete = () => {
   const login = useRecoilValue(loginState);
   const selectedLetter = useRecoilValue(modalReadLetterState);
   const [lettersCount, setLettersCount] = useRecoilState(lettersState);
-
+  const navigate = useNavigate();
+  
   useEffect(() => {
     if (alertOpen.isOpen) {
       setTimeout(() => {

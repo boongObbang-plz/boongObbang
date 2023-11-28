@@ -11,7 +11,7 @@ const LetterPop = () => {
   const selectedLetter = useRecoilValue(modalReadLetterState);
   const [getData, setGetData] = useState({to: "", message: "", made_by: ""});
   const [ alertOpen, setAlertOpen ] = useRecoilState(modalAlertState);
-  const [setModalOpen] = useRecoilState(modalReadLetterState)
+  const [setReadOpen] = useRecoilState(modalReadLetterState)
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const LetterPop = () => {
       else if (data.status === 400)
       {
         setAlertOpen({isOpen: true, message: "유효하지 않은 편지입니다😢"});
-        setModalOpen({isOpen: false, idx: 0});
+        setReadOpen({isOpen: false, idx: 0});
         navigate('/mainpage');
       }
       setGetData(data.data);
