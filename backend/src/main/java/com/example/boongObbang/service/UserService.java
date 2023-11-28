@@ -58,6 +58,8 @@ public class UserService {
 
 	public LoginServiceDto loginKakao(LoginRequestDto loginRequestDto) {
 
+		log.info("kakao token : " + loginRequestDto.getCode());
+
 		RestTemplate restTemplate = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
 		MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
