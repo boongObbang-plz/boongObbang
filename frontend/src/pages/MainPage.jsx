@@ -4,11 +4,13 @@ import Bottom from "@components/MainPage/Bottom";
 import { loginState, lettersState } from "@states//ModalState";
 import { useRecoilState } from "recoil";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const MainPage = () => {
   const [login, setLogin] = useRecoilState(loginState);
   const [lettersCount] = useRecoilState(lettersState);
   const [getData, setGetData] = useState({color: 0, d_day: 100, light:0, messages: [], name: ""});
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(login.url + "/mainpage", {
@@ -17,9 +19,16 @@ const MainPage = () => {
         Authorization: login.token
       },
     })
-    .then(res => res.json())
+    .then(res => 
+      res.json()
+    )
     .then(data => {
-      setGetData(data.data)
+      if (data.status !== 200)
+      {
+        setLogin({ isLogin: false, token: "", url: login.url });
+        navigate('/');
+      }
+      setGetData(data.data);
     })
   }, [lettersCount])
 
