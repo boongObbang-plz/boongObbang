@@ -6,6 +6,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 import SettingPage from "@pages/SettingPage";
 import KakaoRedirect from "@components/LoginPage/KakaoRedirect";
+import GoogleRedirect from "@components/LoginPage/GoogleRedirect";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route element={<Layout />}>
             <Route path="/" element={<LoginPage />} index />
             <Route path="/login/oauth2/code/kakao" element={<KakaoRedirect />} />
+            <Route path="/login/oauth2/code/google" element={<GoogleRedirect />} />
             <Route path="/mainpage" element={<MainPage />} />
             <Route path="/main/:uuid" element={<NotMyMainPage />} />
             <Route path="/settings" element={<SettingPage />} />
