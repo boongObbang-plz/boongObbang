@@ -2,6 +2,7 @@ import LoginPage from "@pages/LoginPage";
 import Layout from "@components/layout";
 import MainPage from "@pages/MainPage";
 import NotMyMainPage from "@pages/NotMyMainPage";
+import ErrorPage from "@pages/ErrorPage";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 import SettingPage from "@pages/SettingPage";
@@ -20,6 +21,7 @@ function App() {
             <Route path="/mainpage" element={<MainPage />} />
             <Route path="/main/:uuid" element={<NotMyMainPage />} />
             <Route path="/settings" element={<SettingPage />} />
+            <Route path="*" element={<ErrorPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
