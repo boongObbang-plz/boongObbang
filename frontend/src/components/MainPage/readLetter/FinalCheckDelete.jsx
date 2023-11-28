@@ -15,11 +15,11 @@ const FinalCheckDelete = () => {
   const [readOpen, setReadOpen] = useRecoilState(modalReadLetterState);
   const setDeleteOpen = useSetRecoilState(modalSubmitState);
   const [alertOpen, setAlertOpen] = useRecoilState(modalAlertState);
-  const login = useRecoilValue(loginState);
+  const [login, setLogin] = useRecoilState(loginState);
   const selectedLetter = useRecoilValue(modalReadLetterState);
   const [lettersCount, setLettersCount] = useRecoilState(lettersState);
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     if (alertOpen.isOpen) {
       setTimeout(() => {
@@ -37,6 +37,17 @@ const FinalCheckDelete = () => {
     })
     .then(res => res.json())
     .then(data => {
+      if (data.status === 401)
+      {
+        setLogin({ isLogin: false, token: "", url: login.url });
+        navigate('/');
+      }
+      else if (data.status === 400)
+      {
+        setAlertOpen({isOpen: true, message: "유효하지 않은 편지입니다😢"});
+        setReadOpen({isOpen: false, idx: 0});
+        navigate('/mainpage');
+      }
       setDeleteOpen({ isOpen: false, isSubmit: false });
       setReadOpen({ isOpen: false, idx: 0});
       setAlertOpen({ isOpen: true, message: "삭제가 완료되었어요😉" });
