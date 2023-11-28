@@ -38,22 +38,22 @@ public class UserService {
 	@Autowired
 	private JwtProvider jwtProvider;
 	
-	@Value("kakao.client.key")
+	@Value("${kakao.client.key}")
 	private String kakao_client_key;
 
-	@Value("kakao.redirect.url")
+	@Value("${kakao.redirect.url}")
 	private String kakao_redirect_url;
 
-	@Value("kakao.secret.key")
+	@Value("${kakao.secret.key}")
 	private String kakao_secret_key;
 
-	@Value("google.client.key")
+	@Value("${google.client.key}")
 	private String google_client_key;
 
-	@Value("google.redirect.url")
+	@Value("${google.redirect.url}")
 	private String google_redirect_url;
 
-	@Value("google.secret.key")
+	@Value("${google.secret.key}")
 	private String google_secret_key;
 
 	public LoginServiceDto loginKakao(LoginRequestDto loginRequestDto) {
