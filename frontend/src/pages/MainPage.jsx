@@ -19,18 +19,16 @@ const MainPage = () => {
         Authorization: login.token
       },
     })
-    .then(res => {
-      if (!res.ok || res.status === 401) {
-        throw new Error("401");
-      }
+    .then(res => 
       res.json()
-    })
+    )
     .then(data => {
+      if (data.status !== 200)
+      {
+        setLogin({ isLogin: false, token: "", url: login.url });
+        navigate('/');
+      }
       setGetData(data.data);
-    })
-    .catch(error => {
-      setLogin({ isLogin: false, token: "", url: login.url });
-      navigate('/');
     })
   }, [lettersCount])
 
