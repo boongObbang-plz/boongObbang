@@ -29,7 +29,7 @@ const MainPage = () => {
       setGetData(data.data);
     })
     .catch(error => {
-      setLogin({ isLogin: false, token: "" });
+      setLogin({ isLogin: false, token: "", url: login.url });
       navigate('/');
     })
   }, [lettersCount])
