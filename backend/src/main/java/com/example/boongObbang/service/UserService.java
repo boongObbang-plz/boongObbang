@@ -146,6 +146,7 @@ public class UserService {
 		KakaoProfileDto kakaoProfileDto = null;
 
 		try {
+			log.info(kakaoProfileResponse.getBody());
 			kakaoProfileDto = objectMapper.readValue(kakaoProfileResponse.getBody(), KakaoProfileDto.class);
 		} catch (JsonProcessingException e) {
 			log.info("kakao find user error");
