@@ -88,7 +88,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
 					//setting이 되어있지 않은 사용자인지 검사
 					Optional<Setting> setting = settingRepository.findByUserId(user.get().getId());
-					if (setting.isEmpty()) {
+					if (!request.getRequestURI().equals("/settings") && setting.isEmpty()) {
 						throw new NoExistSettingException(ResponseMessage.NO_EXIST_SETTING);
 					}
 
