@@ -10,12 +10,14 @@ import jakarta.annotation.PostConstruct;
 import java.util.Base64;
 import java.util.Date;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class JwtProvider {
 
 	@Value("$jwt.secret")
@@ -60,6 +62,7 @@ public class JwtProvider {
 				.parseClaimsJws(token);
 			return true;
 		} catch (Exception e) {
+			log.info(e.getStackTrace().toString());
 			return false;
 		}
 	}
