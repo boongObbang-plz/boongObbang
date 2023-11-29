@@ -92,8 +92,7 @@ public class MainPageService {
 			throw new NoExistEmailException(ResponseMessage.NO_EXIST_EMAIL);
 		}
 
-		//TODO: 추후에 url 변경
-		String base_url = "http://localhost:8080/main/";
+		String base_url = "http://boongobbang.site/main/";
 
 		LinkResponseDto linkResponseDto = new LinkResponseDto();
 
