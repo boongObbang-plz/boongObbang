@@ -25,8 +25,7 @@ const FinalCheckDeleteId = () => {
     }
     return (
         <div className="h-full w-full flex flex-col justify-center items-center text-xs min-[400px]:text-[15px] min-[500px]:text-[17px] min-[600px]:text-[20px]">
-            <div className="m-1">탈퇴 후 다시 로그인이 불가능해요🥺</div>
-            <div className="m-1">탈퇴 하시겠어요?</div>
+            <div className="m-1">탈퇴 하시겠어요?🥺</div>
             <div className="flex justify-center">
             <img
                 src={icon_submit}
