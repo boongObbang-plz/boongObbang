@@ -99,6 +99,21 @@ public class MainPageControllerTest {
 
 		String token = jwtProvider.createToken(email, "google");
 
+		CreateSettingRequestDto createSettingRequestDto = new CreateSettingRequestDto();
+
+		createSettingRequestDto.setName("주은이네 붕어빵");
+		createSettingRequestDto.setColor(0);
+		createSettingRequestDto.setLight(1);
+
+		String data = objectMapper.writeValueAsString(createSettingRequestDto);
+
+		mockMvc.perform(MockMvcRequestBuilders.post("/settings")
+			.with(csrf())
+			.contentType(MediaType.APPLICATION_JSON)
+			.accept(MediaType.APPLICATION_JSON)
+			.content(data)
+			.header(HttpHeaders.AUTHORIZATION, token));
+
 		//when
 		ResultActions result = mockMvc.perform(MockMvcRequestBuilders.get("/mainpage/link")
 			.with(csrf())
@@ -123,6 +138,21 @@ public class MainPageControllerTest {
 		userRepository.save(user);
 
 		String token = jwtProvider.createToken(email, "google");
+
+		CreateSettingRequestDto createSettingRequestDto = new CreateSettingRequestDto();
+
+		createSettingRequestDto.setName("주은이네 붕어빵");
+		createSettingRequestDto.setColor(0);
+		createSettingRequestDto.setLight(1);
+
+		String data = objectMapper.writeValueAsString(createSettingRequestDto);
+
+		mockMvc.perform(MockMvcRequestBuilders.post("/settings")
+			.with(csrf())
+			.contentType(MediaType.APPLICATION_JSON)
+			.accept(MediaType.APPLICATION_JSON)
+			.content(data)
+			.header(HttpHeaders.AUTHORIZATION, token));
 
 		Message message1 = Message.builder()
 			.recipient("받는사람")
@@ -149,7 +179,7 @@ public class MainPageControllerTest {
 	@DisplayName("편지 삭제하기 실패 테스트(존재하지 않는 편지)")
 	public void failDelete() throws Exception {
 		//given
-		String email = "delete@test.com";
+		String email = "deletefail@test.com";
 		User user = User.builder()
 			.email(email)
 			.uuid(UUID.randomUUID().toString())
@@ -158,6 +188,21 @@ public class MainPageControllerTest {
 		userRepository.save(user);
 
 		String token = jwtProvider.createToken(email, "google");
+
+		CreateSettingRequestDto createSettingRequestDto = new CreateSettingRequestDto();
+
+		createSettingRequestDto.setName("주은이네 붕어빵");
+		createSettingRequestDto.setColor(0);
+		createSettingRequestDto.setLight(1);
+
+		String data = objectMapper.writeValueAsString(createSettingRequestDto);
+
+		mockMvc.perform(MockMvcRequestBuilders.post("/settings")
+			.with(csrf())
+			.contentType(MediaType.APPLICATION_JSON)
+			.accept(MediaType.APPLICATION_JSON)
+			.content(data)
+			.header(HttpHeaders.AUTHORIZATION, token));
 
 		Message message1 = Message.builder()
 			.recipient("받는사람")
@@ -193,6 +238,21 @@ public class MainPageControllerTest {
 		userRepository.save(user);
 
 		String token = jwtProvider.createToken(email, "google");
+
+		CreateSettingRequestDto createSettingRequestDto = new CreateSettingRequestDto();
+
+		createSettingRequestDto.setName("주은이네 붕어빵");
+		createSettingRequestDto.setColor(0);
+		createSettingRequestDto.setLight(1);
+
+		String data = objectMapper.writeValueAsString(createSettingRequestDto);
+
+		mockMvc.perform(MockMvcRequestBuilders.post("/settings")
+			.with(csrf())
+			.contentType(MediaType.APPLICATION_JSON)
+			.accept(MediaType.APPLICATION_JSON)
+			.content(data)
+			.header(HttpHeaders.AUTHORIZATION, token));
 
 		Message message1 = Message.builder()
 			.recipient("받는사람")
@@ -230,6 +290,7 @@ public class MainPageControllerTest {
 		userRepository.save(user);
 
 		String token = jwtProvider.createToken(email, "google");
+
 
 		CreateSettingRequestDto createSettingRequestDto = new CreateSettingRequestDto();
 
