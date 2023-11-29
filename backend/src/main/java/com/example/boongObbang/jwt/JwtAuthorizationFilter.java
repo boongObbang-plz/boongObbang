@@ -63,6 +63,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 		try {
 			if (token != null && !token.equalsIgnoreCase("")) {
 
+				log.info(token);
 				//토큰 유효성 검사
 				if (!jwtProvider.isTokenValid(token)) {
 					log.info("token is not valid");
