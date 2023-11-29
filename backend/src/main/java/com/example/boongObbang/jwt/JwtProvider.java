@@ -56,6 +56,9 @@ public class JwtProvider {
 	}
 
 	public boolean isTokenValid(String token) {
+		log.info("token : " + token);
+		log.info("secretkey : " + secretKey);
+		log.info("secretenv : " + secretEnv);
 		try {
 			Jws<Claims> claims = Jwts.parser()
 				.setSigningKey(secretKey)
