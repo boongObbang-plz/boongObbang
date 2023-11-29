@@ -8,12 +8,13 @@ import { useRecoilState } from "recoil";
 
 const NotMyMainPage = () => {
   const { uuid } = useParams();
-  const [login] = useRecoilState(loginState);
+  const [login, setLogin] = useRecoilState(loginState);
   const [getData, setGetData] = useState({color: 0, d_day: 100, light:0, messages: [], name: ""});
   const [lettersCount] = useRecoilState(lettersState);
   const navigate = useNavigate();
 
   useEffect(() => {
+    setLogin({ isLogin: false, token: "", url: login.url })
     fetch(login.url + "/main/" + uuid, {
       method: "GET",
     })

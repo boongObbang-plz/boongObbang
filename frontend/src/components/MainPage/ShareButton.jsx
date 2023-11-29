@@ -9,7 +9,7 @@ const ShareButton = () => {
     const navigate = useNavigate();
 
     const onClickShareButton = () => {
-        const msg = "링크를 복사했어요. 카카오톡이나 SNS로 공유하고 친구들에게 붕어빵 가게를 부탁해봐요🍞";
+        const msg = "링크를 클립보드에 복사했어요. 카카오톡이나 SNS로 공유하고 친구들에게 붕어빵 가게를 부탁해봐요🍞";
 
         fetch(login.url + "/mainpage/link", {
             method: "GET",
