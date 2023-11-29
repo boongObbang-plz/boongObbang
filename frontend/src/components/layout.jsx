@@ -29,7 +29,7 @@ const Layout = () => {
   const [loginHelperOpen, setLoginHelperOpen] = useRecoilState(
     modalLoginHelperState
   );
-
+  
   Modal.defaultStyles.overlay.backgroundColor = "transparent";
   Modal.defaultStyles.content.maxWidth = "650px";
   const helperStyled = {

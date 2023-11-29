@@ -24,11 +24,11 @@ const Redirect = ({ brandPath }) => {
             console.log("login-status : " + data.status)
             console.log("brandname is : " + brandPath)
             if (data.status === 200) {
-                setLogin({ isLogin: true, token: data.data, url: login.url })
+                setLogin({ isLogin: true, token: data.data.token, url: login.url })
                 navigate('/mainpage')
             }
             if (data.status === 201) {
-                setLogin({ isLogin: false, token: data.data, url: login.url })
+                setLogin({ isLogin: false, token: data.data.token, url: login.url })
                 navigate('/settings')
             }
         })
