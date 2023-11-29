@@ -99,7 +99,7 @@ public class UserService {
 	public LoginServiceDto saveKakaoUser(KakaoDto kakaoDto) {
 		KakaoProfileDto kakaoProfile = findKakaoProfile(kakaoDto.getAccess_token());
 		
-		String email = kakaoProfile.getKakaoAccount().getEmail();
+		String email = kakaoProfile.getKakao_account().getEmail();
 		String provider = "kakao";
 
 		Optional<User> user = userRepository.findByEmailAndProvider(email, provider);
