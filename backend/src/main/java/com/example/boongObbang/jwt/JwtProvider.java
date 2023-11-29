@@ -62,7 +62,7 @@ public class JwtProvider {
 				.parseClaimsJws(token);
 			return true;
 		} catch (Exception e) {
-			log.info(e.getStackTrace().toString());
+			e.printStackTrace();
 			return false;
 		}
 	}
