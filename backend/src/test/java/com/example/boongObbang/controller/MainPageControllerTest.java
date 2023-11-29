@@ -10,6 +10,7 @@ import com.example.boongObbang.entity.User;
 import com.example.boongObbang.jwt.JwtProvider;
 import com.example.boongObbang.repository.MessageRepository;
 import com.example.boongObbang.repository.UserRepository;
+import com.example.boongObbang.service.SettingService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.UUID;
 import org.junit.jupiter.api.DisplayName;
@@ -45,6 +46,9 @@ public class MainPageControllerTest {
 	@Autowired
 	MessageRepository messageRepository;
 
+	@Autowired
+	SettingService settingService;
+
 	@Test
 	@DisplayName("나의 메인페이지 불러오기 성공 테스트")
 	public void successGetMainPage() throws Exception {
@@ -65,14 +69,8 @@ public class MainPageControllerTest {
 		createSettingRequestDto.setColor(0);
 		createSettingRequestDto.setLight(1);
 
-		String data = objectMapper.writeValueAsString(createSettingRequestDto);
+		settingService.createSetting(createSettingRequestDto, email, "google");
 
-		mockMvc.perform(MockMvcRequestBuilders.post("/settings")
-			.with(csrf())
-			.contentType(MediaType.APPLICATION_JSON)
-			.accept(MediaType.APPLICATION_JSON)
-			.content(data)
-			.header(HttpHeaders.AUTHORIZATION, token));
 
 		//when
 		ResultActions result = mockMvc.perform(MockMvcRequestBuilders.get("/mainpage")
@@ -107,12 +105,7 @@ public class MainPageControllerTest {
 
 		String data = objectMapper.writeValueAsString(createSettingRequestDto);
 
-		mockMvc.perform(MockMvcRequestBuilders.post("/settings")
-			.with(csrf())
-			.contentType(MediaType.APPLICATION_JSON)
-			.accept(MediaType.APPLICATION_JSON)
-			.content(data)
-			.header(HttpHeaders.AUTHORIZATION, token));
+		settingService.createSetting(createSettingRequestDto, email, "google");
 
 		//when
 		ResultActions result = mockMvc.perform(MockMvcRequestBuilders.get("/mainpage/link")
@@ -145,14 +138,7 @@ public class MainPageControllerTest {
 		createSettingRequestDto.setColor(0);
 		createSettingRequestDto.setLight(1);
 
-		String data = objectMapper.writeValueAsString(createSettingRequestDto);
-
-		mockMvc.perform(MockMvcRequestBuilders.post("/settings")
-			.with(csrf())
-			.contentType(MediaType.APPLICATION_JSON)
-			.accept(MediaType.APPLICATION_JSON)
-			.content(data)
-			.header(HttpHeaders.AUTHORIZATION, token));
+		settingService.createSetting(createSettingRequestDto, email, "google");
 
 		Message message1 = Message.builder()
 			.recipient("받는사람")
@@ -195,14 +181,7 @@ public class MainPageControllerTest {
 		createSettingRequestDto.setColor(0);
 		createSettingRequestDto.setLight(1);
 
-		String data = objectMapper.writeValueAsString(createSettingRequestDto);
-
-		mockMvc.perform(MockMvcRequestBuilders.post("/settings")
-			.with(csrf())
-			.contentType(MediaType.APPLICATION_JSON)
-			.accept(MediaType.APPLICATION_JSON)
-			.content(data)
-			.header(HttpHeaders.AUTHORIZATION, token));
+		settingService.createSetting(createSettingRequestDto, email, "google");
 
 		Message message1 = Message.builder()
 			.recipient("받는사람")
@@ -245,14 +224,7 @@ public class MainPageControllerTest {
 		createSettingRequestDto.setColor(0);
 		createSettingRequestDto.setLight(1);
 
-		String data = objectMapper.writeValueAsString(createSettingRequestDto);
-
-		mockMvc.perform(MockMvcRequestBuilders.post("/settings")
-			.with(csrf())
-			.contentType(MediaType.APPLICATION_JSON)
-			.accept(MediaType.APPLICATION_JSON)
-			.content(data)
-			.header(HttpHeaders.AUTHORIZATION, token));
+		settingService.createSetting(createSettingRequestDto, email, "google");
 
 		Message message1 = Message.builder()
 			.recipient("받는사람")
@@ -291,21 +263,13 @@ public class MainPageControllerTest {
 
 		String token = jwtProvider.createToken(email, "google");
 
-
 		CreateSettingRequestDto createSettingRequestDto = new CreateSettingRequestDto();
 
 		createSettingRequestDto.setName("주은이네 붕어빵");
 		createSettingRequestDto.setColor(0);
 		createSettingRequestDto.setLight(1);
 
-		String data = objectMapper.writeValueAsString(createSettingRequestDto);
-
-		mockMvc.perform(MockMvcRequestBuilders.post("/settings")
-			.with(csrf())
-			.contentType(MediaType.APPLICATION_JSON)
-			.accept(MediaType.APPLICATION_JSON)
-			.content(data)
-			.header(HttpHeaders.AUTHORIZATION, token));
+		settingService.createSetting(createSettingRequestDto, email, "google");
 
 		Message message1 = Message.builder()
 			.recipient("받는사람")
@@ -349,14 +313,7 @@ public class MainPageControllerTest {
 		createSettingRequestDto.setColor(0);
 		createSettingRequestDto.setLight(1);
 
-		String data = objectMapper.writeValueAsString(createSettingRequestDto);
-
-		mockMvc.perform(MockMvcRequestBuilders.post("/settings")
-			.with(csrf())
-			.contentType(MediaType.APPLICATION_JSON)
-			.accept(MediaType.APPLICATION_JSON)
-			.content(data)
-			.header(HttpHeaders.AUTHORIZATION, token));
+		settingService.createSetting(createSettingRequestDto, email, "google");
 
 		WriteMessageResponseDto writeMessageResponseDto = new WriteMessageResponseDto();
 
