@@ -7,6 +7,7 @@ import LogoutBTN from '@components/SettingPage/LogoutBTN'
 import DeleteIdBTN from '@components/SettingPage/DeleteIdBTN'
 import QnABTN from '@components/SettingPage/QnABTN'
 import { useEffect, useState } from 'react'
+import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { cartState, loginState } from "@states//ModalState";
 
@@ -14,9 +15,13 @@ const SettingPage = () => {
     const [login, setLogin] = useRecoilState(loginState);
     const [cart, setCart] = useRecoilState(cartState);
     const [check, setCheck] = useState(login.isLogin);
+    const navigate = useNavigate();
 
     useEffect(() => {
         console.log("islogin: "+login.isLogin)
+        if (login.token === "" || login.token === undefined) {
+            navigate('/');
+        }
         if (login.isLogin) {
             fetch(login.url + "/mainpage", {
                 method: "GET",
