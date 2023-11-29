@@ -2,16 +2,19 @@ package com.example.boongObbang.service;
 
 import com.example.boongObbang.dto.CreateSettingRequestDto;
 import com.example.boongObbang.dto.PatchSettingRequestDto;
+import com.example.boongObbang.entity.Message;
 import com.example.boongObbang.entity.Setting;
 import com.example.boongObbang.entity.Token;
 import com.example.boongObbang.entity.User;
 import com.example.boongObbang.exception.exceptions.InvalidAccessTokenException;
 import com.example.boongObbang.exception.exceptions.NoExistEmailException;
 import com.example.boongObbang.exception.exceptions.NoExistSettingException;
+import com.example.boongObbang.repository.MessageRepository;
 import com.example.boongObbang.repository.SettingRepository;
 import com.example.boongObbang.repository.TokenRedisRepository;
 import com.example.boongObbang.repository.UserRepository;
 import com.example.boongObbang.response.ResponseMessage;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +30,9 @@ public class SettingService {
 
 	@Autowired
 	private TokenRedisRepository redisRepository;
+
+	@Autowired
+	private MessageRepository messageRepository;
 
 	public void createSetting(CreateSettingRequestDto createSettingRequestDto, String email, String provider) {
 		Optional<User> user = userRepository.findByEmailAndProvider(email, provider);
@@ -97,6 +103,10 @@ public class SettingService {
 		Optional<Setting> setting = settingRepository.findByUserId(user.get().getId());
 
 		setting.ifPresent(value -> settingRepository.delete(value));
+
+		List<Message> messageList = messageRepository.findByUserId(user.get().getId());
+
+		messageRepository.deleteAll(messageList);
 
 		userRepository.delete(user.get());
 	}
