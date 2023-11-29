@@ -35,7 +35,7 @@ const Display = ({ messages, dday }) => {
             alt="right arrow"
           />
         ) : null}
-        <img className="border-t-4 border-black w-full" src={board} alt="display" />
+        <img className="border-t-4 border-black w-full pointer-events-none" src={board} alt="display" />
       </div>
     </div>
   );
