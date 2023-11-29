@@ -1,8 +1,11 @@
 package com.example.boongObbang.jwt;
 
+import com.example.boongObbang.entity.Setting;
 import com.example.boongObbang.entity.User;
 import com.example.boongObbang.exception.exceptions.ExpireAccessTokenException;
 import com.example.boongObbang.exception.exceptions.InvalidAccessTokenException;
+import com.example.boongObbang.exception.exceptions.NoExistSettingException;
+import com.example.boongObbang.repository.SettingRepository;
 import com.example.boongObbang.repository.UserRepository;
 import com.example.boongObbang.response.CustomResponse;
 import com.example.boongObbang.response.ResponseMessage;
@@ -25,10 +28,12 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
 	private final JwtProvider jwtProvider;
 	private final UserRepository userRepository;
+	private final SettingRepository settingRepository;
 
-	public JwtAuthorizationFilter(JwtProvider jwtProvider, UserRepository userRepository) {
+	public JwtAuthorizationFilter(JwtProvider jwtProvider, UserRepository userRepository, SettingRepository settingRepository) {
 		this.jwtProvider = jwtProvider;
 		this.userRepository = userRepository;
+		this.settingRepository = settingRepository;
 	}
 
 	@Override
@@ -58,6 +63,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 		try {
 			if (token != null && !token.equalsIgnoreCase("")) {
 
+				log.info("token : " + token);
 				//토큰 유효성 검사
 				if (!jwtProvider.isTokenValid(token)) {
 					log.info("token is not valid");
@@ -79,6 +85,12 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 					if (user.isEmpty()) {
 						log.info("token user no exist in db");
 						throw new InvalidAccessTokenException(ResponseMessage.INVALID_ACCESS_TOKEN);
+					}
+
+					//setting이 되어있지 않은 사용자인지 검사
+					Optional<Setting> setting = settingRepository.findByUserId(user.get().getId());
+					if (!request.getRequestURI().equals("/settings") && setting.isEmpty()) {
+						throw new NoExistSettingException(ResponseMessage.NO_EXIST_SETTING);
 					}
 
 					filterChain.doFilter(request, response);
@@ -107,6 +119,16 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 				response.setCharacterEncoding("UTF-8");
 				response.setContentType("application/json");
 				mapper.writeValue(response.getWriter(), CustomResponse.response(HttpStatus.UNAUTHORIZED.value(), ResponseMessage.EXPIRE_ACCESS_TOKEN));
+			} catch (IOException ee) {
+				throw new RuntimeException(ee);
+			}
+		} catch (NoExistSettingException e) {
+			try {
+				ObjectMapper mapper = new ObjectMapper();
+				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+				response.setCharacterEncoding("UTF-8");
+				response.setContentType("application/json");
+				mapper.writeValue(response.getWriter(), CustomResponse.response(HttpStatus.BAD_REQUEST.value(), ResponseMessage.NO_EXIST_SETTING));
 			} catch (IOException ee) {
 				throw new RuntimeException(ee);
 			}

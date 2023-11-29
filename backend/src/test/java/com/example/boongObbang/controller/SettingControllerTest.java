@@ -143,7 +143,7 @@ public class SettingControllerTest {
 	@DisplayName("마차 수정하기 성공 테스트")
 	public void successPatch() throws Exception {
 		//given
-		String email = "settingcontroller@test.com";
+		String email = "settingcontrollerpatch@test.com";
 		User user = User.builder()
 			.email(email)
 			.uuid(UUID.randomUUID().toString())
@@ -192,7 +192,7 @@ public class SettingControllerTest {
 	@DisplayName("마차 삭제하기 성공 테스트")
 	public void successDelete() throws Exception {
 		//given
-		String email = "settingcontroller@test.com";
+		String email = "settingcontrollerdelete@test.com";
 		User user = User.builder()
 			.email(email)
 			.uuid(UUID.randomUUID().toString())

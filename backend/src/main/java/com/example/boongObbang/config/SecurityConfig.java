@@ -2,6 +2,7 @@ package com.example.boongObbang.config;
 
 import com.example.boongObbang.jwt.JwtAuthorizationFilter;
 import com.example.boongObbang.jwt.JwtProvider;
+import com.example.boongObbang.repository.SettingRepository;
 import com.example.boongObbang.repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.Collections;
@@ -31,6 +32,9 @@ public class SecurityConfig {
 
 	@Autowired
 	private JwtProvider provider;
+
+	@Autowired
+	private SettingRepository settingRepository;
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
@@ -62,7 +66,7 @@ public class SecurityConfig {
 		httpSecurity.sessionManagement((session) -> session.sessionCreationPolicy(
 			SessionCreationPolicy.STATELESS));
 
-		httpSecurity.addFilterBefore(new JwtAuthorizationFilter(provider, userRepository), UsernamePasswordAuthenticationFilter.class);
+		httpSecurity.addFilterBefore(new JwtAuthorizationFilter(provider, userRepository, settingRepository), UsernamePasswordAuthenticationFilter.class);
 
 		httpSecurity.formLogin(AbstractHttpConfigurer::disable);
 
