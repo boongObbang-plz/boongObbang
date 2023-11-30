@@ -8,7 +8,7 @@ const FinalCheckLogout = () => {
     const setPopOpen = useSetRecoilState(modalSubmitState)
     const navigate = useNavigate()
     const [login, setLogin] = useRecoilState(loginState);
-    
+
     const clickCheck = () => {
         fetch(login.url + "/settings/logout", {
             method: "POST",

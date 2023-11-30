@@ -23,7 +23,6 @@ const MainPage = () => {
       res.json()
     )
     .then(data => {
-      console.log("mainpage-status : "+data.status)
       if (data.status === 400) {
         setLogin({ isLogin: false, token: login.token, url: login.url })
         navigate('/settings')

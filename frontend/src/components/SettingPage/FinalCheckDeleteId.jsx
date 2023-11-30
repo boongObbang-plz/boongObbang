@@ -8,6 +8,7 @@ const FinalCheckDeleteId = () => {
     const setPopOpen = useSetRecoilState(modalSubmitState)
     const navigate = useNavigate()
     const [login, setLogin] = useRecoilState(loginState);
+    const K_ADMIN_KEY = import.meta.env.VITE_KAKAO_ADMIN_KEY;
 
     const clickCheck = () => {
         fetch(login.url + "/settings", {
@@ -18,11 +19,24 @@ const FinalCheckDeleteId = () => {
         })
         .then(res => res.json())
         .then(data => {
+            if (data.status === 200) {
+                if (data.data.provider === "kakao") {
+                    fetch("https://kapi.kakao.com/v1/user/unlink", {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                            Authorization: `KakaoAK ${K_ADMIN_KEY}`,
+                        },
+                        body: `target_id_type=user_id&target_id=${Number(data.data.id)}`
+                    })
+                }
+            }
             setLogin({ isLogin: false, token: "", url: login.url })
             setPopOpen(false)
             navigate("/")
         })
     }
+
     return (
         <div className="h-full w-full flex flex-col justify-center items-center text-xs min-[400px]:text-[15px] min-[500px]:text-[17px] min-[600px]:text-[20px]">
             <div className="m-1">탈퇴 하시겠어요?🥺</div>

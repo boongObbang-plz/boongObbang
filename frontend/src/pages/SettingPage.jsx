@@ -18,7 +18,6 @@ const SettingPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log("islogin: "+login.isLogin)
         if (login.token === "" || login.token === undefined) {
             navigate('/');
         }
@@ -31,7 +30,6 @@ const SettingPage = () => {
             })
             .then(res => res.json())
             .then(data => {
-                console.log("settings-status : "+data.status)
                 setCart({ name: data.data.name, color: data.data.color, light: data.data.light })
             })
         }
