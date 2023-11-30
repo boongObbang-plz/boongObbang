@@ -27,4 +27,5 @@ public class User {
 	private String uuid;
 
 	private String provider;
+	private String provider_id;
 }

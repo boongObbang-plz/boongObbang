@@ -196,7 +196,8 @@ public class SettingControllerTest {
 		User user = User.builder()
 			.email(email)
 			.uuid(UUID.randomUUID().toString())
-			.provider("google").build();
+			.provider("google")
+			.provider_id("12345").build();
 
 		userRepository.save(user);
 

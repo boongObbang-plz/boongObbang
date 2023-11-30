@@ -1,6 +1,7 @@
 package com.example.boongObbang.controller;
 
 import com.example.boongObbang.dto.CreateSettingRequestDto;
+import com.example.boongObbang.dto.DeleteResponseDto;
 import com.example.boongObbang.dto.PatchSettingRequestDto;
 import com.example.boongObbang.jwt.JwtProvider;
 import com.example.boongObbang.response.CustomResponse;
@@ -66,9 +67,9 @@ public class SettingController {
 		String email = jwtProvider.getEmail(token);
 		String provider = jwtProvider.getProvider(token);
 
-		settingService.deleteSetting(email, provider);
+		DeleteResponseDto deleteResponseDto = settingService.deleteSetting(email, provider);
 
-		return new ResponseEntity(CustomResponse.response(HttpStatus.OK.value(), ResponseMessage.SUCCESS),
+		return new ResponseEntity(CustomResponse.response(HttpStatus.OK.value(), ResponseMessage.SUCCESS, deleteResponseDto),
 			HttpStatus.OK);
 	}
 
