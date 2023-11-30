@@ -81,14 +81,6 @@ const lettersState = atom({
   }
 });
 
-const codeState = atom({
-  key: "codeState",
-  default: {
-    idx: 0,
-    code: "",
-  }
-});
-
 export {
   modalHelperState,
   modalLetterState,
@@ -100,5 +92,4 @@ export {
   modalLoginHelperState,
   loginState,
   lettersState,
-  codeState,
 };
