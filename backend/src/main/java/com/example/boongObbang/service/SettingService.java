@@ -1,6 +1,7 @@
 package com.example.boongObbang.service;
 
 import com.example.boongObbang.dto.CreateSettingRequestDto;
+import com.example.boongObbang.dto.DeleteResponseDto;
 import com.example.boongObbang.dto.PatchSettingRequestDto;
 import com.example.boongObbang.entity.Message;
 import com.example.boongObbang.entity.Setting;
@@ -93,7 +94,7 @@ public class SettingService {
 		settingRepository.save(new_setting);
 	}
 
-	public void deleteSetting(String email, String provider) {
+	public DeleteResponseDto deleteSetting(String email, String provider) {
 		Optional<User> user = userRepository.findByEmailAndProvider(email, provider);
 
 		if (user.isEmpty()) {
@@ -109,6 +110,13 @@ public class SettingService {
 		messageRepository.deleteAll(messageList);
 
 		userRepository.delete(user.get());
+
+		DeleteResponseDto deleteResponseDto = new DeleteResponseDto();
+
+		deleteResponseDto.setProvider(provider);
+		deleteResponseDto.setId(user.get().getId().toString());
+
+		return deleteResponseDto;
 	}
 
 	public void logout(String token) {

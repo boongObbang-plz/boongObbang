@@ -113,7 +113,8 @@ public class UserService {
 			User signUp = User.builder()
 				.email(email)
 				.uuid(UUID.randomUUID().toString())
-				.provider(provider).build();
+				.provider(provider)
+				.provider_id(kakaoProfile.getId().toString()).build();
 			
 			userRepository.save(signUp);
 		}
@@ -205,7 +206,8 @@ public class UserService {
 			User signUp = User.builder()
 				.email(email)
 				.uuid(UUID.randomUUID().toString())
-				.provider(provider).build();
+				.provider(provider)
+				.provider_id(googleProfileDto.getId()).build();
 
 			userRepository.save(signUp);
 		}
