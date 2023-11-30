@@ -114,7 +114,7 @@ public class SettingService {
 		DeleteResponseDto deleteResponseDto = new DeleteResponseDto();
 
 		deleteResponseDto.setProvider(provider);
-		deleteResponseDto.setId(user.get().getId().toString());
+		deleteResponseDto.setId(user.get().getProvider_id().toString());
 
 		return deleteResponseDto;
 	}
