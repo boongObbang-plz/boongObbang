@@ -4,11 +4,11 @@ import Grill from "@components/MainPage/Grill";
 
 const Top = ({ title, roof, light }) => {
   return (
-    <>
+    <div className="flex relative w-full h-full flex-col justify-center items-center">
       <Roof roof={roof} light={light} />
       <Title title={title} />
       <Grill />
-    </>
+    </div>
   );
 };
 

@@ -213,7 +213,8 @@ public class SettingServiceTest {
 		User user = User.builder()
 			.email(email)
 			.uuid(UUID.randomUUID().toString())
-			.provider(provider).build();
+			.provider(provider)
+			.provider_id("12345").build();
 
 		userRepository.save(user);
 

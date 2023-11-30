@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -28,6 +29,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 @Service
+@Slf4j
 public class UserService {
 
 	@Autowired
@@ -36,26 +38,25 @@ public class UserService {
 	@Autowired
 	private JwtProvider jwtProvider;
 	
-	@Value("kakao.client.key")
+	@Value("${kakao.client.key}")
 	private String kakao_client_key;
 
-	@Value("kakao.redirect.url")
+	@Value("${kakao.redirect.url}")
 	private String kakao_redirect_url;
 
-	@Value("kakao.secret.key")
+	@Value("${kakao.secret.key}")
 	private String kakao_secret_key;
 
-	@Value("google.client.key")
+	@Value("${google.client.key}")
 	private String google_client_key;
 
-	@Value("google.redirect.url")
+	@Value("${google.redirect.url}")
 	private String google_redirect_url;
 
-	@Value("google.secret.key")
+	@Value("${google.secret.key}")
 	private String google_secret_key;
 
 	public LoginServiceDto loginKakao(LoginRequestDto loginRequestDto) {
-
 		RestTemplate restTemplate = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
 		MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
@@ -65,6 +66,10 @@ public class UserService {
 		map.add("redirect_uri", kakao_redirect_url);
 		map.add("code", loginRequestDto.getCode());
 		map.add("client_secret", kakao_secret_key);
+
+		log.info("client_id : " + kakao_client_key);
+		log.info("redirect_uri : " + kakao_redirect_url);
+		log.info("client_secret : " + kakao_secret_key);
 
 		headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 
@@ -84,6 +89,7 @@ public class UserService {
 		try {
 			kakaoDto = objectMapper.readValue(kakaoResponse.getBody(), KakaoDto.class);
 		} catch (JsonProcessingException e) {
+			log.info("kakao get token error");
 			e.printStackTrace();
 		}
 
@@ -93,7 +99,7 @@ public class UserService {
 	public LoginServiceDto saveKakaoUser(KakaoDto kakaoDto) {
 		KakaoProfileDto kakaoProfile = findKakaoProfile(kakaoDto.getAccess_token());
 		
-		String email = kakaoProfile.getKakaoAccount().getEmail();
+		String email = kakaoProfile.getKakao_account().getEmail();
 		String provider = "kakao";
 
 		Optional<User> user = userRepository.findByEmailAndProvider(email, provider);
@@ -107,7 +113,8 @@ public class UserService {
 			User signUp = User.builder()
 				.email(email)
 				.uuid(UUID.randomUUID().toString())
-				.provider(provider).build();
+				.provider(provider)
+				.provider_id(kakaoProfile.getId().toString()).build();
 			
 			userRepository.save(signUp);
 		}
@@ -140,8 +147,10 @@ public class UserService {
 		KakaoProfileDto kakaoProfileDto = null;
 
 		try {
+			log.info(kakaoProfileResponse.getBody());
 			kakaoProfileDto = objectMapper.readValue(kakaoProfileResponse.getBody(), KakaoProfileDto.class);
 		} catch (JsonProcessingException e) {
+			log.info("kakao find user error");
 			e.printStackTrace();
 		}
 
@@ -173,6 +182,7 @@ public class UserService {
 		try {
 			googleDto = objectMapper.readValue(googleResponse.getBody(), GoogleDto.class);
 		} catch (JsonProcessingException e) {
+			log.info("google get token error");
 			e.printStackTrace();
 		}
 
@@ -196,7 +206,8 @@ public class UserService {
 			User signUp = User.builder()
 				.email(email)
 				.uuid(UUID.randomUUID().toString())
-				.provider(provider).build();
+				.provider(provider)
+				.provider_id(googleProfileDto.getId()).build();
 
 			userRepository.save(signUp);
 		}
@@ -226,6 +237,7 @@ public class UserService {
 		try {
 			googleProfileDto = objectMapper.readValue(googleProfileResponse.getBody(), GoogleProfileDto.class);
 		} catch (JsonProcessingException e) {
+			log.info("google find user error");
 			e.printStackTrace();
 		}
 

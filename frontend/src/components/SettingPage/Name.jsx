@@ -22,12 +22,14 @@ const Name = () => {
     return (
         <div className="w-[80%] h-[150px] flex flex-col">
             <div className="flex items-center justify-between pb-[5px]">
-                <div className="text-[35px] py-[1%]">가게 이름</div>
+                <div className="text-[24px] min-[400px]:text-[28px] min-[500px]:text-[32px] min-[600px]:text-[35px] py-[1%]">가게 이름</div>
                 <div className="flex text-[20px] font-normal">{nameCount} / 10 자</div>
             </div>
             <div className="flex flex-col">
-                <div className="flex justify-center"><input className="w-[100%] h-[70px] px-4 text-black bg-white text-[25px] rounded-[10px]" type="text" onChange={onChangeName} maxLength={MAX_LENGTH}/></div>
-                <div className="h-[20px] text-[20px]">{errMsg}</div>
+                <div className="flex justify-center">
+                    <input className="w-full h-[70px] px-4 text-black bg-white text-[25px] rounded-[10px] outline-none" type="text" onChange={onChangeName} value={name.name} maxLength={MAX_LENGTH}/>
+                </div>
+                <div className="h-[20px] text-[15px] min-[500px]:text-[16px] min-[600px]:text-[18px]">{errMsg}</div>
             </div>      
         </div>
     )

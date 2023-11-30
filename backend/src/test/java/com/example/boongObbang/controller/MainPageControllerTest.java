@@ -4,11 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 
 import com.example.boongObbang.dto.CreateSettingRequestDto;
+import com.example.boongObbang.dto.WriteMessageResponseDto;
 import com.example.boongObbang.entity.Message;
 import com.example.boongObbang.entity.User;
 import com.example.boongObbang.jwt.JwtProvider;
 import com.example.boongObbang.repository.MessageRepository;
 import com.example.boongObbang.repository.UserRepository;
+import com.example.boongObbang.service.SettingService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.UUID;
 import org.junit.jupiter.api.DisplayName;
@@ -44,6 +46,9 @@ public class MainPageControllerTest {
 	@Autowired
 	MessageRepository messageRepository;
 
+	@Autowired
+	SettingService settingService;
+
 	@Test
 	@DisplayName("나의 메인페이지 불러오기 성공 테스트")
 	public void successGetMainPage() throws Exception {
@@ -64,14 +69,8 @@ public class MainPageControllerTest {
 		createSettingRequestDto.setColor(0);
 		createSettingRequestDto.setLight(1);
 
-		String data = objectMapper.writeValueAsString(createSettingRequestDto);
+		settingService.createSetting(createSettingRequestDto, email, "google");
 
-		mockMvc.perform(MockMvcRequestBuilders.post("/settings")
-			.with(csrf())
-			.contentType(MediaType.APPLICATION_JSON)
-			.accept(MediaType.APPLICATION_JSON)
-			.content(data)
-			.header(HttpHeaders.AUTHORIZATION, token));
 
 		//when
 		ResultActions result = mockMvc.perform(MockMvcRequestBuilders.get("/mainpage")
@@ -98,6 +97,16 @@ public class MainPageControllerTest {
 
 		String token = jwtProvider.createToken(email, "google");
 
+		CreateSettingRequestDto createSettingRequestDto = new CreateSettingRequestDto();
+
+		createSettingRequestDto.setName("주은이네 붕어빵");
+		createSettingRequestDto.setColor(0);
+		createSettingRequestDto.setLight(1);
+
+		String data = objectMapper.writeValueAsString(createSettingRequestDto);
+
+		settingService.createSetting(createSettingRequestDto, email, "google");
+
 		//when
 		ResultActions result = mockMvc.perform(MockMvcRequestBuilders.get("/mainpage/link")
 			.with(csrf())
@@ -122,6 +131,14 @@ public class MainPageControllerTest {
 		userRepository.save(user);
 
 		String token = jwtProvider.createToken(email, "google");
+
+		CreateSettingRequestDto createSettingRequestDto = new CreateSettingRequestDto();
+
+		createSettingRequestDto.setName("주은이네 붕어빵");
+		createSettingRequestDto.setColor(0);
+		createSettingRequestDto.setLight(1);
+
+		settingService.createSetting(createSettingRequestDto, email, "google");
 
 		Message message1 = Message.builder()
 			.recipient("받는사람")
@@ -148,7 +165,7 @@ public class MainPageControllerTest {
 	@DisplayName("편지 삭제하기 실패 테스트(존재하지 않는 편지)")
 	public void failDelete() throws Exception {
 		//given
-		String email = "delete@test.com";
+		String email = "deletefail@test.com";
 		User user = User.builder()
 			.email(email)
 			.uuid(UUID.randomUUID().toString())
@@ -157,6 +174,14 @@ public class MainPageControllerTest {
 		userRepository.save(user);
 
 		String token = jwtProvider.createToken(email, "google");
+
+		CreateSettingRequestDto createSettingRequestDto = new CreateSettingRequestDto();
+
+		createSettingRequestDto.setName("주은이네 붕어빵");
+		createSettingRequestDto.setColor(0);
+		createSettingRequestDto.setLight(1);
+
+		settingService.createSetting(createSettingRequestDto, email, "google");
 
 		Message message1 = Message.builder()
 			.recipient("받는사람")
@@ -192,6 +217,14 @@ public class MainPageControllerTest {
 		userRepository.save(user);
 
 		String token = jwtProvider.createToken(email, "google");
+
+		CreateSettingRequestDto createSettingRequestDto = new CreateSettingRequestDto();
+
+		createSettingRequestDto.setName("주은이네 붕어빵");
+		createSettingRequestDto.setColor(0);
+		createSettingRequestDto.setLight(1);
+
+		settingService.createSetting(createSettingRequestDto, email, "google");
 
 		Message message1 = Message.builder()
 			.recipient("받는사람")
@@ -236,14 +269,7 @@ public class MainPageControllerTest {
 		createSettingRequestDto.setColor(0);
 		createSettingRequestDto.setLight(1);
 
-		String data = objectMapper.writeValueAsString(createSettingRequestDto);
-
-		mockMvc.perform(MockMvcRequestBuilders.post("/settings")
-			.with(csrf())
-			.contentType(MediaType.APPLICATION_JSON)
-			.accept(MediaType.APPLICATION_JSON)
-			.content(data)
-			.header(HttpHeaders.AUTHORIZATION, token));
+		settingService.createSetting(createSettingRequestDto, email, "google");
 
 		Message message1 = Message.builder()
 			.recipient("받는사람")
@@ -263,5 +289,49 @@ public class MainPageControllerTest {
 
 		//then
 		assertEquals(HttpStatus.OK.value(), result.andReturn().getResponse().getStatus());
+	}
+
+	@Test
+	@DisplayName("편지쓰기 성공 테스트")
+	public void successWrite() throws Exception {
+		//given
+		String email = "writecontroller@test.com";
+		String uuid = UUID.randomUUID().toString();
+
+		User user = User.builder()
+			.email(email)
+			.uuid(uuid)
+			.provider("google").build();
+
+		userRepository.save(user);
+
+		String token = jwtProvider.createToken(email, "google");
+
+		CreateSettingRequestDto createSettingRequestDto = new CreateSettingRequestDto();
+
+		createSettingRequestDto.setName("주은이네 붕어빵");
+		createSettingRequestDto.setColor(0);
+		createSettingRequestDto.setLight(1);
+
+		settingService.createSetting(createSettingRequestDto, email, "google");
+
+		WriteMessageResponseDto writeMessageResponseDto = new WriteMessageResponseDto();
+
+		writeMessageResponseDto.setTo("to~~~");
+		writeMessageResponseDto.setMessage("message~~~~");
+		writeMessageResponseDto.setMade_by("made by~~~~~");
+		writeMessageResponseDto.setColor(2);
+
+		String data2 = objectMapper.writeValueAsString(writeMessageResponseDto);
+
+		//when
+		ResultActions result = mockMvc.perform(MockMvcRequestBuilders.post("/main/{uuid}", uuid)
+			.with(csrf())
+			.contentType(MediaType.APPLICATION_JSON)
+			.accept(MediaType.APPLICATION_JSON)
+			.content(data2));
+
+		//then
+		assertEquals(HttpStatus.SEE_OTHER.value(), result.andReturn().getResponse().getStatus());
 	}
 }

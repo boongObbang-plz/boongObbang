@@ -13,7 +13,7 @@ const ChooseLight = () => {
 
     return (
         <>
-            <div className="h-[100%] flex flex-col items-start justify-between text-left">
+            <div className="h-[100%] w-[80%]">
                 <div className="grid grid-cols-4">
                     {lights.map((light, index) => (
                         <Light key={index} light={light} index={index} />

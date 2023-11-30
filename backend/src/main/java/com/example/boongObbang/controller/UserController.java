@@ -11,6 +11,7 @@ import com.example.boongObbang.response.ResponseMessage;
 import com.example.boongObbang.service.UserService;
 import java.util.Objects;
 import java.util.UUID;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/login/oauth2/code")
+@Slf4j
 public class UserController {
 
 	@Autowired
@@ -36,13 +38,23 @@ public class UserController {
 	//TODO: 프론트와 연결하면 지울 것
 	@PostMapping("/test")
 	public ResponseEntity test() {
-		User user = User.builder()
-			.email("test@test.com")
-			.provider("google")
-			.uuid(UUID.randomUUID().toString()).build();
 
-		userRepository.save(user);
+		if (userRepository.findByEmailAndProvider("test@test.com", "google").isEmpty()) {
+			log.info("test@test.com is null");
+			User user = User.builder()
+				.email("test@test.com")
+				.provider("google")
+				.uuid(UUID.randomUUID().toString()).build();
 
+			userRepository.save(user);
+
+			String token = jwtProvider.createToken("test@test.com", "google");
+
+			return new ResponseEntity(
+				CustomResponse.response(HttpStatus.CREATED.value(), ResponseMessage.SUCCESS, token),
+				HttpStatus.CREATED);
+		}
+		log.info("test@test.com is exist");
 		String token = jwtProvider.createToken("test@test.com", "google");
 
 		return new ResponseEntity(

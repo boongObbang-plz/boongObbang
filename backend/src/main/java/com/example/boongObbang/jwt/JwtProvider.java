@@ -10,20 +10,22 @@ import jakarta.annotation.PostConstruct;
 import java.util.Base64;
 import java.util.Date;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class JwtProvider {
 
-	@Value("$jwt.secret")
+	@Value("${jwt.secret}")
 	private String secretEnv;
 	private String secretKey;
 
 	@Autowired
-	private TokenRedisRepository redisRepository;
+	private final TokenRedisRepository redisRepository;
 
 	@PostConstruct
 	protected void init() {
@@ -54,12 +56,16 @@ public class JwtProvider {
 	}
 
 	public boolean isTokenValid(String token) {
+		log.info("token : " + token);
+		log.info("secretkey : " + secretKey);
+		log.info("secretenv : " + secretEnv);
 		try {
 			Jws<Claims> claims = Jwts.parser()
 				.setSigningKey(secretKey)
 				.parseClaimsJws(token);
 			return true;
 		} catch (Exception e) {
+			e.printStackTrace();
 			return false;
 		}
 	}

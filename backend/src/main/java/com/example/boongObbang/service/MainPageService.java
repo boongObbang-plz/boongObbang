@@ -4,6 +4,7 @@ import com.example.boongObbang.dto.LinkResponseDto;
 import com.example.boongObbang.dto.MainPageResponseDto;
 import com.example.boongObbang.dto.MessageDto;
 import com.example.boongObbang.dto.ReadMessageResponseDto;
+import com.example.boongObbang.dto.WriteMessageResponseDto;
 import com.example.boongObbang.entity.Message;
 import com.example.boongObbang.entity.Setting;
 import com.example.boongObbang.entity.User;
@@ -91,8 +92,9 @@ public class MainPageService {
 			throw new NoExistEmailException(ResponseMessage.NO_EXIST_EMAIL);
 		}
 
-		//TODO: 추후에 url 변경
-		String base_url = "http://localhost:8080/main/";
+		//TODO: 테스트 위해 잠시 localhost로 변경
+//		String base_url = "http://boongobbang.site/main/";
+		String base_url = "http://localhost:5173/main/";
 
 		LinkResponseDto linkResponseDto = new LinkResponseDto();
 
@@ -232,5 +234,22 @@ public class MainPageService {
 		mainPageResponseDto.setMessages(messageDtos);
 
 		return mainPageResponseDto;
+	}
+
+	public void writeMessage(WriteMessageResponseDto writeMessageResponseDto, String uuid, String ip) {
+		Optional<User> user = userRepository.findByUuid(uuid);
+
+		if (user.isEmpty())
+			throw new UrlErrorException(ResponseMessage.URL_ERROR);
+
+		Message message = Message.builder()
+			.user(user.get())
+			.recipient(writeMessageResponseDto.getTo())
+			.message(writeMessageResponseDto.getMessage())
+			.madeBy(writeMessageResponseDto.getMade_by())
+			.color(writeMessageResponseDto.getColor())
+			.ip(ip).build();
+
+		messageRepository.save(message);
 	}
 }

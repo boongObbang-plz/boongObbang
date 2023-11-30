@@ -10,7 +10,7 @@ public class KakaoProfileDto {
 	private Long id;
 	private String connected_at;
 	private Properties properties;
-	public KakaoAccount kakaoAccount;
+	public KakaoAccount kakao_account;
 
 	@Getter
 	@Setter

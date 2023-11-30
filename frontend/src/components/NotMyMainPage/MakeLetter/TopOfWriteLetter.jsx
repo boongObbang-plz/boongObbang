@@ -26,7 +26,7 @@ const Top = () => {
 
   const closeMakeLetter = () => {
     setLetterOpen({ isOpen: false, page: 1 });
-    setWriteLetter({ color: 0, to: "", message: "", from: "" });
+    setWriteLetter({ color: 0, to: "", message: "", made_by: "" });
   };
 
   const clickSubmit = () => {
@@ -38,31 +38,31 @@ const Top = () => {
       setAlertOpen({ isOpen: true, message: "편지의 내용을 입력해주세요😉" });
       return;
     }
-    if (writeLetter.from === "") {
+    if (writeLetter.made_by === "") {
       setAlertOpen({ isOpen: true, message: "Made by를 입력해주세요😉" });
       return;
     }
-    setSubmitOpen({ isOpen: true, isSubmit: true });
+    setSubmitOpen({ isOpen: true, isSubmit: 1 });
   };
 
   return (
     <div className="w-full flex justify-between">
-      <div className="flex items-center text-xl ml-2">편지 작성하기</div>
-      <div className="flex justify-end">
+      <div className="w-full flex items-center text-lg ml-2 min-[400px]:text-[22px] min-[500px]:text-[25px] min-[600px]:text-[28px]">편지 작성하기</div>
+      <div className="w-full flex justify-end">
         <img
-          className="w-[30px] m-2"
+          className="w-[20%] m-2"
           src={beforeButton}
           onClick={() => setLetterOpen({ isOpen: true, page: 1 })}
           alt="before button"
         />
         <img
-          className="w-[30px] m-2"
+          className="w-[20%] m-2"
           src={submitButton}
           onClick={() => clickSubmit()}
           alt="submit button"
         />
         <img
-          className="w-[30px] m-2"
+          className="w-[20%] m-2"
           src={closeImage}
           onClick={() => closeMakeLetter()}
           alt="close button"

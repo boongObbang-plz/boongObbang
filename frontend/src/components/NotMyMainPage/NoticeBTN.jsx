@@ -5,10 +5,10 @@ const NoticeBTN = () => {
   const setLetterOpen = useSetRecoilState(modalHelperState);
 
   return (
-    <div className="absolute top-2 w-[100%] flex justify-end pt-[10px] pr-[5%]">
+    <div className="flex justify-end pt-4 pr-6">
       <button
         onClick={() => setLetterOpen(true)}
-        className="w-[30px] h-[30px] bg-[#FFFFFF] rounded-[20px] text-[#000000] text-[20px] font-bold"
+        className="w-8 h-8 bg-white rounded-full text-black text-lg font-bold"
       >
         ?
       </button>

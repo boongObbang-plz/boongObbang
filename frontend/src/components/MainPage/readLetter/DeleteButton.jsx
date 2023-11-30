@@ -6,12 +6,11 @@ const DeleteButton = () => {
   const setDeleteOpen = useSetRecoilState(modalSubmitState);
 
   return (
-    <button
-      className="w-[32px] mr-[2%]"
-      onClick={() => setDeleteOpen({ isOpen: true, isSubmit: false })}
-    >
-      <img src={Delete} alt="delete button" />
-    </button>
+      <img
+        src={Delete}
+        alt="delete button"
+        className="w-[10%] m-2"
+        onClick={() => setDeleteOpen({ isOpen: true, isSubmit: 0 })} />
   );
 };
 

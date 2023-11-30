@@ -1,4 +1,7 @@
 import { atom } from "recoil";
+import { recoilPersist } from 'recoil-persist';
+
+const { persistAtom } = recoilPersist();
 
 const modalHelperState = atom({
   key: "modalHelperState", // unique ID (with respect to other atoms/selectors)
@@ -19,7 +22,7 @@ const writeLetterState = atom({
     color: 0,
     to: "",
     message: "",
-    from: "",
+    made_by: "",
   }, // default value (aka initial value)
 });
 
@@ -27,13 +30,16 @@ const modalSubmitState = atom({
   key: "modalSubmitState", // unique ID (with respect to other atoms/selectors)
   default: {
     isOpen: false,
-    isSubmit: true,
+    isSubmit: 1,
   }, // default value (aka initial value)
 });
 
 const modalReadLetterState = atom({
   key: "modalReadLetterState",
-  default: false,
+  default: {
+    isOpen: false,
+    idx: 0,
+  }
 });
 
 const modalLoginHelperState = atom({
@@ -58,6 +64,23 @@ const modalAlertState = atom({
   },
 });
 
+const loginState = atom({
+  key: "loginState",
+  default: {
+    url: "http://3.35.28.186:8080",
+    isLogin: false,
+    token: "",
+  },
+  effects_UNSTABLE: [persistAtom],
+});
+
+const lettersState = atom({
+  key: "lettersState",
+  default: {
+    count: 0,
+  }
+});
+
 export {
   modalHelperState,
   modalLetterState,
@@ -67,4 +90,6 @@ export {
   modalReadLetterState,
   cartState,
   modalLoginHelperState,
+  loginState,
+  lettersState,
 };
