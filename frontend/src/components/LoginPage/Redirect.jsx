@@ -22,8 +22,6 @@ const Redirect = ({ brandPath }) => {
         })
         .then(res => res.json())
         .then(data => {
-            console.log("login-status : " + data.status)
-            console.log("brandname is : " + brandPath)
             if (data.status === 200) {
                 setLogin({ isLogin: true, token: data.data.token, url: login.url })
                 navigate('/mainpage')
