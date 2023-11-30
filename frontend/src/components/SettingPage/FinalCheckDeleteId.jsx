@@ -1,15 +1,24 @@
 import icon_submit from "/images/icon_submit.png";
 import icon_close from "/images/icon_close.png";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { modalSubmitState, loginState } from "@states/ModalState";
+import { modalSubmitState, loginState, codeState } from "@states/ModalState";
 import { useNavigate } from "react-router-dom";
 
 const FinalCheckDeleteId = () => {
     const setPopOpen = useSetRecoilState(modalSubmitState)
     const navigate = useNavigate()
     const [login, setLogin] = useRecoilState(loginState);
+    const [codes, setCode] = useRecoilState(codeState);
 
     const clickCheck = () => {
+        //카카오 탈퇴 요청(acess_token 필요)
+        fetch("https://kapi.kakao.com/v1/user/unlink", {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${codes.code}`
+            }
+        })
+        setCode({ idx: 0, code: "" })
         fetch(login.url + "/settings", {
             method: "DELETE",
             headers: {

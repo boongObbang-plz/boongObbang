@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
-import { loginState } from "@states//ModalState";
+import { loginState, codeState } from "@states//ModalState";
 import { useRecoilState } from "recoil";
 
 const Redirect = ({ brandPath }) => {
@@ -8,8 +8,29 @@ const Redirect = ({ brandPath }) => {
     const navigate = useNavigate();
     const urlPath = "/login/oauth2/code";
     const [login, setLogin] = useRecoilState(loginState);
+    const [codes, setCode] = useRecoilState(codeState);
+    const Rest_api_key = import.meta.env.VITE_KAKAO_REST_API_KEY; //REST API KEY
+    const redirect_uri = "http://localhost:5173/login/oauth2/code/kakao";
 
     useEffect(() => {
+        console.log(authCode);
+        //카카오 access_token 발급
+        fetch("https://kauth.kakao.com/oauth/token", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `grant_type=authorization_code&client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&code=${authCode}`
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            if (brandPath === "/google")
+            setCode({ idx: 1, code: data.data.access_token })
+            else
+            setCode({ idx: 2, code: data.data.access_token })       
+        })
+        //붕어빵 서버 로그인 요청
         fetch(login.url + urlPath + brandPath, {
             method: "POST",
             headers: {
