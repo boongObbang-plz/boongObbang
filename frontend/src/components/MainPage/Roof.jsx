@@ -7,9 +7,9 @@ import Light from "@components/MainPage/Light";
 const Roof = ({ roof, light }) => {
   const roofs = [redRoof, orangeRoof, greenRoof, blueRoof];
 
-  return (  
+  return (
     <div className="w-full h-full pointer-events-none">
-      <img src={roofs[roof]} className="w-full h-full" alt="roof" />
+      <img src={roofs[roof]} className="w-full h-[20vh]" alt="roof" />
       <Light selectedIdx={light} />
     </div>
   );
