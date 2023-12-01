@@ -93,8 +93,8 @@ public class MainPageService {
 		}
 
 		//TODO: 테스트 위해 잠시 localhost로 변경
-//		String base_url = "http://boongobbang.site/main/";
-		String base_url = "http://localhost:5173/main/";
+		String base_url = "https://boongobbang.site/main/";
+		// String base_url = "http://localhost:5173/main/";
 
 		LinkResponseDto linkResponseDto = new LinkResponseDto();
 

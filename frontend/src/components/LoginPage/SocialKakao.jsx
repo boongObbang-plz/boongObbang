@@ -2,7 +2,7 @@ import kakaoSymbol from "/images/kakao_symbol.png"
 
 const SocialKakao = () => {
   const Rest_api_key = import.meta.env.VITE_KAKAO_REST_API_KEY; //REST API KEY
-  const redirect_uri = "http://localhost:5173/login/oauth2/code/kakao"; //Redirect URI
+  const redirect_uri = "https://boongobbang.site/login/oauth2/code/kakao"; //Redirect URI
   // oauth 요청 URL
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`;
   const handleLogin = () => {
