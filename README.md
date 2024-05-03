@@ -28,7 +28,7 @@ URL : [www.boongobbang.site](www.boongobbang.site)
 
 ### 기술 스택
 |구분| 기술명 |
-|--|--|
+|:--:|--|
 |front-end | ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) 	![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white) ![Recoil](https://img.shields.io/badge/recoil-3578E5?style=for-the-badge&logo=recoil&logoColor=white) ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)|
 |back-end | ![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white) ![MariaDB](https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white)|
 |협업 툴 | ![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white) ![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white) ![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)|
@@ -107,10 +107,9 @@ URL : [www.boongobbang.site](www.boongobbang.site)
 ## 팀원 정보
 ### 팀원 구성
 | 이하현 | 정성은 | 이주은 |
-|--|--|--|
-|![IMG_2336](https://github.com/boongObbang-plz/boongObbang/assets/85945788/d570e2ec-ad79-4153-8394-021ec7f15e98)
-|  |	 |
-|  |  |	 |
+|:---:|:---:|:---:|
+|<img src="https://github.com/boongObbang-plz/boongObbang/assets/85945788/aae6eafd-bb49-4c7f-89a9-133dd659abd6" width="200" height="200"></img> | <img src="https://github.com/boongObbang-plz/boongObbang/assets/85945788/48bb1b1e-7532-42aa-bd1f-9ddef7f3c8a9" width="200" height="200"></img> | <img src="https://github.com/boongObbang-plz/boongObbang/assets/85945788/d6c2eea3-4f92-4f8e-8585-ffaf65b46cc2" width="200" height="200"></img> |
+|[madylin](https://github.com/im-madylin) | [seongeun](https://github.com/eunn43) | [jueun](https://github.com/dlwndms0812) |
 | Front-end | Front-end | Back-end |
 | 메인 | 로그인, 설정 |	ALL |
 
