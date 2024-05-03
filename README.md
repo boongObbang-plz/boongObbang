@@ -1,4 +1,10 @@
+
 # 온라인 롤링페이퍼 서비스, 붕어빵을 부탁해
+
+<img src="https://github.com/boongObbang-plz/boongObbang/assets/85945788/88531d3d-3d0e-4a4a-8143-2a4324369f28" >
+
+<br />
+<br />
 
 **붕어빵을 부탁해**는 가족, 친구, 지인들과 온라인으로 편지를 작성하고 교환할 수 있는 롤링페이퍼 서비스입니다. <br />
 크리스마스를 맞이하여 소중한 사람들에게 따뜻한 마음을 전하고 싶은 분들을 위해 만들어졌습니다.
@@ -112,4 +118,3 @@ URL : [www.boongobbang.site](www.boongobbang.site)
 |[madylin](https://github.com/im-madylin) | [seongeun](https://github.com/eunn43) | [jueun](https://github.com/dlwndms0812) |
 | Front-end | Front-end | Back-end |
 | 메인 | 로그인, 설정 |	ALL |
-
