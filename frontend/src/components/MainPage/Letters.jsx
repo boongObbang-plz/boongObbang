@@ -1,4 +1,5 @@
 import Letter from "@components/MainPage/Letter";
+import { useEffect, useState } from "react";
 
 const Letters = async ({ messages, dday }) => {
   const letterLocation = [
@@ -26,26 +27,30 @@ const Letters = async ({ messages, dday }) => {
   ];
 
   var idx = messages.length;
-  const rendering = await Promise.all(
-    [...messages].reverse().map((message) => {
-      if (message) {
-        var locationIdx = --idx >= 9 ? idx : idx;
-        return (
-          <Letter
-            className="absolute"
-            key={idx}
-            letterLoc={letterLocation[locationIdx]}
-            tagLoc={tagLocation[locationIdx]}
-            message={message}
-            dday={dday}
-          />
-        );
-      }
-    }),
-  );
-  console.log(rendering);
+  const [letters, setLetters] = useState([]);
+  useEffect(() => {
+    Promise.all(
+      [...messages].reverse().map((message) => {
+        if (message) {
+          var locationIdx = --idx >= 9 ? idx : idx;
+          return (
+            <Letter
+              className="absolute"
+              key={idx}
+              letterLoc={letterLocation[locationIdx]}
+              tagLoc={tagLocation[locationIdx]}
+              message={message}
+              dday={dday}
+            />
+          );
+        }
+      }),
+    ).then((tags) => setLetters(tags));
+  }, []);
 
-  return <div>{rendering}</div>;
+  console.log(letters);
+
+  return <div>{letters}</div>;
 };
 
 export default Letters;
