@@ -1,7 +1,7 @@
 import Letter from "@components/MainPage/Letter";
 import { useEffect, useState } from "react";
 
-const Letters = async ({ messages, dday }) => {
+const Letters = ({ messages, dday }) => {
   const letterLocation = [
     ["top-[55%]", "left-[5%]"],
     ["top-[55%]", "left-[35%]"],
