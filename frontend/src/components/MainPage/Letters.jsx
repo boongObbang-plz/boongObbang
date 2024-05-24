@@ -27,7 +27,7 @@ const Letters = async ({ messages, dday }) => {
 
   var idx = messages.length;
   const rendering = await Promise.all(
-    [...messages].reverse().map(async (message) => {
+    [...messages].reverse().map((message) => {
       if (message) {
         var locationIdx = --idx >= 9 ? idx : idx;
         return (
