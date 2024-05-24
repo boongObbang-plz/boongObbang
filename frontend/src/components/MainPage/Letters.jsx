@@ -1,6 +1,6 @@
 import Letter from "@components/MainPage/Letter";
 
-const Letters = ({ messages, dday }) => {
+const Letters = async ({ messages, dday }) => {
   const letterLocation = [
     ["top-[55%]", "left-[5%]"],
     ["top-[55%]", "left-[35%]"],
@@ -26,21 +26,23 @@ const Letters = ({ messages, dday }) => {
   ];
 
   var idx = messages.length;
-  const rendering = [...messages].reverse().map((message) => {
-    if (message) {
-      var locationIdx = --idx >= 9 ? idx : idx;
-      return (
-        <Letter
-          className="absolute"
-          key={idx}
-          letterLoc={letterLocation[locationIdx]}
-          tagLoc={tagLocation[locationIdx]}
-          message={message}
-          dday={dday}
-        />
-      );
-    }
-  });
+  const rendering = await Promise.all(
+    [...messages].reverse().map(async (message) => {
+      if (message) {
+        var locationIdx = --idx >= 9 ? idx : idx;
+        return (
+          <Letter
+            className="absolute"
+            key={idx}
+            letterLoc={letterLocation[locationIdx]}
+            tagLoc={tagLocation[locationIdx]}
+            message={message}
+            dday={dday}
+          />
+        );
+      }
+    }),
+  );
 
   return <div>{rendering}</div>;
 };
