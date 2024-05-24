@@ -67,7 +67,7 @@ const modalAlertState = atom({
 const loginState = atom({
   key: "loginState",
   default: {
-    url: "https://3.35.28.186:8080",
+    url: "https://boongobbang.shop",
     isLogin: false,
     token: "",
   },
