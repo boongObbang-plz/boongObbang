@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import { recoilPersist } from 'recoil-persist';
+import { recoilPersist } from "recoil-persist";
 
 const { persistAtom } = recoilPersist();
 
@@ -39,7 +39,7 @@ const modalReadLetterState = atom({
   default: {
     isOpen: false,
     idx: 0,
-  }
+  },
 });
 
 const modalLoginHelperState = atom({
@@ -67,7 +67,7 @@ const modalAlertState = atom({
 const loginState = atom({
   key: "loginState",
   default: {
-    url: "http://3.35.28.186:8080",
+    url: "https://3.35.28.186:8080",
     isLogin: false,
     token: "",
   },
@@ -78,18 +78,18 @@ const lettersState = atom({
   key: "lettersState",
   default: {
     count: 0,
-  }
+  },
 });
 
 export {
+  cartState,
+  lettersState,
+  loginState,
+  modalAlertState,
   modalHelperState,
   modalLetterState,
-  writeLetterState,
-  modalSubmitState,
-  modalAlertState,
-  modalReadLetterState,
-  cartState,
   modalLoginHelperState,
-  loginState,
-  lettersState,
+  modalReadLetterState,
+  modalSubmitState,
+  writeLetterState,
 };
