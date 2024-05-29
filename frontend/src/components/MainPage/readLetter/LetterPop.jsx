@@ -47,7 +47,7 @@ const LetterPop = () => {
   }, [])
 
   return (
-    <div className="w-full flex flex-col justify-center">
+    <div className="w-full h-full flex flex-col justify-center">
       <LetterPopButtons />
       <LetterPopLabel label={"To"} text={getData.to} />
       <LetterPopTextArea text={getData.message} />
