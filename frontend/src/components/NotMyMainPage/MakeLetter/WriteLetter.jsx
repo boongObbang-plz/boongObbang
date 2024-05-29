@@ -43,7 +43,7 @@ const WriteLetter = () => {
     <>
       <Top />
       <div className="flex w-full h-full flex-col">
-        <div className="mt-2 flex h-full w-full justify-center">
+        <div className="mt-2 flex w-full justify-center">
           <div className="flex w-1/3 items-center justify-center text-lg min-[400px]:text-[17px] min-[500px]:text-[20px] min-[600px]:text-[24px]">
             To
           </div>
