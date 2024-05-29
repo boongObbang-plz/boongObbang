@@ -47,7 +47,7 @@ URL : [www.boongobbang.site](www.boongobbang.site)
 ### [ 로그인 화면 ]
 | 모바일 | 데스크탑 |
 |--|--|
-|  |  |
+| <img src="https://github.com/boongObbang-plz/boongObbang/assets/85945788/18cddf9c-2ae9-492c-86ef-ee81437303ff" height="400" > |  |
 
 -   **도움말 버튼:**
     -   사용자들이 필요한 정보를 쉽게 찾을 수 있도록 이용 방법을 제공합니다.
@@ -59,7 +59,7 @@ URL : [www.boongobbang.site](www.boongobbang.site)
 ### [ 설정 화면 ]
 | 모바일 | 데스크탑 |
 |--|--|
-|  |  |
+| <img src="https://github.com/boongObbang-plz/boongObbang/assets/85945788/768b8202-4877-447d-a99e-5fd8ee38c3d4" height="400" > |  |
 
 -   **포장마차 이름 설정:**
     -   나만의 개성 있는 포장마차의 이름을 설정합니다.
@@ -78,7 +78,7 @@ URL : [www.boongobbang.site](www.boongobbang.site)
 
 | 모바일 | 데스크탑 |
 |--|--|
-|  |  |
+| <img src="https://github.com/boongObbang-plz/boongObbang/assets/85945788/0a07369e-214b-4a99-aa7a-8534df4d8547" height="400" > |  |
 
 -   **나만의 포장마차:**
     -   사용자가 설정한 포장마차의 테마와 이름이 표시됩니다.
@@ -97,14 +97,14 @@ URL : [www.boongobbang.site](www.boongobbang.site)
 
 | 모바일 | 데스크탑 |
 |--|--|
-|  |  |
+| <img src="https://github.com/boongObbang-plz/boongObbang/assets/85945788/573df8cc-fa7b-411a-b477-84588580a16d" height="400" > |  |
 
 -   **보드:**
     -   해당 링크 사용자가 받은 편지 테마와 보낸 사람의 이름이 함께 표기되어 보드에 나열됩니다.
--   **편지 작성:**
-    -   다양한 편지 테마 중 원하는 테마를 선택하고 마음을 담아 편지 내용을 작성할 수 있습니다.
 -   **도움말 버튼:**
     -   사용자들이 필요한 정보를 쉽게 찾을 수 있도록 이용 방법을 제공합니다.
+-   **편지 작성:**
+    -   다양한 편지 테마 중 원하는 테마를 선택하고 마음을 담아 편지 내용을 작성할 수 있습니다.
 -   **내 페이지 이동:**
     -   자신의 포장마차 페이지로 이동합니다.
 
