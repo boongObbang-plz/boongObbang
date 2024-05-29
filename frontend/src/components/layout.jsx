@@ -49,7 +49,7 @@ const Layout = () => {
   const letterStyled = {
     content: {
       width: "80%",
-      height: "fit-content",
+      height: "80%",
       top: "50%",
       left: "50%",
       transform: "translate(-50%, -50%)",
