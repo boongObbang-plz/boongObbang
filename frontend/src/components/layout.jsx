@@ -1,23 +1,23 @@
-import { useRecoilState, useSetRecoilState } from "recoil";
-import Modal from "react-modal";
-import { Outlet } from "react-router-dom";
+import FinalCheckDelete from "@components//MainPage/readLetter/FinalCheckDelete";
+import LoginNotice from "@components/LoginPage/Notice";
+import LetterPop from "@components/MainPage/readLetter/LetterPop";
+import FinalCheckSubmit from "@components/NotMyMainPage/MakeLetter/FinalCheckSubmit";
+import MakeLetter from "@components/NotMyMainPage/MakeLetter/MakeLetter";
+import Notice from "@components/NotMyMainPage/Notice";
+import FinalCheckDeleteId from "@components/SettingPage/FinalCheckDeleteId";
+import FinalCheckLogout from "@components/SettingPage/FinalCheckLogout";
 import {
+  modalAlertState,
   modalHelperState,
   modalLetterState,
-  writeLetterState,
-  modalSubmitState,
-  modalAlertState,
-  modalReadLetterState,
   modalLoginHelperState,
+  modalReadLetterState,
+  modalSubmitState,
+  writeLetterState,
 } from "@states//ModalState";
-import MakeLetter from "@components/NotMyMainPage/MakeLetter/MakeLetter";
-import FinalCheckSubmit from "@components/NotMyMainPage/MakeLetter/FinalCheckSubmit";
-import Notice from "@components/NotMyMainPage/Notice";
-import LetterPop from "@components/MainPage/readLetter/LetterPop";
-import LoginNotice from "@components/LoginPage/Notice";
-import FinalCheckDelete from "@components//MainPage/readLetter/FinalCheckDelete";
-import FinalCheckLogout from "@components/SettingPage/FinalCheckLogout";
-import FinalCheckDeleteId from "@components/SettingPage/FinalCheckDeleteId";
+import Modal from "react-modal";
+import { Outlet } from "react-router-dom";
+import { useRecoilState, useSetRecoilState } from "recoil";
 
 const Layout = () => {
   const [letterOpen, setLetterOpen] = useRecoilState(modalLetterState);
@@ -27,9 +27,9 @@ const Layout = () => {
   const [readOpen, setReadOpen] = useRecoilState(modalReadLetterState);
   const [alertOpen, setAlertOpen] = useRecoilState(modalAlertState);
   const [loginHelperOpen, setLoginHelperOpen] = useRecoilState(
-    modalLoginHelperState
+    modalLoginHelperState,
   );
-  
+
   Modal.defaultStyles.overlay.backgroundColor = "transparent";
   Modal.defaultStyles.content.maxWidth = "650px";
   const helperStyled = {
@@ -42,7 +42,6 @@ const Layout = () => {
       borderRadius: "10px",
       paddingTop: "10px",
       paddingBottom: "10px",
-
     },
   };
 
@@ -90,7 +89,7 @@ const Layout = () => {
         <MakeLetter />
       </Modal>
       {/* 남의 메인 페이지 도움말 */}
-      <Modal 
+      <Modal
         style={helperStyled}
         isOpen={helperOpen}
         onRequestClose={() => setHelperOpen(false)}
@@ -135,12 +134,12 @@ const Layout = () => {
       </Modal>
       {/* 알림창 */}
       <Modal
-        className="w-full h-[10%] flex justify-center fixed bottom-[50%] animate-fade-out outline-none"
+        className="fixed bottom-[50%] flex h-[10%] w-full animate-fade-out justify-center outline-none"
         isOpen={alertOpen.isOpen}
         onRequestClose={() => setAlertOpen({ isOpen: false, message: "" })}
         ariaHideApp={false}
       >
-        <div className="w-[80%] bg-[#FFFFFF] rounded-[5px] flex justify-center items-center text-xs min-[400px]:text-[15px] min-[500px]:text-[17px] min-[600px]:text-[20px] min-[733px]:w-[650px] px-[8%] leading-8 text-center break-keep">
+        <div className="flex w-[80%] items-center justify-center break-keep rounded-[5px] bg-[#FFFFFF] px-[8%] text-center text-xs leading-8 min-[400px]:text-[15px] min-[500px]:text-[17px] min-[600px]:text-[20px] min-[733px]:w-[650px]">
           {alertOpen.message}
         </div>
       </Modal>
