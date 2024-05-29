@@ -42,7 +42,7 @@ const WriteLetter = () => {
   return (
     <>
       <Top />
-      <div className="flex h-full w-full flex-col">
+      <div className="flex w-full flex-col">
         <div className="mt-2 flex h-full w-full justify-center">
           <div className="flex w-1/3 items-center justify-center text-lg min-[400px]:text-[17px] min-[500px]:text-[20px] min-[600px]:text-[24px]">
             To
@@ -56,7 +56,7 @@ const WriteLetter = () => {
         </div>
         <textarea
           type="text"
-          className="text-md mt-4 h-[22rem] w-full rounded-lg border-[25px]  border-[#DDDCDC] bg-[#DDDCDC] focus:outline-0 min-[400px]:text-[16px] min-[500px]:h-[29.5rem] min-[500px]:text-[19px] min-[600px]:h-[35rem] min-[600px]:text-[23px] min-[700px]:h-[40rem]"
+          className="text-md mt-4 h-full w-full rounded-lg border-[25px]  border-[#DDDCDC] bg-[#DDDCDC] focus:outline-0 min-[400px]:text-[16px] min-[500px]:text-[19px] min-[600px]:text-[23px]"
           onChange={onChangeMessage}
           value={writeLetter.message}
         />
