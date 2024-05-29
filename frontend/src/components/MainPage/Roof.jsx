@@ -9,7 +9,7 @@ const Roof = ({ roof, light }) => {
 
   return (
     <div className="pointer-events-none h-full w-full">
-      <img src={roofs[roof]} className="h-[20vh] w-full" alt="roof" />
+      <img src={roofs[roof]} className="w-full" alt="roof" />
       <Light selectedIdx={light} />
     </div>
   );
