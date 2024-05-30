@@ -1,7 +1,7 @@
-import makeLetter from "/images/btn_makeLetter.png";
+import { modalAlertState, modalLetterState } from "@states/ModalState";
 import { useEffect } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { modalLetterState, modalAlertState } from "@states/ModalState";
+import makeLetter from "/images/btn_makeLetter.png";
 
 const MakeLetterBTN = ({ dday }) => {
   const setModalOpen = useSetRecoilState(modalLetterState);
@@ -16,10 +16,11 @@ const MakeLetterBTN = ({ dday }) => {
   }, [alertOpen]);
 
   const checkDday = () => {
-    if (dday == 0) {
+    if (dday <= 0) {
       setAlertOpen({
         isOpen: true,
-        message: "12월 25일부터는 편지를 등록할 수 없어요😢",
+        message:
+          "2023년 12월 25일부터는 편지를 등록할 수 없어요. 2024년도 12월에 만나요🤗",
       });
       return;
     }
@@ -27,7 +28,7 @@ const MakeLetterBTN = ({ dday }) => {
   };
 
   return (
-    <div className="w-[20%] mr-3">
+    <div className="mr-3 w-[20%]">
       <img
         src={makeLetter}
         onClick={() => checkDday()}
