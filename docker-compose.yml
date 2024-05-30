@@ -65,8 +65,9 @@
 # 클러스터에서 실행할 때 사용
 services:
   frontend:
-    build: ./frontend
-    image: boongobbang/boongobbang-frontend:latest
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
     env_file:
       - .env
     environment:

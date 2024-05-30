@@ -26,7 +26,7 @@ const Letters = ({ messages, dday }) => {
   ];
 
   var idx = messages.length;
-  const rendering = [...messages].reverse().map((message) => {
+  const letters = [...messages].reverse().map((message) => {
     if (message) {
       var locationIdx = --idx >= 9 ? idx : idx;
       return (
@@ -42,7 +42,7 @@ const Letters = ({ messages, dday }) => {
     }
   });
 
-  return <div>{rendering}</div>;
+  return <div>{letters}</div>;
 };
 
 export default Letters;

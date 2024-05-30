@@ -1,8 +1,8 @@
-import Share from "/images/icon_share.png";
-import { useRecoilState } from "recoil";
-import { modalAlertState, loginState } from "@states/ModalState";
+import { loginState, modalAlertState } from "@states/ModalState";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useRecoilState } from "recoil";
+import Share from "/images/icon_share.png";
 
 const ShareButton = () => {
   const [alertOpen, setAlertOpen] = useRecoilState(modalAlertState);
@@ -40,7 +40,7 @@ const ShareButton = () => {
   };
 
   return (
-    <div className="w-[10%] mr-[1%]">
+    <div className="mr-[1%] w-[10%]">
       <button onClick={onClickShareButton}>
         <img src={Share} alt="share button" />
       </button>
