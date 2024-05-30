@@ -1,7 +1,7 @@
 name: boogObbangPlz
 on:
   push:
-    branches: [develop]
+    branches: [main]
 
 permissions:
   contents: read
@@ -14,10 +14,9 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Make Docker Env
-        run : |
+        run: |
           touch ./.env
           echo "${{ secrets.DOCKER_ENV }}" > ./.env
-          
 
       - name: Make application.properties
         run: |
@@ -35,18 +34,13 @@ jobs:
           aws-secret-access-key: ${{ secrets.ACCESS_KEY }}
           aws-region: ap-northeast-2
 
-
       - name: Deliver to AWS S3
-        run:
-          aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://${{ secrets.S3 }}/${{ secrets.S3 }}/$GITHUB_SHA.zip
+        run: aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://${{ secrets.S3 }}/${{ secrets.S3 }}/$GITHUB_SHA.zip
 
       - name: Code Deploy To EC2
-        run:
-          aws deploy create-deployment 
-            --application-name ${{ secrets.CODE_DEPLOY_APP_NAME }}
-            --deployment-config-name CodeDeployDefault.AllAtOnce
-            --deployment-group-name ${{ secrets.CODE_DEPLOY_GROUP }}
-            --region ap-northeast-2
-            --s3-location bucket=${{ secrets.S3 }},bundleType=zip,key=${{ secrets.S3 }}/$GITHUB_SHA.zip
-
-          
+        run: aws deploy create-deployment
+          --application-name ${{ secrets.CODE_DEPLOY_APP_NAME }}
+          --deployment-config-name CodeDeployDefault.AllAtOnce
+          --deployment-group-name ${{ secrets.CODE_DEPLOY_GROUP }}
+          --region ap-northeast-2
+          --s3-location bucket=${{ secrets.S3 }},bundleType=zip,key=${{ secrets.S3 }}/$GITHUB_SHA.zip
