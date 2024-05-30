@@ -6,4 +6,4 @@ const LetterpopTextArea = ({ text }) => {
     )
 }
 
-export default LetterpopTextArea
+export default LetterpopTextArea;
