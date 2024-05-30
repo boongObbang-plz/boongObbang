@@ -45,9 +45,9 @@ URL : [www.boongobbang.site](www.boongobbang.site)
 
 ## 서비스 기능
 ### [ 로그인 화면 ]
-| 모바일 | 데스크탑 |
+| 모바일 | 태블릿 |
 |--|--|
-| <img src="https://github.com/boongObbang-plz/boongObbang/assets/85945788/18cddf9c-2ae9-492c-86ef-ee81437303ff" height="400" > |  |
+| <img src="https://github.com/boongObbang-plz/boongObbang/assets/85945788/18cddf9c-2ae9-492c-86ef-ee81437303ff" height="400" > | <img src="https://github.com/boongObbang-plz/boongObbang/assets/69659340/c4b7f3da-a143-4401-bb66-d4394b2547a7" height="400"> |
 
 -   **도움말 버튼:**
     -   사용자들이 필요한 정보를 쉽게 찾을 수 있도록 이용 방법을 제공합니다.
@@ -57,9 +57,9 @@ URL : [www.boongobbang.site](www.boongobbang.site)
 
 
 ### [ 설정 화면 ]
-| 모바일 | 데스크탑 |
+| 모바일 | 태블릿 |
 |--|--|
-| <img src="https://github.com/boongObbang-plz/boongObbang/assets/85945788/768b8202-4877-447d-a99e-5fd8ee38c3d4" height="400" > |  |
+| <img src="https://github.com/boongObbang-plz/boongObbang/assets/85945788/768b8202-4877-447d-a99e-5fd8ee38c3d4" height="400" > | <img src="https://github.com/boongObbang-plz/boongObbang/assets/69659340/2cdf5941-165b-428b-8223-d828320ea735" height="400"> |
 
 -   **포장마차 이름 설정:**
     -   나만의 개성 있는 포장마차의 이름을 설정합니다.
@@ -76,9 +76,9 @@ URL : [www.boongobbang.site](www.boongobbang.site)
 
 ### [ 메인 화면 ]
 
-| 모바일 | 데스크탑 |
+| 모바일 | 태블릿 |
 |--|--|
-| <img src="https://github.com/boongObbang-plz/boongObbang/assets/85945788/0a07369e-214b-4a99-aa7a-8534df4d8547" height="400" > |  |
+| <img src="https://github.com/boongObbang-plz/boongObbang/assets/85945788/0a07369e-214b-4a99-aa7a-8534df4d8547" height="400" > | <img src="https://github.com/boongObbang-plz/boongObbang/assets/69659340/4051cb40-cfba-47cd-a6a4-275f3a2f0154" height="400"> |
 
 -   **나만의 포장마차:**
     -   사용자가 설정한 포장마차의 테마와 이름이 표시됩니다.
@@ -95,9 +95,9 @@ URL : [www.boongobbang.site](www.boongobbang.site)
 
 ### [ 링크 접속 화면 ]
 
-| 모바일 | 데스크탑 |
+| 모바일 | 태블릿 |
 |--|--|
-| <img src="https://github.com/boongObbang-plz/boongObbang/assets/85945788/573df8cc-fa7b-411a-b477-84588580a16d" height="400" > |  |
+| <img src="https://github.com/boongObbang-plz/boongObbang/assets/85945788/573df8cc-fa7b-411a-b477-84588580a16d" height="400" > | <img src="https://github.com/boongObbang-plz/boongObbang/assets/69659340/8fba0d21-f69c-432e-941b-b1783026a078" height="400"> |
 
 -   **보드:**
     -   해당 링크 사용자가 받은 편지 테마와 보낸 사람의 이름이 함께 표기되어 보드에 나열됩니다.
