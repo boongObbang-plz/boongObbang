@@ -43,6 +43,11 @@ URL : [www.boongobbang.site](www.boongobbang.site)
 
 <br />
 
+### 아키텍처
+![image](https://github.com/boongObbang-plz/boongObbang/assets/85945788/af506c32-11eb-4d90-8aa4-e94e8b62a184)
+
+<br />
+
 ## 서비스 기능
 ### [ 로그인 화면 ]
 | 모바일 | 태블릿 |
