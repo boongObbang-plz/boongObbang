@@ -102,7 +102,7 @@ URL : [www.boongobbang.site](www.boongobbang.site)
 
 | 모바일 | 태블릿 |
 |--|--|
-| <img src="https://github.com/boongObbang-plz/boongObbang/assets/85945788/573df8cc-fa7b-411a-b477-84588580a16d" height="400" > | <img src="https://github.com/boongObbang-plz/boongObbang/assets/69659340/8fba0d21-f69c-432e-941b-b1783026a078" height="400"> |
+| <img src="https://github.com/boongObbang-plz/boongObbang/assets/85945788/573df8cc-fa7b-411a-b477-84588580a16d" height="400" > | <img src="https://github.com/boongObbang-plz/boongObbang/assets/69659340/639d5693-3567-4825-8b77-ba0d2a04db13" height="400"> |
 
 -   **보드:**
     -   해당 링크 사용자가 받은 편지 테마와 보낸 사람의 이름이 함께 표기되어 보드에 나열됩니다.
